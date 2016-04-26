@@ -17,6 +17,7 @@ public function add_task(){
         //set all data for inserting into database
         $data = [
             'title'        => $this->input->post('title'),
+            'unique_name' =>    $this->taskUniqueName(),
             'created_at'        => time(),
             'modified_at'       => time()
         ];
@@ -33,6 +34,10 @@ public function add_task(){
 
     }
 
+    //Generate task unique name
+    public function taskUniqueName(){
+        return "Task-".($this->tasksListCount()+1);
+    }
     /**
      * @return Agent List
      * Agent List Query
