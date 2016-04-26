@@ -76,7 +76,7 @@
         if(verifyConfirm) {
             $.ajax({
                 type: "POST",
-                url: "<?php echo base_url('agent/deleteAjax') ?>",
+                url: "<?php echo base_url('tasks/deleteAjax') ?>",
                 data: {id: agentId},
             })
             .done(function (msg) {
