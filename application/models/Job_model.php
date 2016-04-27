@@ -1,10 +1,10 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Task_model extends CI_Model {
+class Job_model extends CI_Model {
 
 
-public function add_task(){
+public function add_job(){
 
         $user_info = $this->session->userdata('logged_user');
         $user_id = $user_info['user_id'];

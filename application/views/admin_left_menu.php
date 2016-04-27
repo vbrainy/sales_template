@@ -70,7 +70,7 @@ $currentUser = $currentAuthDta['role'];
             
             <li class="treeview <?php echo menu_li_active('tasks'); ?>">
                 <a href="#">
-                    <i class="fa fa-group"></i>
+                    <i class="fa fa-tasks"></i>
                     <span>Task</span>
                     <i class="fa fa-angle-left pull-right"></i>
                 </a>

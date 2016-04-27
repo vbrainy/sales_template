@@ -58,6 +58,50 @@ class Tasks extends CI_Controller {
 		theme('add_task', $data);
 	}
 
+        
+        	public function edit($id){
+		//restricted this area, only for admin
+		permittedArea();
+
+		$data['tasks'] = singleDbTableRow($id,'tasks');
+
+		if($this->input->post())
+		{
+			if($this->input->post('submit') != 'edit_task') die('Error! sorry');
+
+			$this->form_validation->set_rules('title', 'Title', 'required|trim');
+
+			if($this->form_validation->run() == true)
+			{
+				$insert = $this->task_model->edit_task($id);
+				if($insert)
+				{
+					$this->session->set_flashdata('successMsg', 'Task Updated Success');
+					redirect($_SERVER['HTTP_REFERER']);
+				}
+			}
+		}
+
+		theme('edit_task', $data);
+	}
+
+        	/**
+	 * This isApi for deleting an agent
+	 */
+
+	public function deleteAjax(){
+		$id = $this->input->post('id');
+
+		//get deleted user info
+		$userInfo = singleDbTableRow($id,'tasks');
+		$title = $userInfo->title;
+		// add a activity
+		create_activity("Deleted {$title} Task");
+		//Now delete permanently
+		$this->db->where('id', $id)->delete('tasks');
+		return true;
+	}
+
     
     /**
 	 * Agent list from db
@@ -102,9 +146,11 @@ class Tasks extends CI_Controller {
 
 			//Action Button
 			$button = '';
+                        $button .= '<a class="btn btn-primary editBtn" href="'.base_url('jobs/add_job/'. $r->id).'" data-toggle="tooltip" title="Add Job">
+						<i class="fa fa-plus"></i> </a>';
 			$button .= '<a class="btn btn-primary editBtn" href="'.base_url('agent/profile_view/'. $r->id).'" data-toggle="tooltip" title="View">
 						<i class="fa fa-eye"></i> </a>';
-			$button .= '<a class="btn btn-info editBtn"  href="'.base_url('user/profile_edit/'. $r->id).'" data-toggle="tooltip" title="Edit">
+			$button .= '<a class="btn btn-info editBtn"  href="'.base_url('tasks/edit/'. $r->id).'" data-toggle="tooltip" title="Edit">
 						<i class="fa fa-edit"></i> </a>';
 			//$button .= $blockUnblockBtn;
 			$button .= '<a class="btn btn-danger deleteBtn" id="'.$r->id.'" data-toggle="tooltip" title="Delete">
@@ -113,8 +159,8 @@ class Tasks extends CI_Controller {
 			$data['data'][] = array(
 				$r->title,
 				$r->unique_name,
-				$r->created_at,
-				$r->modified_at,
+				//$r->created_at,
+				//$r->modified_at,
 //				$statusBtn,
 //				$r->referral_code,
 				$button
