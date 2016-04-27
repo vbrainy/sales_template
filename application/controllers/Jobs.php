@@ -33,19 +33,19 @@ class Jobs extends CI_Controller {
 			if($this->input->post('submit') != 'add_task') die('Error! sorry');
 
 			$this->form_validation->set_rules('title', 'Title', 'required|trim');
-//			$this->form_validation->set_rules('contactno', 'Contact No.', 'required|trim');
-//			$this->form_validation->set_rules('email', 'Email', 'required|trim|is_unique[users.email]');
-//			$this->form_validation->set_rules('password', 'Password', 'required|matches[passconf]');
-//			$this->form_validation->set_rules('passconf', 'Password Confirmation', 'required');
-//			$this->form_validation->set_rules('gender', 'Gender', 'required');
-//			$this->form_validation->set_rules('date_of_birth', 'Date of birth', 'required|trim');
-//			$this->form_validation->set_rules('profession', 'Profession', 'required|trim');
-//			$this->form_validation->set_rules('street_address', 'Street Address', 'required|trim');
-//			$this->form_validation->set_rules('country', 'Country', 'required');
-
+                        $this->form_validation->set_rules('description', 'Description', 'required|trim');
+                        $this->form_validation->set_rules('part_price1', 'Price 1', 'required|trim');
+                        $this->form_validation->set_rules('job_address1', 'Job Address 1', 'required|trim');
+                        $this->form_validation->set_rules('job_address2', 'Job Address 1', 'required|trim');
+                        $this->form_validation->set_rules('city', 'City', 'required|trim');
+                        $this->form_validation->set_rules('location', 'Location', 'required|trim');
+                        $this->form_validation->set_rules('postcode', 'Postcode', 'required|trim');
+                        $this->form_validation->set_rules('country', 'Country', 'required|trim');
+                        $this->form_validation->set_rules('mobile', 'Mobile', 'required|trim');
+                        
 			if($this->form_validation->run() == true)
 			{
-				$insert = $this->task_model->add_task();
+				$insert = $this->job_model->add_job();
 				if($insert)
 				{
 					$this->session->set_flashdata('successMsg', 'Task Created Success');
