@@ -23,8 +23,8 @@
                         <tr>
                             <th>Title</th>
                             <th>Unique Identifier</th>
-                            <th>Created at</th>
-                            <th>Modified at</th>
+<!--                            <th>Created at</th>
+                            <th>Modified at</th>-->
                             <th width="20%">Action</th>
                         </tr>
                         </thead>
@@ -33,8 +33,8 @@
                         <tr>
                             <th>Title</th>
                             <th>Unique Identifier</th>
-                            <th>Created at</th>
-                            <th>Modified at</th>
+<!--                            <th>Created at</th>
+                            <th>Modified at</th>-->
                             <th>Action</th>
                         </tr>
                         </tfoot>
