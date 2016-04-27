@@ -1,5 +1,8 @@
 
-<?php function page_css(){ ?>
+<?php 
+
+
+function page_css(){ ?>
     <!-- daterange picker -->
     <link href="<?php echo base_url('assets/admin'); ?>/css/daterangepicker/daterangepicker-bs3.css" rel="stylesheet" type="text/css" />
     <!-- iCheck for checkboxes and radio inputs -->
@@ -21,7 +24,7 @@
             <!-- general form elements -->
             <div class="box box-primary">
                 <div class="box-header">
-                    <h3 class="box-title">Add New Agent</h3>
+                    <h3 class="box-title">Edit Agent</h3>
                 </div><!-- /.box-header -->
                 <!-- form start -->
                 <?php echo form_open_multipart('', ['role' => 'form', 'class' => 'form-horizontal']); ?>
@@ -32,7 +35,7 @@
                                 <span class="text-red">*</span>
                             </label>
                             <div class="col-md-9">
-                                <input type="text" name="first_name" class="form-control" value="<?php echo set_value('first_name'); ?>" placeholder="Enter First Name">
+                                <input type="text" name="first_name" class="form-control" value="<?php echo $agent->first_name; ?>" placeholder="Enter First Name">
                                 <?php echo form_error('first_name') ?>
                             </div>
                         </div>
@@ -40,7 +43,7 @@
                         <div class="form-group <?php if(form_error('last_name')) echo 'has-error'; ?>">
                             <label for="firstName" class="col-md-3">Last Name</label>
                             <div class="col-md-9">
-                                <input type="text" name="last_name" class="form-control" value="<?php echo set_value('last_name'); ?>" placeholder="Enter Last Name">
+                                <input type="text" name="last_name" class="form-control" value="<?php echo $agent->last_name ?>" placeholder="Enter Last Name">
                                 <?php echo form_error('last_name') ?>
                             </div>
                         </div>
@@ -50,7 +53,7 @@
                                 <span class="text-red">*</span>
                             </label>
                             <div class="col-md-9">
-                                <input type="email" name="email" class="form-control" value="<?php echo set_value('email'); ?>" placeholder="Enter email">
+                                <input type="email" name="email" class="form-control" readonly="readonly"  value="<?php echo $agent->email; ?>" placeholder="Enter email">
                                 <?php echo form_error('email') ?>
 
                             </div>
@@ -62,7 +65,7 @@
                                 <span class="text-red">*</span>
                             </label>
                             <div class="col-md-9">
-                                <input type="text" name="mobile_no_1" class="form-control" value="<?php echo set_value('mobile_no_1'); ?>" placeholder="Mobile No 1">
+                                <input type="text" name="mobile_no_1" class="form-control" value="<?php echo $agent->mobile_no_1; ?>" placeholder="Mobile No 1">
                                 <?php echo form_error('mobile_no_1') ?>
 
                             </div>
@@ -73,7 +76,7 @@
                                 <span class="text-red">*</span>
                             </label>
                             <div class="col-md-9">
-                                <input type="text" name="mobile_no_2" class="form-control" value="<?php echo set_value('mobile_no_2'); ?>" placeholder="Mobile No 2">
+                                <input type="text" name="mobile_no_2" class="form-control" value="<?php echo $agent->mobile_no_2; ?>" placeholder="Mobile No 2">
                                 <?php echo form_error('mobile_no_2') ?>
 
                             </div>
@@ -81,10 +84,10 @@
 
                         <div class="form-group <?php if(form_error('password')) echo 'has-error'; ?>">
                             <label for="exampleInputEmail1" class="col-md-3">Password
-                                <span class="text-red">*</span>
+                                
                             </label>
                             <div class="col-md-9">
-                                <input type="password" name="password" class="form-control" placeholder="Enter Password">
+                                <input type="password" name="password" autocomplete="off" class="form-control" placeholder="Enter Password">
                                 <?php echo form_error('password') ?>
 
                             </div>
@@ -92,10 +95,10 @@
 
                         <div class="form-group <?php if(form_error('passconf')) echo 'has-error'; ?>">
                             <label for="exampleInputEmail1" class="col-md-3">Password Confirmation
-                                <span class="text-red">*</span>
+                               
                             </label>
                             <div class="col-md-9">
-                                <input type="password" name="passconf" class="form-control" placeholder="Enter Confirmation Password">
+                                <input type="password" name="passconf" autocomplete="off" class="form-control" placeholder="Enter Confirmation Password">
                                 <?php echo form_error('passconf') ?>
 
                             </div>
@@ -107,8 +110,8 @@
                             <div class="col-md-9">
                                 <select name="gender" class="form-control">
                                     <option value=""> Select Gender </option>
-                                    <option value="male" <?php echo set_select('gender', 'male') ?>>Male</option>
-                                    <option value="female" <?php echo set_select('gender', 'female') ?>>Fe-Male</option>
+                                    <option <?php if($agent->gender=="male"){ ?>selected="selected"<?php } ?> value="male" <?php echo set_select('gender', 'male') ?>>Male</option>
+                                    <option <?php if($agent->gender=="female"){ ?>selected="selected"<?php } ?> value="female" <?php echo set_select('gender', 'female') ?>>Fe-Male</option>
                                 </select>
                                 <?php echo form_error('gender') ?>
                             </div>
@@ -124,7 +127,7 @@
                                     <div class="input-group-addon">
                                         <i class="fa fa-calendar"></i>
                                     </div>
-                                    <input class="form-control" name="date_of_birth" type="text" value="<?php echo set_value('date_of_birth'); ?>" data-mask="" data-inputmask="'alias': 'yyyy-mm-dd'">
+                                    <input class="form-control" name="date_of_birth" type="text" value="<?php echo $agent->date_of_birth; ?>" data-mask="" data-inputmask="'alias': 'yyyy-mm-dd'">
                                 </div>
                                 <?php echo form_error('date_of_birth') ?>
                             </div>
@@ -138,7 +141,7 @@
                             <div class="col-md-9">
 
                                   
-                                    <input class="form-control" name="national_insurance_no" type="text" placeholder="National Insurance No" value="<?php echo set_value('national_insurance_no'); ?>" />
+                                    <input class="form-control" name="national_insurance_no" type="text" placeholder="National Insurance No" value="<?php echo $agent->national_insurance_no ?>" />
                                 
                                 <?php echo form_error('national_insurance_no') ?>
                             </div>
@@ -150,7 +153,7 @@
                                 <span class="text-red">*</span>
                             </label>
                             <div class="col-md-9">
-                                <input type="text" name="profession" class="form-control" value="<?php echo set_value('profession'); ?>" placeholder="Profession">
+                                <input type="text" name="profession" class="form-control" value="<?php echo $agent->profession; ?>" placeholder="Profession">
                                 <?php echo form_error('profession') ?>
                             </div>
                         </div>
@@ -162,7 +165,7 @@
                                 <span class="text-red">*</span>
                             </label>
                             <div class="col-md-9">
-                                <textarea class="form-control" placeholder="Address 1" name="agent_address1"><?php echo set_value('agent_address1'); ?></textarea>
+                                <textarea class="form-control" placeholder="Address 1" name="agent_address1"><?php echo $agent->agent_address1; ?></textarea>
                                 <?php echo form_error('agent_address1') ?>
                             </div>
                         </div>
@@ -172,7 +175,7 @@
                                 <span class="text-red">*</span>
                             </label>
                             <div class="col-md-9">
-                                <textarea class="form-control" placeholder="Address 2" name="agent_address2"><?php echo set_value('agent_address2'); ?></textarea>
+                                <textarea class="form-control" placeholder="Address 2" name="agent_address2"><?php echo $agent->agent_address2; ?></textarea>
                                 <?php echo form_error('agent_address2') ?>
                             </div>
                         </div>
@@ -195,7 +198,7 @@
                                     ?>
 
                                 </select>-->
-                                <input type="text" name="country" class="form-control" value="<?php echo set_value('country'); ?>" placeholder="Country">
+                                <input type="text" name="country" class="form-control" value="<?php echo $agent->country; ?>" placeholder="Country">
                                 
                                 <?php echo form_error('country') ?>
                             </div>
@@ -206,7 +209,7 @@
                             <label for="firstName" class="col-md-3">City<span class="text-red">*</span></label>
                             <div class="col-md-9">
 
-                                <input type="text" name="city" class="form-control" value="<?php echo set_value('city'); ?>" placeholder="City">
+                                <input type="text" name="city" class="form-control" value="<?php echo $agent->city; ?>" placeholder="City">
                                 
                                 <?php echo form_error('city') ?>
                             </div>
@@ -216,7 +219,7 @@
                             <label for="firstName" class="col-md-3">Postal Code<span class="text-red">*</span></label>
                             <div class="col-md-9">
 
-                                <input type="text" name="postal_code" class="form-control" value="<?php echo set_value('postal_code'); ?>" placeholder="Postal Code">
+                                <input type="text" name="postal_code" class="form-control" value="<?php echo $agent->postal_code; ?>" placeholder="Postal Code">
                                 
                                 <?php echo form_error('postal_code') ?>
                             </div>
@@ -240,7 +243,7 @@
 
                     <div class="box-footer">
                         <button type="submit" name="submit" value="add_agent" class="btn btn-primary">
-                            <i class="fa fa-edit"></i> Add Agent
+                            <i class="fa fa-edit"></i> Update Agent
                         </button>
                     </div>
                 </form>

@@ -12,6 +12,7 @@ class Agent extends CI_Controller {
 
 	public function index()
 	{
+            
 		//restricted this area, only for admin
 		permittedArea();
 
@@ -33,16 +34,21 @@ class Agent extends CI_Controller {
 			if($this->input->post('submit') != 'add_agent') die('Error! sorry');
 
 			$this->form_validation->set_rules('first_name', 'First Name', 'required|trim');
-			$this->form_validation->set_rules('contactno', 'Contact No.', 'required|trim');
-			$this->form_validation->set_rules('email', 'Email', 'required|trim|is_unique[users.email]');
+			$this->form_validation->set_rules('mobile_no_1', 'Mobile No.', 'required|trim');
+			$this->form_validation->set_rules('mobile_no_2', 'Mobile No.', 'required|trim');
+			
+                        $this->form_validation->set_rules('email', 'Email', 'required|trim|is_unique[users.email]');
 			$this->form_validation->set_rules('password', 'Password', 'required|matches[passconf]');
 			$this->form_validation->set_rules('passconf', 'Password Confirmation', 'required');
 			$this->form_validation->set_rules('gender', 'Gender', 'required');
 			$this->form_validation->set_rules('date_of_birth', 'Date of birth', 'required|trim');
 			$this->form_validation->set_rules('profession', 'Profession', 'required|trim');
-			$this->form_validation->set_rules('street_address', 'Street Address', 'required|trim');
+			$this->form_validation->set_rules('agent_address1', 'Address 1', 'required|trim');
 			$this->form_validation->set_rules('country', 'Country', 'required');
-
+                        $this->form_validation->set_rules('national_insurance_no', 'National Insurance No.', 'required|trim');
+ 		        $this->form_validation->set_rules('postal_code', 'Postal Code', 'required');
+           $this->form_validation->set_rules('city', 'City', 'required');
+           
 			if($this->form_validation->run() == true)
 			{
 				$insert = $this->agent_model->add_agent();
@@ -58,6 +64,55 @@ class Agent extends CI_Controller {
 		theme('add_agent', $data);
 	}
 
+        /**
+	 * Agent list from db
+	 * @return Json format
+	 * usable only via API
+	 */
+        	public function edit_agent($id = ""){
+                  
+                    if(empty($id)){
+                       redirect(base_url('agent'));
+                    }
+
+		$data['agent'] = singleDbTableRow($id,'agents');
+		if($this->input->post())
+		{
+			if($this->input->post('submit') != 'add_agent') die('Error! sorry');
+
+			$this->form_validation->set_rules('first_name', 'First Name', 'required|trim');
+			$this->form_validation->set_rules('mobile_no_1', 'Mobile No.', 'required|trim');
+			$this->form_validation->set_rules('mobile_no_2', 'Mobile No.', 'required|trim');
+			
+                        //$this->form_validation->set_rules('email', 'Email', 'required|trim|is_unique[agents.email]');
+			$this->form_validation->set_rules('password', 'Password', 'matches[passconf]');
+			$this->form_validation->set_rules('passconf', 'Password Confirmation');
+			$this->form_validation->set_rules('gender', 'Gender', 'required');
+			$this->form_validation->set_rules('date_of_birth', 'Date of birth', 'required|trim');
+			$this->form_validation->set_rules('profession', 'Profession', 'required|trim');
+			$this->form_validation->set_rules('agent_address1', 'Address 1', 'required|trim');
+			$this->form_validation->set_rules('country', 'Country', 'required');
+                        $this->form_validation->set_rules('national_insurance_no', 'National Insurance No.', 'required|trim');
+ 		        $this->form_validation->set_rules('postal_code', 'Postal Code', 'required');
+           $this->form_validation->set_rules('city', 'City', 'required');
+           
+		if($this->form_validation->run() == true)
+		{
+			$update = $this->agent_model->update_agent($id);
+			if($update)
+			{
+				$this->session->set_flashdata('successMsg', 'Profile Update Success');
+				redirect($_SERVER['HTTP_REFERER']);
+			}
+		}
+		}
+		
+
+
+theme('edit_agent', $data);
+
+	}
+        
 	/**
 	 * Agent list from db
 	 * @return Json format
@@ -101,21 +156,22 @@ class Agent extends CI_Controller {
 
 			//Action Button
 			$button = '';
-			$button .= '<a class="btn btn-primary editBtn" href="'.base_url('agent/profile_view/'. $r->id).'" data-toggle="tooltip" title="View">
-						<i class="fa fa-eye"></i> </a>';
-			$button .= '<a class="btn btn-info editBtn"  href="'.base_url('user/profile_edit/'. $r->id).'" data-toggle="tooltip" title="Edit">
+//			$button .= '<a class="btn btn-primary editBtn" href="'.base_url('agent/profile_view/'. $r->id).'" data-toggle="tooltip" title="View">
+//						<i class="fa fa-eye"></i> </a>';
+			$button .= '<a class="btn btn-info editBtn"  href="'.base_url('agent/edit_agent/'. $r->id).'" data-toggle="tooltip" title="Edit">
 						<i class="fa fa-edit"></i> </a>';
 			$button .= $blockUnblockBtn;
 			$button .= '<a class="btn btn-danger deleteBtn" id="'.$r->id.'" data-toggle="tooltip" title="Delete">
 						<i class="fa fa-trash"></i> </a>';
 
 			$data['data'][] = array(
-				$r->first_name.' '. $r->last_name,
+                        ucfirst($r->first_name).' '. ucfirst($r->last_name),
 				$r->email,
-				$r->row_pass,
-				$r->contactno,
-				$statusBtn,
-				$r->referral_code,
+				ucfirst($r->gender),
+				$r->mobile_no_1,
+			$r->referredByCode,
+					
+                            $statusBtn,
 				$button
 			);
 		}
@@ -137,7 +193,7 @@ class Agent extends CI_Controller {
 		// add a activity
 		create_activity("Deleted {$fullName} from Agent");
 		//Now delete permanently
-		$this->db->where('id', $id)->delete('users');
+		$this->db->where('id', $id)->delete('agents');
 		return true;
 	}
 
@@ -157,7 +213,7 @@ class Agent extends CI_Controller {
 		create_activity($status." {$fullName} from Agent");
 		//Now delete permanently
 
-		$this->db->where('id', $id)->update('users', ['active' => $buttonValue]);
+		$this->db->where('id', $id)->update('agents', ['active' => $buttonValue]);
 		return true;
 	}
 
