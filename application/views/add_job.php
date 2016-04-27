@@ -10,7 +10,25 @@
     <link href="<?php echo base_url('assets/admin'); ?>/css/timepicker/bootstrap-timepicker.min.css" rel="stylesheet"/>
 
 <?php } ?>
+<script src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places" type="text/javascript"></script>
 
+<script type="text/javascript">
+    function initialize() {
+        var input = document.getElementById('searchTextField');
+        var autocomplete = new google.maps.places.Autocomplete(input);
+        google.maps.event.addListener(autocomplete, 'place_changed', function () {
+            var place = autocomplete.getPlace();
+            document.getElementById('place_name').value = place.name;
+            document.getElementById('latitude').value = place.geometry.location.lat();
+            document.getElementById('longitude').value = place.geometry.location.lng();
+            //alert("This function is working!");
+            //alert(place.name);
+           // alert(place.address_components[0].long_name);
+
+        });
+    }
+    google.maps.event.addDomListener(window, 'load', initialize); 
+</script>
 <?php include('header.php'); ?>
 
 <!-- Main content -->
@@ -156,6 +174,17 @@
                                 <?php echo form_error('job_address2') ?>
                             </div>
                         </div>
+                        
+                        <div class="form-group <?php if(form_error('location')) echo 'has-error'; ?>">
+                            <label for="location" class="col-md-3">Location
+                                <span class="text-red">*</span>
+                            </label>
+                            <div class="col-md-9">
+                                <input id="searchTextField" name="location" class="form-control" value="<?php echo set_value('location'); ?>" type="text" size="50" placeholder="Enter a location" autocomplete="on" runat="server" />  
+                                <?php echo form_error('location') ?>
+                            </div>
+                        </div>
+                        
                         <div class="form-group <?php if(form_error('city')) echo 'has-error'; ?>">
                             <label for="city" class="col-md-3">City
                                 <span class="text-red">*</span>
@@ -174,6 +203,25 @@
                                 <?php echo form_error('postcode') ?>
                             </div>
                         </div>
+                        <div class="form-group <?php if(form_error('country')) echo 'has-error'; ?>">
+                            <label for="country" class="col-md-3">Country<span class="text-red">*</span></label>
+                            <div class="col-md-9">
+                                <select name="country" class="form-control">
+                                    <option value=""> Select Country </option>
+                                    <?php
+                                    if($countries->num_rows() > 0)
+                                    {
+                                        foreach($countries->result() as $c){
+                                            $selected = ($c->id == 19)? 'selected' : '';
+                                            echo '<option value="'.$c->id.'" '.$selected.'> '.$c->country_name.'</option>';
+                                        }
+                                    }
+                                    ?>
+                                </select>
+                                <?php echo form_error('country') ?>
+                            </div>
+                        </div>
+
                         <div class="form-group <?php if(form_error('mobile')) echo 'has-error'; ?>">
                             <label for="mobile" class="col-md-3">Mobile
                                 <span class="text-red">*</span>
@@ -193,6 +241,9 @@
                                 <?php echo form_error('notes') ?>
                             </div>
                         </div>
+                        <input type="hidden" id="place_name" name="place_name" />
+                        <input type="hidden" id="latitude" name="latitude" />
+                        <input type="hidden" id="longitude" name="longitude" />
                         
                         <div class="clearfix"></div>
                     </div><!-- /.box-body -->
