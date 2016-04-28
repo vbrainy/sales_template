@@ -21,13 +21,14 @@
 
                         <thead>
                         <tr>
-                            <th>Name</th>
+                          <th>Name</th>
                             <th>Email</th>
                             <th>Password</th>
-                            <th>Contact No.</th>
+                            <th>Mobile No 1.</th>
+                            <th>Referred By Code</th>
+                           
                             <th>Status</th>
-                            <th>Ref. Code</th>
-                            <th width="20%">Action</th>
+                               <th width="20%">Action</th>
                         </tr>
                         </thead>
 
@@ -36,10 +37,11 @@
                             <th>Name</th>
                             <th>Email</th>
                             <th>Password</th>
-                            <th>Contact No.</th>
+                            <th>Mobile No 1.</th>
+                            <th>Referred By Code</th>
+                           
                             <th>Status</th>
-                            <th>Ref. Code</th>
-                            <th>Action</th>
+                             <th>Action</th>
                         </tr>
                         </tfoot>
 
