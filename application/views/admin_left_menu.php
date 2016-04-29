@@ -31,7 +31,7 @@ $currentUser = $currentAuthDta['role'];
                 if($currentUser == 'admin'){
             ?>
 
-            <li class="treeview <?php echo menu_li_active('category'); ?>">
+<!--            <li class="treeview <?php echo menu_li_active('category'); ?>">
                 <a href="#">
                     <i class="fa fa-sitemap"></i>
                     <span>Category</span>
@@ -53,7 +53,7 @@ $currentUser = $currentAuthDta['role'];
                     <?php echo menu_link('product', 'All Invoice'); ?>
                     <?php echo menu_link('product/new_product_sell', 'New product sell'); ?>
                 </ul>
-            </li>
+            </li>-->
 
 
             <li class="treeview <?php echo menu_li_active('agent'); ?>">
@@ -65,6 +65,18 @@ $currentUser = $currentAuthDta['role'];
                 <ul class="treeview-menu">
                     <?php echo menu_link('agent', 'All Agent'); ?>
                     <?php echo menu_link('agent/add_agent', 'Add new agent'); ?>
+                </ul>
+            </li>
+            
+            <li class="treeview <?php echo menu_li_active('tasks'); ?>">
+                <a href="#">
+                    <i class="fa fa-tasks"></i>
+                    <span>Task</span>
+                    <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                    <?php echo menu_link('tasks', 'All Task'); ?>
+                    <?php echo menu_link('tasks/add_task', 'Add new task'); ?>
                 </ul>
             </li>
 
@@ -115,7 +127,7 @@ $currentUser = $currentAuthDta['role'];
 
             <?php } elseif($currentUser == 'agent'){ ?>
 
-                <li class="treeview <?php echo menu_li_active('product'); ?>">
+<!--                <li class="treeview <?php echo menu_li_active('product'); ?>">
                     <a href="#">
                         <i class="fa fa-support"></i>
                         <span>Product</span>
@@ -125,7 +137,7 @@ $currentUser = $currentAuthDta['role'];
                         <?php echo menu_link('product', 'All Invoice'); ?>
                         <?php echo menu_link('product/new_product_sell', 'New product sell'); ?>
                     </ul>
-                </li>
+                </li>-->
 
                 <li class="treeview <?php echo menu_li_active('user'); ?>">
                     <a href="#">

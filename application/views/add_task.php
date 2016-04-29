@@ -27,6 +27,7 @@
                 <?php echo form_open_multipart('', ['role' => 'form', 'class' => 'form-horizontal']); ?>
                     <div class="box-body">
 
+<<<<<<< HEAD
                         <div class="form-group <?php if(form_error('assign_to')) echo 'has-error'; ?>">
                             <label for="firstName" class="col-md-3">Assign Agent<span class="text-red">*</span></label>
                             <div class="col-md-9">
@@ -49,6 +50,8 @@
                         </div>
                         
                         
+=======
+>>>>>>> refs/remotes/origin/master
                         <div class="form-group <?php if(form_error('title')) echo 'has-error'; ?>">
                             <label for="title" class="col-md-3">Title
                                 <span class="text-red">*</span>
