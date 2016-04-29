@@ -17,6 +17,10 @@ public function add_task(){
         //set all data for inserting into database
         $data = [
             'title'        => $this->input->post('title'),
+<<<<<<< HEAD
+            'assign_to' => $this->input->post('assign_to'),
+=======
+>>>>>>> refs/remotes/origin/master
             'unique_name' =>    $this->taskUniqueName(),
             'created_at'        => time(),
             'modified_at'       => time()
@@ -80,7 +84,13 @@ public function add_task(){
     }
 
     public function tasksList($limit = 0, $start = 0){
+<<<<<<< HEAD
+       // $query1 =  $this->db->;
+        $query   = $this->db->order_by('email', 'desc')->limit($limit, $start)->join('agents', 'tasks.assign_to = agents.id', 'left')->get_where('tasks');
+    
+=======
         $query = $this->db->order_by('id', 'desc')->limit($limit, $start)->get_where('tasks');
+>>>>>>> refs/remotes/origin/master
         return $query;
     }
     
