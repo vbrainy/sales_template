@@ -27,21 +27,15 @@ class Tasks extends CI_Controller {
 		permittedArea();
 
 		$data['countries'] = $this->db->get('countries');
-<<<<<<< HEAD
+
                 $data['agents'] = $this->db->get('agents');
 
-=======
->>>>>>> refs/remotes/origin/master
 
 		if($this->input->post())
 		{
 			if($this->input->post('submit') != 'add_task') die('Error! sorry');
 
 			$this->form_validation->set_rules('title', 'Title', 'required|trim');
-<<<<<<< HEAD
-                        
-=======
->>>>>>> refs/remotes/origin/master
 //			$this->form_validation->set_rules('contactno', 'Contact No.', 'required|trim');
 //			$this->form_validation->set_rules('email', 'Email', 'required|trim|is_unique[users.email]');
 //			$this->form_validation->set_rules('password', 'Password', 'required|matches[passconf]');
@@ -50,11 +44,8 @@ class Tasks extends CI_Controller {
 //			$this->form_validation->set_rules('date_of_birth', 'Date of birth', 'required|trim');
 //			$this->form_validation->set_rules('profession', 'Profession', 'required|trim');
 //			$this->form_validation->set_rules('street_address', 'Street Address', 'required|trim');
-<<<<<<< HEAD
 			$this->form_validation->set_rules('assign_to', 'agent', 'required');
-=======
 //			$this->form_validation->set_rules('country', 'Country', 'required');
->>>>>>> refs/remotes/origin/master
 
 			if($this->form_validation->run() == true)
 			{
@@ -137,10 +128,7 @@ class Tasks extends CI_Controller {
 		$data['recordsFiltered'] = $queryCount;
 
 		foreach($query->result() as $r){
-<<<<<<< HEAD
                    // p($r);
-=======
->>>>>>> refs/remotes/origin/master
 //			$activeStatus = $r->active;
 //			//Status Button
 //			switch($activeStatus){
@@ -163,10 +151,7 @@ class Tasks extends CI_Controller {
 
 			//Action Button
 			$button = '';
-<<<<<<< HEAD
                         $addjobbutton = '';
-=======
->>>>>>> refs/remotes/origin/master
                         $button .= '<a class="btn btn-primary editBtn" href="'.base_url('jobs/add_job/'. $r->id).'" data-toggle="tooltip" title="Add Job">
 						<i class="fa fa-plus"></i> </a>';
 			$button .= '<a class="btn btn-primary editBtn" href="'.base_url('agent/profile_view/'. $r->id).'" data-toggle="tooltip" title="View">
@@ -176,24 +161,19 @@ class Tasks extends CI_Controller {
 			//$button .= $blockUnblockBtn;
 			$button .= '<a class="btn btn-danger deleteBtn" id="'.$r->id.'" data-toggle="tooltip" title="Delete">
 						<i class="fa fa-trash"></i> </a>';
-<<<<<<< HEAD
                         
                         $addjobbutton = '<a class="btn btn-primary editBtn" href="'.base_url('jobs/add_job/'. $r->id).'" data-toggle="tooltip" title="Add Job">
 						<i class="fa fa-plus"></i>Add Job </a>';
-=======
->>>>>>> refs/remotes/origin/master
-
 			$data['data'][] = array(
 				$r->title,
 				$r->unique_name,
-<<<<<<< HEAD
 				$r->first_name.' '.$r->last_name,
 				$r->agent_address1,
                             $addjobbutton,
-=======
+
 				//$r->created_at,
 				//$r->modified_at,
->>>>>>> refs/remotes/origin/master
+
 //				$statusBtn,
 //				$r->referral_code,
 				$button
