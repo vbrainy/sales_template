@@ -13,23 +13,23 @@
         <div class="col-md-12">
 
             <div class="box">
-<<<<<<< HEAD
+
                 
                 <div class="box-header">
                     
                     <h3 class="box-title">Task List</h3>
                     
                     <a class="btn btn-primary editBtn" title="Add Task" data-toggle="tooltip" href="http://localhost/sales_template/tasks/add_task">
-Add Task
+
 </a>
                     
                 </div><!-- 52.37.147.104 /.box-header -->
                 
-=======
+
                 <div class="box-header">
                     <h3 class="box-title">Task List</h3>
                 </div><!-- /.box-header -->
->>>>>>> refs/remotes/origin/master
+
                 <div class="box-body">
                     <table id="example" class="table table-bordered table-striped table-hover">
 
@@ -37,15 +37,14 @@ Add Task
                         <tr>
                             <th>Title</th>
                             <th>Unique Identifier</th>
-<<<<<<< HEAD
+
                             <th>Agent Name</th>
                             <th>Agent Area</th>
                             <th>Add Job</th>
                             
-=======
+
 <!--                            <th>Created at</th>
                             <th>Modified at</th>-->
->>>>>>> refs/remotes/origin/master
                             <th width="20%">Action</th>
                         </tr>
                         </thead>
@@ -54,14 +53,14 @@ Add Task
                         <tr>
                             <th>Title</th>
                             <th>Unique Identifier</th>
-<<<<<<< HEAD
+
 <th>Agent Name</th>
                             <th>Agent Area</th>
                             <th>Add Job</th>
-=======
+
 <!--                            <th>Created at</th>
                             <th>Modified at</th>-->
->>>>>>> refs/remotes/origin/master
+
                             <th>Action</th>
                         </tr>
                         </tfoot>
