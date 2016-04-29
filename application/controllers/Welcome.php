@@ -10,6 +10,7 @@ class Welcome extends CI_Controller {
 
 	public function index()
 	{
+            
 		//Redirect dashboard if logged-in
 		if(is_logged_in()) redirect(base_url('dashboard'));
 
