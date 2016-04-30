@@ -6,44 +6,54 @@
 <?php } ?>
 
 <?php include('header.php'); ?>
-
+    <input type="hidden" id="task_id" value="<?php echo $task_id; ?>"/>
 <!-- Main content -->
 <section class="content">
     <div class="row">
         <div class="col-md-12">
 
             <div class="box">
-                <div class="box-header">
-                    <span class="box-title"><a class="btn btn-info editBtn" title="Add Agent" data-toggle="tooltip" href="<?php echo base_url(); ?>agent/add_agent">
 
-<i class="fa fa-edit"></i> Add Agent</a></span>
-                </div>
+                
+                <div class="box-header">
+                   
+                    
+                    
+                </div><!-- 52.37.147.104 /.box-header -->
+                
+
+<!--                <div class="box-header">
+                    <span class="box-title"><a class="btn btn-info editBtn" title="Add Task" data-toggle="tooltip" href="<?php echo base_url(); ?>tasks/add_task">
+
+<i class="fa fa-edit"></i> Add Task</a></span>
+                </div> /.box-header -->
+
                 <div class="box-body">
                     <table id="example" class="table table-bordered table-striped table-hover">
 
                         <thead>
                         <tr>
-                          <th>Name</th>
-                            <th>Email</th>
-                            <th>Password</th>
-                            <th>Mobile No 1.</th>
-                            <th>Referred By Code</th>
-                           
-                            <th>Status</th>
-                               <th width="20%">Action</th>
+                            <th>Unique Identifier</th>
+                            <th>City</th>
+<!--                            <th>Agent Area</th>
+                            <th>Add Job</th>-->
+                            
+
+<!--                            <th>Created at</th>
+                            <th>Modified at</th>-->
+                            <th width="20%">Action</th>
                         </tr>
                         </thead>
 
                         <tfoot>
                         <tr>
-                            <th>Name</th>
-                            <th>Email</th>
-                            <th>Password</th>
-                            <th>Mobile No 1.</th>
-                            <th>Referred By Code</th>
-                           
-                            <th>Status</th>
-                             <th>Action</th>
+                            <th>Unique Identifier</th>
+                            <th>City</th>
+
+<!--                            <th>Created at</th>
+                            <th>Modified at</th>-->
+
+                            <th>Action</th>
                         </tr>
                         </tfoot>
 
@@ -68,7 +78,12 @@
             $("#example").dataTable({
                 "processing": true,
                 "serverSide": true,
-                "ajax": "<?php echo base_url('agent/agentListJson'); ?>"
+                "ajax": {
+                    "url": "<?php echo base_url('jobs/jobsListJson'); ?>",
+                    "data": function ( d ) {
+                        d.task_id = $('#task_id').val();
+                    }
+                }
             });
         });
 
@@ -84,7 +99,7 @@
         if(verifyConfirm) {
             $.ajax({
                 type: "POST",
-                url: "<?php echo base_url('agent/deleteAjax') ?>",
+                url: "<?php echo base_url('jobs/deleteAjax') ?>",
                 data: {id: agentId},
             })
             .done(function (msg) {

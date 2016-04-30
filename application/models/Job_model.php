@@ -16,17 +16,25 @@ public function add_job(){
         
         //set all data for inserting into database
         $data = [
-            'title'        => $this->input->post('title'),
-            'unique_name' =>    $this->taskUniqueName(),
+            'task_id'        => $this->input->post('task_id'),
+            'unique_name'        => $this->input->post('unique_name'),
+            'job_at_shop'        => $this->input->post('job_at_shop'),
+            'job_add1'        => $this->input->post('job_add1'),
+            'job_add2'        => $this->input->post('job_add2'),
+            'city'        => $this->input->post('city'),
+            'postcode'        => $this->input->post('postcode'),
+            'phone'        => $this->input->post('mobile'),
+            'description'        => $this->input->post('description'),
+            'total_price'        => $this->input->post('total_price'),
             'created_at'        => time(),
             'modified_at'       => time()
         ];
-
-       $query = $this->db->insert('tasks', $data);
+        //print_r($data);exit;
+       $query = $this->db->insert('jobs', $data);
 
         if($query)
         {
-            create_activity('Added '.$data['title'] .' as task'); //create an activity
+            create_activity('Added '.$data['unique_name'] .' as job'); //create an activity
 
             return true;
         }
@@ -66,21 +74,21 @@ public function add_job(){
 
 
     //Generate task unique name
-    public function taskUniqueName(){
-        return "Task-".($this->tasksListCount()+1);
+    public function jobUniqueName($task_id){
+        return "job-".($this->jobsListCount($task_id)+1);
     }
     /**
      * @return Agent List
      * Agent List Query
      */
 
-    public function tasksListCount(){
-        $query = $this->db->count_all_results('tasks');
+    public function jobsListCount($task_id){
+        $query = $this->db->where('task_id', $task_id)->count_all_results('jobs');
         return $query;
     }
 
-    public function tasksList($limit = 0, $start = 0){
-        $query = $this->db->order_by('id', 'desc')->limit($limit, $start)->get_where('tasks');
+    public function jobsList($limit = 0, $start = 0, $task_id){
+        $query = $this->db->where('task_id', $task_id)->order_by('id', 'desc')->limit($limit, $start)->get_where('jobs');
         return $query;
     }
     

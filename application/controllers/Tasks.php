@@ -66,14 +66,17 @@ class Tasks extends CI_Controller {
         	public function edit($id){
 		//restricted this area, only for admin
 		permittedArea();
-
+                
 		$data['tasks'] = singleDbTableRow($id,'tasks');
-
+                
+                $data['agents'] = $this->db->get('agents');
+                //print_r($data['agents']);exit;
 		if($this->input->post())
 		{
 			if($this->input->post('submit') != 'edit_task') die('Error! sorry');
 
 			$this->form_validation->set_rules('title', 'Title', 'required|trim');
+                        $this->form_validation->set_rules('assign_to', 'agent', 'required');
 
 			if($this->form_validation->run() == true)
 			{
@@ -101,6 +104,9 @@ class Tasks extends CI_Controller {
 		$title = $userInfo->title;
 		// add a activity
 		create_activity("Deleted {$title} Task");
+                //Delete jobs first of that task
+                $this->db->where('task_id', $id)->delete('jobs');
+                
 		//Now delete permanently
 		$this->db->where('id', $id)->delete('tasks');
 		return true;
@@ -126,9 +132,9 @@ class Tasks extends CI_Controller {
 		$data['draw'] = $draw;
 		$data['recordsTotal'] = $queryCount;
 		$data['recordsFiltered'] = $queryCount;
-
+                
 		foreach($query->result() as $r){
-                   // p($r);
+                //    print_R($r);exit;
 //			$activeStatus = $r->active;
 //			//Status Button
 //			switch($activeStatus){
@@ -152,9 +158,9 @@ class Tasks extends CI_Controller {
 			//Action Button
 			$button = '';
                         $addjobbutton = '';
-                        $button .= '<a class="btn btn-primary editBtn" href="'.base_url('jobs/add_job/'. $r->id).'" data-toggle="tooltip" title="Add Job">
-						<i class="fa fa-plus"></i> </a>';
-			$button .= '<a class="btn btn-primary editBtn" href="'.base_url('agent/profile_view/'. $r->id).'" data-toggle="tooltip" title="View">
+                        /*$button .= '<a class="btn btn-primary editBtn" href="'.base_url('jobs/add_job/'. $r->id).'" data-toggle="tooltip" title="Add Job">
+						<i class="fa fa-plus"></i> </a>';*/
+			$button .= '<a class="btn btn-primary editBtn" href="'.base_url('jobs/index/'. $r->id).'" data-toggle="tooltip" title="View">
 						<i class="fa fa-eye"></i> </a>';
 			$button .= '<a class="btn btn-info editBtn"  href="'.base_url('tasks/edit/'. $r->id).'" data-toggle="tooltip" title="Edit">
 						<i class="fa fa-edit"></i> </a>';
@@ -163,12 +169,12 @@ class Tasks extends CI_Controller {
 						<i class="fa fa-trash"></i> </a>';
                         
                         $addjobbutton = '<a class="btn btn-primary editBtn" href="'.base_url('jobs/add_job/'. $r->id).'" data-toggle="tooltip" title="Add Job">
-						<i class="fa fa-plus"></i>Add Job </a>';
+						<i class="fa fa-plus"></i>&nbsp;Add Job </a>';
 			$data['data'][] = array(
 				$r->title,
 				$r->unique_name,
 				$r->first_name.' '.$r->last_name,
-				$r->agent_address1,
+				$r->city,
                             $addjobbutton,
 
 				//$r->created_at,
