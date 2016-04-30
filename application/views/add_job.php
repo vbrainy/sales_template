@@ -8,6 +8,7 @@
     <link href="<?php echo base_url('assets/admin'); ?>/css/colorpicker/bootstrap-colorpicker.min.css" rel="stylesheet"/>
     <!-- Bootstrap time Picker -->
     <link href="<?php echo base_url('assets/admin'); ?>/css/timepicker/bootstrap-timepicker.min.css" rel="stylesheet"/>
+    <link href="<?php echo base_url('assets/admin'); ?>/css/AdminLTE.css" rel="stylesheet" type="text/css" />
 
 <?php } ?>
 <script src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places" type="text/javascript"></script>
@@ -158,13 +159,32 @@ var mapProp = {
                                 <?php echo form_error('total_price') ?>
                             </div>
                         </div>
-                        
+                    
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="box box-solid">
+                                <div class="box-header">
+                                    <h3 class="box-title">Parts of Jobs</h3>
+                                </div><!-- /.box-header -->
+                                <div class="box-body">
+                                    <div class="box-group" id="accordion">
                         <?php for($i=1; $i<=10; $i++) { ?>
+                        <div class="panel box box-primary">
+                            <div class="box-header">
+                                <h4 class="box-title">
+                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse<?php echo $i; ?>">
+                                        Part #<?php echo $i; ?>
+                                    </a>
+                                </h4>
+                            </div>
+                             <?php $in=''; if($i == 1) {  $in='in';  } ?>
+                            <div id="collapse<?php echo $i; ?>" class="panel-collapse collapse <?php echo $in; ?>">
+                                                <div class="box-body">
                             <div class="form-group <?php if(form_error('desc'.$i)) echo 'has-error'; ?>">
                                 <label for="desc<?php echo $i; ?>" class="col-md-2">Job 1/<?php echo $i; ?> Description
                                     <span class="text-red">*</span>
                                 </label>
-                                <div class="col-md-6">
+                                <div class="col-md-12">
                                     <textarea name="descc<?php echo $i; ?>" class="form-control" value="<?php echo set_value('desc'.$i); ?>" placeholder="Enter Descrption <?php echo $i; ?>"></textarea>
                                     <?php echo form_error('desc'.$i) ?>
                                 </div>
@@ -173,13 +193,21 @@ var mapProp = {
                                 <label for="price<?php echo $i; ?>" class="col-md-2">Price 1/<?php echo $i; ?>
                                     <span class="text-red">*</span>
                                 </label>
-                                <div class="col-md-6">
+                                <div class="col-md-12">
                                     <input type="text" name="price<?php echo $i; ?>" class="form-control price_number" value="<?php echo set_value('price'.$i); ?>" placeholder="Enter Price <?php echo $i; ?>">
                                     <?php echo form_error('price'.$i) ?>
                                 </div>
                             </div>
+                                                </div>
+                            </div>
+                                        </div>
                         
                         <?php } ?>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                         
 <!--                        <div class="form-group <?php if(form_error('desc1')) echo 'has-error'; ?>">
                             <label for="desc1" class="col-md-2">Job 1/01 Description
@@ -416,6 +444,7 @@ var mapProp = {
     <script type="text/javascript">
  
         $(function() {
+            
             //Get total price from all the prices
             $('.price_number').change(function(){
                 var a = 0;
