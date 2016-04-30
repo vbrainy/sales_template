@@ -26,6 +26,16 @@
                 <!-- form start -->
                 <?php echo form_open_multipart('', ['role' => 'form', 'class' => 'form-horizontal']); ?>
                     <div class="box-body">
+                        
+                           <div class="form-group <?php // if(form_error('street_address')) echo 'has-error'; ?>">
+                            <label for="firstName" class="col-md-3">Photo
+                                <span class="text-aqua"></span>
+                            </label>
+                            <div class="col-md-9">
+                                <input type="file" name="userfile" class="form-control" size="20" />
+                                <?php // echo form_error('street_address') ?>
+                            </div>
+                        </div>
 
                         <div class="form-group <?php if(form_error('first_name')) echo 'has-error'; ?>">
                             <label for="firstName" class="col-md-3">First Name
@@ -162,8 +172,9 @@
                                 <span class="text-red">*</span>
                             </label>
                             <div class="col-md-9">
-                                <textarea class="form-control" placeholder="Address 1" name="agent_address1"><?php echo set_value('agent_address1'); ?></textarea>
-                                <?php echo form_error('agent_address1') ?>
+                                <input type="text" name="agent_address1" class="form-control" value="<?php echo set_value('agent_address1'); ?>" placeholder="Address 1">
+                               
+                                 <?php echo form_error('agent_address1') ?>
                             </div>
                         </div>
                         
@@ -172,12 +183,30 @@
                                 <span class="text-red">*</span>
                             </label>
                             <div class="col-md-9">
-                                <textarea class="form-control" placeholder="Address 2" name="agent_address2"><?php echo set_value('agent_address2'); ?></textarea>
+                               <input type="text" name="agent_address2" class="form-control" value="<?php echo set_value('agent_address2'); ?>" placeholder="Address 2">
                                 <?php echo form_error('agent_address2') ?>
                             </div>
                         </div>
                         
+                                         <div class="form-group <?php if(form_error('city')) echo 'has-error'; ?>">
+                            <label for="firstName" class="col-md-3">City<span class="text-red">*</span></label>
+                            <div class="col-md-9">
+
+                                <input type="text" name="city" class="form-control" value="<?php echo set_value('city'); ?>" placeholder="City">
+                                
+                                <?php echo form_error('city') ?>
+                            </div>
+                        </div>
                         
+                            <div class="form-group <?php if(form_error('postal_code')) echo 'has-error'; ?>">
+                            <label for="firstName" class="col-md-3">Postal Code<span class="text-red">*</span></label>
+                            <div class="col-md-9">
+
+                                <input type="text" name="postal_code" class="form-control" value="<?php echo set_value('postal_code'); ?>" placeholder="Postal Code">
+                                
+                                <?php echo form_error('postal_code') ?>
+                            </div>
+                        </div>
 
                         <div class="form-group <?php if(form_error('country')) echo 'has-error'; ?>">
                             <label for="firstName" class="col-md-3">Country<span class="text-red">*</span></label>
@@ -202,36 +231,12 @@
                         </div>
                         
                         
-                                                <div class="form-group <?php if(form_error('city')) echo 'has-error'; ?>">
-                            <label for="firstName" class="col-md-3">City<span class="text-red">*</span></label>
-                            <div class="col-md-9">
+                               
 
-                                <input type="text" name="city" class="form-control" value="<?php echo set_value('city'); ?>" placeholder="City">
-                                
-                                <?php echo form_error('city') ?>
-                            </div>
-                        </div>
-
-                               <div class="form-group <?php if(form_error('postal_code')) echo 'has-error'; ?>">
-                            <label for="firstName" class="col-md-3">Postal Code<span class="text-red">*</span></label>
-                            <div class="col-md-9">
-
-                                <input type="text" name="postal_code" class="form-control" value="<?php echo set_value('postal_code'); ?>" placeholder="Postal Code">
-                                
-                                <?php echo form_error('postal_code') ?>
-                            </div>
-                        </div>
+                           
                         
 
-                        <div class="form-group <?php // if(form_error('street_address')) echo 'has-error'; ?>">
-                            <label for="firstName" class="col-md-3">Photo
-                                <span class="text-aqua">(Max size 2MB &amp; Width 1024px, Height 768px )</span>
-                            </label>
-                            <div class="col-md-9">
-                                <input type="file" name="userfile" class="form-control" size="20" />
-                                <?php // echo form_error('street_address') ?>
-                            </div>
-                        </div>
+                     
 
 
 
