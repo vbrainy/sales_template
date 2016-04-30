@@ -57,11 +57,14 @@ class User_model extends CI_Model {
         $data = [
             'first_name'    => $this->input->post('first_name'),
             'last_name'    => $this->input->post('last_name'),
-            'contactno'    => $this->input->post('contactno'),
+            'mobile_no_1'    => $this->input->post('mobile_no_1'),
             'gender'    => $this->input->post('gender'),
             'date_of_birth'    => $this->input->post('date_of_birth'),
             'profession'    => $this->input->post('profession'),
-            'street_address'    => $this->input->post('street_address'),
+            'agent_address1'    => $this->input->post('agent_address1'),
+            
+            'agent_address2'    => $this->input->post('agent_address2'),
+           
             'photo'         => $photoName,
             'modified_at'    => time()
         ];
@@ -151,8 +154,8 @@ class User_model extends CI_Model {
         $config['source_image'] = $photo;
         $config['create_thumb'] = TRUE;
         $config['maintain_ratio'] = TRUE;
-        $config['width']         = 200;
-        $config['height']       = 200;
+        $config['width']         = 400;
+        $config['height']       = 400;
 
         $this->load->library('image_lib', $config);
         $this->image_lib->resize();

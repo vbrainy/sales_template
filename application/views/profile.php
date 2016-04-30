@@ -1,4 +1,6 @@
-<?php include('header.php'); ?>
+<?php include('header.php'); 
+
+?>
                 <!-- Main content -->
                 <section class="content">
                     <div class="row">
@@ -24,8 +26,9 @@
                                             </tr>
                                             <tr>
                                                 <td>Contact No.</td>
-                                                <td><?php echo $c_user->contactno; ?></td>
+                                                <td><?php echo $c_user->mobile_no_1; ?></td>
                                             </tr>
+                                            
                                             <tr>
                                                 <td>Gender</td>
                                                 <td><?php echo $c_user->gender; ?></td>
@@ -39,9 +42,10 @@
                                                 <td><?php echo $c_user->profession; ?></td>
                                             </tr>
                                             <tr>
-                                                <td>Street Address</td>
-                                                <td><?php echo $c_user->street_address; ?></td>
+                                                <td>Address 1</td>
+                                                <td><?php echo $c_user->agent_address1; ?></td>
                                             </tr>
+                                          
                                             <tr>
                                                 <td>Country</td>
                                                 <td><?php echo $c_user->country; ?></td>
@@ -50,10 +54,7 @@
                                                 <td>Postal Code</td>
                                                 <td><?php echo $c_user->postal_code; ?></td>
                                             </tr>
-                                            <tr>
-                                                <td>Referral Code</td>
-                                                <td><?php echo $c_user->referral_code; ?></td>
-                                            </tr>
+                                            
                                         </table>
 
                                     </div><!-- /.box-body -->
