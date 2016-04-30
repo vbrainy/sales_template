@@ -13,7 +13,7 @@
 <script src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places" type="text/javascript"></script>
 
 <script type="text/javascript">
-    function initialize() {
+     function initialize() {
         var input = document.getElementById('searchTextField');
         var autocomplete = new google.maps.places.Autocomplete(input);
         google.maps.event.addListener(autocomplete, 'place_changed', function () {
@@ -25,7 +25,19 @@
             //alert(place.name);
            // alert(place.address_components[0].long_name);
 
+var mapProp = {
+    center:new google.maps.LatLng(place.geometry.location.lat().value,place.geometry.location.lng()),
+    zoom:5,
+    mapTypeId:google.maps.MapTypeId.ROADMAP
+  };
+  //var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
+
         });
+        
+        
+  
+
+
     }
     google.maps.event.addDomListener(window, 'load', initialize); 
 </script>
@@ -39,149 +51,49 @@
             <!-- general form elements -->
             <div class="box box-primary">
                 <div class="box-header">
-                    <h3 class="box-title">Add New Job</h3>
+                    <h3 class="box-title">Add New Job for <?php echo "Task ". $tasks->unique_name ." ". $jobUniqueName; ?></h3>
                 </div><!-- /.box-header -->
                 <!-- form start -->
-                <?php echo form_open_multipart('', ['role' => 'form', 'class' => 'form-horizontal']); ?>
+                <?php echo form_open_multipart('jobs/add_job/'.$this->uri->segment(3), ['role' => 'form', 'class' => 'form-horizontal']); ?>
                     <div class="box-body">
-
-                        <div class="form-group <?php if(form_error('title')) echo 'has-error'; ?>">
-                            <label for="title" class="col-md-3">Title
+                        <input type="hidden" name="unique_name" value="<?php echo $jobUniqueName; ?>"/>
+                        <input type="hidden" name="task_id" value="<?php echo $tasks->id; ?>"/>
+                        <div class="form-group <?php if(form_error('shop_nameplate')) echo 'has-error'; ?>">
+                            <label for="shop_nameplate" class="col-md-3">Shop Nameplate
                                 <span class="text-red">*</span>
                             </label>
                             <div class="col-md-9">
-                                <input type="text" name="title" class="form-control" value="<?php echo set_value('title'); ?>" placeholder="Enter Title">
-                                <?php echo form_error('title') ?>
+                                <?php echo form_upload('shop_nameplate'); ?><br />
+                                <?php echo form_error('shop_nameplate') ?>
                             </div>
                         </div>
                         
-                        <div class="form-group <?php if(form_error('description')) echo 'has-error'; ?>">
-                            <label for="description" class="col-md-3">Job Description
+                        <div class="form-group <?php if(form_error('job_at_shop')) echo 'has-error'; ?>">
+                            <label for="job_at_shop" class="col-md-3">Job at shop
                                 <span class="text-red">*</span>
                             </label>
                             <div class="col-md-9">
-                                <textarea name="description" class="form-control" value="<?php echo set_value('description'); ?>" placeholder="Enter Descrption"></textarea>
-                                <?php echo form_error('description') ?>
+                                <input type="text" name="job_at_shop" class="form-control" value="<?php echo set_value('job_at_shop'); ?>" placeholder="Enter Job at shop">
+                                <?php echo form_error('job_at_shop') ?>
                             </div>
                         </div>
                         
-                        <div class="form-group <?php if(form_error('part_price1')) echo 'has-error'; ?>">
-                            <label for="part_price1" class="col-md-3">Price 1
+                        <div class="form-group <?php if(form_error('job_add1')) echo 'has-error'; ?>">
+                            <label for="job_add1" class="col-md-3">Job Address 1
                                 <span class="text-red">*</span>
                             </label>
                             <div class="col-md-9">
-                                <input type="text" name="part_price1" class="form-control" value="<?php echo set_value('part_price1'); ?>" placeholder="Enter Price 1">
-                                <?php echo form_error('part_price1') ?>
+                                <input type="text" name="job_add1" class="form-control" value="<?php echo set_value('job_add1'); ?>" placeholder="Enter Job Address 1">
+                                <?php echo form_error('job_add1') ?>
                             </div>
                         </div>
-                        <div class="form-group <?php if(form_error('part_price2')) echo 'has-error'; ?>">
-                            <label for="part_price2" class="col-md-3">Price 2
+                        <div class="form-group <?php if(form_error('job_add2')) echo 'has-error'; ?>">
+                            <label for="job_add2" class="col-md-3">Job Address 2
                                 <span class="text-red">*</span>
                             </label>
                             <div class="col-md-9">
-                                <input type="text" name="part_price2" class="form-control" value="<?php echo set_value('part_price2'); ?>" placeholder="Enter Price 2">
-                                <?php echo form_error('part_price2') ?>
-                            </div>
-                        </div>
-                        <div class="form-group <?php if(form_error('part_price3')) echo 'has-error'; ?>">
-                            <label for="part_price3" class="col-md-3">Price 3
-                                <span class="text-red">*</span>
-                            </label>
-                            <div class="col-md-9">
-                                <input type="text" name="part_price3" class="form-control" value="<?php echo set_value('part_price3'); ?>" placeholder="Enter Price 3">
-                                <?php echo form_error('part_price3') ?>
-                            </div>
-                        </div>
-                        <div class="form-group <?php if(form_error('part_price4')) echo 'has-error'; ?>">
-                            <label for="part_price4" class="col-md-3">Price 4
-                                <span class="text-red">*</span>
-                            </label>
-                            <div class="col-md-9">
-                                <input type="text" name="part_price4" class="form-control" value="<?php echo set_value('part_price4'); ?>" placeholder="Enter Price 4">
-                                <?php echo form_error('part_price4') ?>
-                            </div>
-                        </div>
-                        <div class="form-group <?php if(form_error('part_price5')) echo 'has-error'; ?>">
-                            <label for="part_price5" class="col-md-3">Price 5
-                                <span class="text-red">*</span>
-                            </label>
-                            <div class="col-md-9">
-                                <input type="text" name="part_price5" class="form-control" value="<?php echo set_value('part_price5'); ?>" placeholder="Enter Price 5">
-                                <?php echo form_error('part_price5') ?>
-                            </div>
-                        </div>
-                        <div class="form-group <?php if(form_error('part_price6')) echo 'has-error'; ?>">
-                            <label for="part_price6" class="col-md-3">Price 6
-                                <span class="text-red">*</span>
-                            </label>
-                            <div class="col-md-9">
-                                <input type="text" name="part_price6" class="form-control" value="<?php echo set_value('part_price6'); ?>" placeholder="Enter Price 6">
-                                <?php echo form_error('part_price6') ?>
-                            </div>
-                        </div>
-                        <div class="form-group <?php if(form_error('part_price7')) echo 'has-error'; ?>">
-                            <label for="part_price7" class="col-md-3">Price 7
-                                <span class="text-red">*</span>
-                            </label>
-                            <div class="col-md-9">
-                                <input type="text" name="part_price7" class="form-control" value="<?php echo set_value('part_price7'); ?>" placeholder="Enter Price 7">
-                                <?php echo form_error('part_price7') ?>
-                            </div>
-                        </div>
-                        <div class="form-group <?php if(form_error('part_price8')) echo 'has-error'; ?>">
-                            <label for="part_price8" class="col-md-3">Price 8
-                                <span class="text-red">*</span>
-                            </label>
-                            <div class="col-md-9">
-                                <input type="text" name="part_price8" class="form-control" value="<?php echo set_value('part_price8'); ?>" placeholder="Enter Price 8">
-                                <?php echo form_error('part_price8') ?>
-                            </div>
-                        </div>
-                        <div class="form-group <?php if(form_error('part_price9')) echo 'has-error'; ?>">
-                            <label for="part_price9" class="col-md-3">Price 9
-                                <span class="text-red">*</span>
-                            </label>
-                            <div class="col-md-9">
-                                <input type="text" name="part_price9" class="form-control" value="<?php echo set_value('part_price9'); ?>" placeholder="Enter Price 9">
-                                <?php echo form_error('part_price9') ?>
-                            </div>
-                        </div>
-                        <div class="form-group <?php if(form_error('part_price10')) echo 'has-error'; ?>">
-                            <label for="part_price10" class="col-md-3">Price 10
-                                <span class="text-red">*</span>
-                            </label>
-                            <div class="col-md-9">
-                                <input type="text" name="part_price10" class="form-control" value="<?php echo set_value('part_price10'); ?>" placeholder="Enter Price 10">
-                                <?php echo form_error('part_price10') ?>
-                            </div>
-                        </div>
-
-                        <div class="form-group <?php if(form_error('job_address1')) echo 'has-error'; ?>">
-                            <label for="job_address1" class="col-md-3">Job Address 1
-                                <span class="text-red">*</span>
-                            </label>
-                            <div class="col-md-9">
-                                <input type="text" name="job_address1" class="form-control" value="<?php echo set_value('job_address1'); ?>" placeholder="Enter Job Address 1">
-                                <?php echo form_error('job_address1') ?>
-                            </div>
-                        </div>
-                        <div class="form-group <?php if(form_error('job_address2')) echo 'has-error'; ?>">
-                            <label for="job_address2" class="col-md-3">Job Address 2
-                                <span class="text-red">*</span>
-                            </label>
-                            <div class="col-md-9">
-                                <input type="text" name="job_address2" class="form-control" value="<?php echo set_value('job_address2'); ?>" placeholder="Enter Job Address 2">
-                                <?php echo form_error('job_address2') ?>
-                            </div>
-                        </div>
-                        
-                        <div class="form-group <?php if(form_error('location')) echo 'has-error'; ?>">
-                            <label for="location" class="col-md-3">Location
-                                <span class="text-red">*</span>
-                            </label>
-                            <div class="col-md-9">
-                                <input id="searchTextField" name="location" class="form-control" value="<?php echo set_value('location'); ?>" type="text" size="50" placeholder="Enter a location" autocomplete="on" runat="server" />  
-                                <?php echo form_error('location') ?>
+                                <input type="text" name="job_add2" class="form-control" value="<?php echo set_value('job_add2'); ?>" placeholder="Enter Job Address 2">
+                                <?php echo form_error('job_add2') ?>
                             </div>
                         </div>
                         
@@ -203,25 +115,6 @@
                                 <?php echo form_error('postcode') ?>
                             </div>
                         </div>
-                        <div class="form-group <?php if(form_error('country')) echo 'has-error'; ?>">
-                            <label for="country" class="col-md-3">Country<span class="text-red">*</span></label>
-                            <div class="col-md-9">
-                                <select name="country" class="form-control">
-                                    <option value=""> Select Country </option>
-                                    <?php
-                                    if($countries->num_rows() > 0)
-                                    {
-                                        foreach($countries->result() as $c){
-                                            $selected = ($c->id == 19)? 'selected' : '';
-                                            echo '<option value="'.$c->id.'" '.$selected.'> '.$c->country_name.'</option>';
-                                        }
-                                    }
-                                    ?>
-                                </select>
-                                <?php echo form_error('country') ?>
-                            </div>
-                        </div>
-
                         <div class="form-group <?php if(form_error('mobile')) echo 'has-error'; ?>">
                             <label for="mobile" class="col-md-3">Mobile
                                 <span class="text-red">*</span>
@@ -232,15 +125,254 @@
                             </div>
                         </div>
                         
-                        <div class="form-group <?php if(form_error('notes')) echo 'has-error'; ?>">
-                            <label for="notes" class="col-md-3">Notes
+                        
+                        <div class="form-group <?php if(form_error('location')) echo 'has-error'; ?>">
+                            <label for="location" class="col-md-3">Location
                                 <span class="text-red">*</span>
                             </label>
                             <div class="col-md-9">
-                                <textarea name="notes" class="form-control" value="<?php echo set_value('notes'); ?>" placeholder="Enter Notes"></textarea>
-                                <?php echo form_error('notes') ?>
+                                <input id="searchTextField" name="location" class="form-control" value="<?php echo set_value('location'); ?>" type="text" size="50" placeholder="Enter a location" autocomplete="on" runat="server" />  
+                                <?php echo form_error('location') ?>
                             </div>
                         </div>
+                        
+                        <div id="googleMap" style="width:500px;height:380px;"></div>
+                        
+                        
+                        <div class="form-group <?php if(form_error('description')) echo 'has-error'; ?>">
+                            <label for="description" class="col-md-3">Job Description
+                                <span class="text-red">*</span>
+                            </label>
+                            <div class="col-md-9">
+                                <textarea name="description" class="form-control" value="<?php echo set_value('description'); ?>" placeholder="Enter Descrption"></textarea>
+                                <?php echo form_error('description') ?>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group <?php if(form_error('total_price')) echo 'has-error'; ?>">
+                            <label for="total_price" class="col-md-3">Total Price
+                                <span class="text-red">*</span>
+                            </label>
+                            <div class="col-md-9">
+                                <input type="text" name="total_price" id="total_price" class="form-control" value="<?php echo set_value('total_price'); ?>" readonly>
+                                <?php echo form_error('total_price') ?>
+                            </div>
+                        </div>
+                        
+                        <?php for($i=1; $i<=10; $i++) { ?>
+                            <div class="form-group <?php if(form_error('desc'.$i)) echo 'has-error'; ?>">
+                                <label for="desc<?php echo $i; ?>" class="col-md-3">Job 1/<?php echo $i; ?> Description
+                                    <span class="text-red">*</span>
+                                </label>
+                                <div class="col-md-9">
+                                    <textarea name="descc<?php echo $i; ?>" class="form-control" value="<?php echo set_value('desc'.$i); ?>" placeholder="Enter Descrption <?php echo $i; ?>"></textarea>
+                                    <?php echo form_error('desc'.$i) ?>
+                                </div>
+                            </div>
+                            <div class="form-group <?php if(form_error('price'.$i)) echo 'has-error'; ?>">
+                                <label for="price<?php echo $i; ?>" class="col-md-3">Price 1/<?php echo $i; ?>
+                                    <span class="text-red">*</span>
+                                </label>
+                                <div class="col-md-9">
+                                    <input type="text" name="price<?php echo $i; ?>" class="form-control price_number" value="<?php echo set_value('price'.$i); ?>" placeholder="Enter Price <?php echo $i; ?>">
+                                    <?php echo form_error('price'.$i) ?>
+                                </div>
+                            </div>
+                        
+                        <?php } ?>
+                        
+<!--                        <div class="form-group <?php if(form_error('desc1')) echo 'has-error'; ?>">
+                            <label for="desc1" class="col-md-3">Job 1/01 Description
+                                <span class="text-red">*</span>
+                            </label>
+                            <div class="col-md-9">
+                                <textarea name="desc1" class="form-control" value="<?php echo set_value('desc1'); ?>" placeholder="Enter Descrption"></textarea>
+                                <?php echo form_error('desc1') ?>
+                            </div>
+                        </div>
+                        <div class="form-group <?php if(form_error('price1')) echo 'has-error'; ?>">
+                            <label for="price1" class="col-md-3">Price 1/01
+                                <span class="text-red">*</span>
+                            </label>
+                            <div class="col-md-9">
+                                <input type="text" name="price1" class="form-control" value="<?php echo set_value('price1'); ?>" placeholder="Enter Price 1">
+                                <?php echo form_error('price1') ?>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group <?php if(form_error('desc2')) echo 'has-error'; ?>">
+                            <label for="desc2" class="col-md-3">Job 1/02 Description
+                                <span class="text-red">*</span>
+                            </label>
+                            <div class="col-md-9">
+                                <textarea name="desc2" class="form-control" value="<?php echo set_value('desc2'); ?>" placeholder="Enter Descrption"></textarea>
+                                <?php echo form_error('desc2') ?>
+                            </div>
+                        </div>
+                        <div class="form-group <?php if(form_error('price2')) echo 'has-error'; ?>">
+                            <label for="price2" class="col-md-3">Price 1/02
+                                <span class="text-red">*</span>
+                            </label>
+                            <div class="col-md-9">
+                                <input type="text" name="price2" class="form-control" value="<?php echo set_value('price2'); ?>" placeholder="Enter Price 2">
+                                <?php echo form_error('price2') ?>
+                            </div>
+                        </div>
+                        
+                        
+                        <div class="form-group <?php if(form_error('desc3')) echo 'has-error'; ?>">
+                            <label for="desc3" class="col-md-3">Job 1/03 Description
+                                <span class="text-red">*</span>
+                            </label>
+                            <div class="col-md-9">
+                                <textarea name="desc3" class="form-control" value="<?php echo set_value('desc3'); ?>" placeholder="Enter Descrption"></textarea>
+                                <?php echo form_error('desc3') ?>
+                            </div>
+                        </div>
+                        <div class="form-group <?php if(form_error('price3')) echo 'has-error'; ?>">
+                            <label for="price3" class="col-md-3">Price 1/03
+                                <span class="text-red">*</span>
+                            </label>
+                            <div class="col-md-9">
+                                <input type="text" name="price3" class="form-control" value="<?php echo set_value('price3'); ?>" placeholder="Enter Price 3">
+                                <?php echo form_error('price3') ?>
+                            </div>
+                        </div>
+
+                        
+                        <div class="form-group <?php if(form_error('desc4')) echo 'has-error'; ?>">
+                            <label for="desc4" class="col-md-3">Job 1/04 Description
+                                <span class="text-red">*</span>
+                            </label>
+                            <div class="col-md-9">
+                                <textarea name="desc4" class="form-control" value="<?php echo set_value('desc4'); ?>" placeholder="Enter Descrption"></textarea>
+                                <?php echo form_error('desc4') ?>
+                            </div>
+                        </div>
+                        <div class="form-group <?php if(form_error('price4')) echo 'has-error'; ?>">
+                            <label for="price4" class="col-md-3">Price 1/04
+                                <span class="text-red">*</span>
+                            </label>
+                            <div class="col-md-9">
+                                <input type="text" name="price4" class="form-control" value="<?php echo set_value('price4'); ?>" placeholder="Enter Price 4">
+                                <?php echo form_error('price4') ?>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group <?php if(form_error('desc5')) echo 'has-error'; ?>">
+                            <label for="desc5" class="col-md-3">Job 1/05 Description
+                                <span class="text-red">*</span>
+                            </label>
+                            <div class="col-md-9">
+                                <textarea name="desc5" class="form-control" value="<?php echo set_value('desc5'); ?>" placeholder="Enter Descrption"></textarea>
+                                <?php echo form_error('desc5') ?>
+                            </div>
+                        </div>
+                        <div class="form-group <?php if(form_error('price5')) echo 'has-error'; ?>">
+                            <label for="price5" class="col-md-3">Price 1/05
+                                <span class="text-red">*</span>
+                            </label>
+                            <div class="col-md-9">
+                                <input type="text" name="price5" class="form-control" value="<?php echo set_value('price5'); ?>" placeholder="Enter Price 5">
+                                <?php echo form_error('price5') ?>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group <?php if(form_error('desc6')) echo 'has-error'; ?>">
+                            <label for="desc6" class="col-md-3">Job 1/06 Description
+                                <span class="text-red">*</span>
+                            </label>
+                            <div class="col-md-9">
+                                <textarea name="desc6" class="form-control" value="<?php echo set_value('desc6'); ?>" placeholder="Enter Descrption"></textarea>
+                                <?php echo form_error('desc6') ?>
+                            </div>
+                        </div>
+                        <div class="form-group <?php if(form_error('price6')) echo 'has-error'; ?>">
+                            <label for="price6" class="col-md-3">Price 1/06
+                                <span class="text-red">*</span>
+                            </label>
+                            <div class="col-md-9">
+                                <input type="text" name="price6" class="form-control" value="<?php echo set_value('price6'); ?>" placeholder="Enter Price 6">
+                                <?php echo form_error('price6') ?>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group <?php if(form_error('desc7')) echo 'has-error'; ?>">
+                            <label for="desc7" class="col-md-3">Job 1/07 Description
+                                <span class="text-red">*</span>
+                            </label>
+                            <div class="col-md-9">
+                                <textarea name="desc7" class="form-control" value="<?php echo set_value('desc7'); ?>" placeholder="Enter Descrption"></textarea>
+                                <?php echo form_error('desc7') ?>
+                            </div>
+                        </div>
+                        <div class="form-group <?php if(form_error('price7')) echo 'has-error'; ?>">
+                            <label for="price7" class="col-md-3">Price 1/07
+                                <span class="text-red">*</span>
+                            </label>
+                            <div class="col-md-9">
+                                <input type="text" name="price7" class="form-control" value="<?php echo set_value('price7'); ?>" placeholder="Enter Price 1">
+                                <?php echo form_error('price7') ?>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group <?php if(form_error('part_price1')) echo 'has-error'; ?>">
+                            <label for="part_price1" class="col-md-3">Job 1/08 Description
+                                <span class="text-red">*</span>
+                            </label>
+                            <div class="col-md-9">
+                                <textarea name="description" class="form-control" value="<?php echo set_value('description'); ?>" placeholder="Enter Descrption"></textarea>
+                                <?php echo form_error('part_price1') ?>
+                            </div>
+                        </div>
+                        <div class="form-group <?php if(form_error('part_price1')) echo 'has-error'; ?>">
+                            <label for="part_price1" class="col-md-3">Price 1/08
+                                <span class="text-red">*</span>
+                            </label>
+                            <div class="col-md-9">
+                                <input type="text" name="part_price1" class="form-control" value="<?php echo set_value('part_price1'); ?>" placeholder="Enter Price 1">
+                                <?php echo form_error('part_price1') ?>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group <?php if(form_error('part_price1')) echo 'has-error'; ?>">
+                            <label for="part_price1" class="col-md-3">Job 1/09 Description
+                                <span class="text-red">*</span>
+                            </label>
+                            <div class="col-md-9">
+                                <textarea name="description" class="form-control" value="<?php echo set_value('description'); ?>" placeholder="Enter Descrption"></textarea>
+                                <?php echo form_error('part_price1') ?>
+                            </div>
+                        </div>
+                        <div class="form-group <?php if(form_error('part_price1')) echo 'has-error'; ?>">
+                            <label for="part_price1" class="col-md-3">Price 1/09
+                                <span class="text-red">*</span>
+                            </label>
+                            <div class="col-md-9">
+                                <input type="text" name="part_price1" class="form-control" value="<?php echo set_value('part_price1'); ?>" placeholder="Enter Price 1">
+                                <?php echo form_error('part_price1') ?>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group <?php if(form_error('part_price1')) echo 'has-error'; ?>">
+                            <label for="part_price1" class="col-md-3">Job 1/10 Description
+                                <span class="text-red">*</span>
+                            </label>
+                            <div class="col-md-9">
+                                <textarea name="description" class="form-control" value="<?php echo set_value('description'); ?>" placeholder="Enter Descrption"></textarea>
+                                <?php echo form_error('part_price1') ?>
+                            </div>
+                        </div>
+                        <div class="form-group <?php if(form_error('part_price1')) echo 'has-error'; ?>">
+                            <label for="part_price1" class="col-md-3">Price 1/10
+                                <span class="text-red">*</span>
+                            </label>
+                            <div class="col-md-9">
+                                <input type="text" name="part_price1" class="form-control" value="<?php echo set_value('part_price1'); ?>" placeholder="Enter Price 1">
+                                <?php echo form_error('part_price1') ?>
+                            </div>
+                        </div>-->
+
                         <input type="hidden" id="place_name" name="place_name" />
                         <input type="hidden" id="latitude" name="latitude" />
                         <input type="hidden" id="longitude" name="longitude" />
@@ -249,11 +381,15 @@
                     </div><!-- /.box-body -->
 
                     <div class="box-footer">
-                        <button type="submit" name="submit" value="add_task" class="btn btn-primary">
-                            <i class="fa fa-edit"></i> Add Job
+                        <button type="submit" name="submit" value="add_job" class="btn btn-primary">
+                            <i class="fa fa-save"></i> Save
+                        </button>
+                        <button type="reset" value="clear" class="btn btn-primary">Clear
                         </button>
                     </div>
-                </form>
+ <?php
+    echo form_close();
+    ?> 
             </div><!-- /.box -->
 
 
@@ -278,7 +414,19 @@
     <script src="<?php echo base_url('assets/admin'); ?>/js/plugins/timepicker/bootstrap-timepicker.min.js" type="text/javascript"></script>
     <!-- Page script -->
     <script type="text/javascript">
+ 
         $(function() {
+            //Get total price from all the prices
+            $('.price_number').change(function(){
+                var a = 0;
+                $(".price_number").each(function() {
+                    if($(this).val() != '')
+                    {
+                        a += parseInt($(this).val());
+                    }
+                });
+                $('#total_price').val(a);
+            });
             //Datemask dd/mm/yyyy
             $("#datemask").inputmask("dd/mm/yyyy", {"placeholder": "dd/mm/yyyy"});
             //Datemask2 mm/dd/yyyy

@@ -29,6 +29,29 @@
                                 <?php echo form_error('title') ?>
                             </div>
                         </div>
+                        
+                        <div class="form-group <?php if(form_error('assign_to')) echo 'has-error'; ?>">
+                            <label for="firstName" class="col-md-3">Assign Agent<span class="text-red">*</span></label>
+                            <div class="col-md-9">
+                              <select name="assign_to" class="form-control">
+                                    <option value=""> Select Agent </option>
+                                    <?php 
+                                    
+                                    if($agents->num_rows() > 0)
+                                    {
+                                        foreach($agents->result() as $c){
+                                            $selected = ($c->id == $tasks->assign_to)? "selected='selected'" : '';
+                                            echo '<option value="'.$c->id.'" '.$selected.' > '.$c->first_name . ' '. $c->last_name   .'</option>';
+                                        }
+                                    } 
+                                    ?>
+
+                                </select>
+                                 
+                                <?php echo form_error('assign_to') ?>
+                            </div>
+                        </div>
+                        
 
                         <div class="clearfix"></div>
                     </div><!-- /.box-body -->

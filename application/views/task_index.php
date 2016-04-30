@@ -16,18 +16,16 @@
 
                 
                 <div class="box-header">
+                   
                     
-                    <h3 class="box-title">Task List</h3>
-                    
-                    <a class="btn btn-primary editBtn" title="Add Task" data-toggle="tooltip" href="http://localhost/sales_template/tasks/add_task">
-
-</a>
                     
                 </div><!-- 52.37.147.104 /.box-header -->
                 
 
                 <div class="box-header">
-                    <h3 class="box-title">Task List</h3>
+                    <span class="box-title"><a class="btn btn-info editBtn" title="Add Task" data-toggle="tooltip" href="<?php echo base_url(); ?>tasks/add_task">
+
+<i class="fa fa-edit"></i> Add Task</a></span>
                 </div><!-- /.box-header -->
 
                 <div class="box-body">
@@ -86,7 +84,11 @@
             $("#example").dataTable({
                 "processing": true,
                 "serverSide": true,
-                "ajax": "<?php echo base_url('tasks/tasksListJson'); ?>"
+                "destroy": true,
+                "ajax": "<?php echo base_url('tasks/tasksListJson'); ?>",
+                "language": {
+        "emptyTable":     "My Custom Message On Empty Table"
+    }
             });
         });
 

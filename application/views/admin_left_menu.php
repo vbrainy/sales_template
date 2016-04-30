@@ -64,7 +64,7 @@ $currentUser = $currentAuthDta['role'];
                 </a>
                 <ul class="treeview-menu">
                     <?php echo menu_link('agent', 'All Agent'); ?>
-                    <?php echo menu_link('agent/add_agent', 'Add new agent'); ?>
+                    <?php //echo menu_link('agent/add_agent', 'Add new agent'); ?>
                 </ul>
             </li>
             
@@ -76,7 +76,7 @@ $currentUser = $currentAuthDta['role'];
                 </a>
                 <ul class="treeview-menu">
                     <?php echo menu_link('tasks', 'All Task'); ?>
-                    <?php echo menu_link('tasks/add_task', 'Add new task'); ?>
+                    <?php //echo menu_link('tasks/add_task', 'Add new task'); ?>
                 </ul>
             </li>
 
@@ -87,7 +87,7 @@ $currentUser = $currentAuthDta['role'];
                     <i class="fa fa-angle-left pull-right"></i>
                 </a>
                 <ul class="treeview-menu">
-                    <?php echo menu_link('user', 'All user'); ?>
+                    <?php //echo menu_link('user', 'All user'); ?>
                     <?php echo menu_link('user/profile', 'Profile'); ?>
                     <?php echo menu_link('user/change_pass', 'Change Password'); ?>
                 </ul>
