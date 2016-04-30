@@ -100,26 +100,20 @@ class Jobs extends CI_Controller {
                 
 		foreach($query->result() as $r){
                 //    print_R($r);exit;
-//			$activeStatus = $r->active;
+			//$activeStatus = $r->status;
 //			//Status Button
-//			switch($activeStatus){
+//                        switch($activeStatus){
 //				case 0:
-//					$statusBtn = '<small class="label label-default"> Pending </small>';
+//					$statusBtn = '<small class="label label-default"> In Active </small>';
 //					$blockUnblockBtn = '<button class="btn btn-success blockUnblock" id="'.$r->id.'" data-toggle="tooltip" title="Unblock" value="1">
 //						<i class="fa fa-unlock-alt"></i> </button>';
 //					break;
 //				case 1 :
 //					$statusBtn = '<small class="label label-success"> Active </small>';
-//					$blockUnblockBtn = '<button class="btn btn-warning blockUnblock" id="'.$r->id.'" data-toggle="tooltip" title="Block" value="2">
+//					$blockUnblockBtn = '<button class="btn btn-warning blockUnblock" id="'.$r->id.'" data-toggle="tooltip" title="Block" value="0">
 //						<i class="fa fa-lock"></i> </button>';
 //					break;
-//				case 2 :
-//					$statusBtn = '<small class="label label-danger"> Blocked </small>';
-//					$blockUnblockBtn = '<button class="btn btn-success blockUnblock" id="'.$r->id.'" data-toggle="tooltip" title="Unblock" value="1">
-//						<i class="fa fa-unlock-alt"></i> </button>';
-//					break;
 //			}
-
 			//Action Button
 			$button = '';
                         $addjobbutton = '';

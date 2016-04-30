@@ -121,14 +121,14 @@
         //set type of action
         var currentItem = $(this);
         if(buttonValue == 1){
-            var status = 'Unblocked';
-        }else if(buttonValue == 2){
-            var status = 'Blocked';
+            var status = 'Active';
+        }else if(buttonValue == 0){
+            var status = 'In Active';
         }
 
         $.ajax({
             type: "POST",
-            url: "<?php echo base_url('agent/setBlockUnblock') ?>",
+            url: "<?php echo base_url('tasks/setBlockUnblock') ?>",
             data: {id: agentId, buttonValue : buttonValue, status : status}
         })
         .done(function (msg) {
@@ -136,13 +136,13 @@
                 currentItem.removeClass('btn-success');
                 currentItem.addClass('btn-warning');
                 currentItem.html('<i class="fa fa-lock"></i>');
-                currentItem.attr( 'title','Block');
-                currentItem.val(2);
-            }else if(buttonValue == 2){
+                currentItem.attr( 'title','In Active');
+                currentItem.val(0);
+            }else if(buttonValue == 0){
                 currentItem.removeClass('btn-warning');
                 currentItem.addClass('btn-success');
                 currentItem.html('<i class="fa fa-unlock-alt"></i>');
-                currentItem.attr( 'title','Unblock');
+                currentItem.attr( 'title','Active');
                 currentItem.val(1);
             }
         });
