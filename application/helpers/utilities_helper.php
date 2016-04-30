@@ -306,7 +306,7 @@ if( ! function_exists('singleDbTableRow'))
 
 if( ! function_exists('permittedArea'))
 {
-    function permittedArea($permission = ['admin']){
+    function permittedArea($permission = ['admin','agents']){
 
         $authDta = loggedInUserData();
         if( ! in_array($authDta['role'], $permission))

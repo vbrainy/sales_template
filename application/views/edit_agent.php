@@ -174,7 +174,8 @@ function page_css(){ ?>
                                 <span class="text-red">*</span>
                             </label>
                             <div class="col-md-9">
-                                <textarea class="form-control" placeholder="Address 1" name="agent_address1"><?php echo $agent->agent_address1; ?></textarea>
+                                <input type="text" name="agent_address1" class="form-control" value="<?php echo $agent->agent_address1; ?>" placeholder="Address 1">
+                               
                                 <?php echo form_error('agent_address1') ?>
                             </div>
                         </div>
@@ -184,7 +185,8 @@ function page_css(){ ?>
                                 <span class="text-red">*</span>
                             </label>
                             <div class="col-md-9">
-                                <textarea class="form-control" placeholder="Address 2" name="agent_address2"><?php echo $agent->agent_address2; ?></textarea>
+                                 <input type="text" name="agent_address2" class="form-control" value="<?php echo $agent->agent_address2; ?>" placeholder="Address 2">
+                              
                                 <?php echo form_error('agent_address2') ?>
                             </div>
                         </div>
