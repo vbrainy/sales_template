@@ -33,7 +33,7 @@
 
                         <thead>
                         <tr>
-                            <th>Title</th>
+                            <th>Task Title</th>
                             <th>Unique Identifier</th>
 
                             <th>Agent Name</th>
@@ -49,7 +49,7 @@
 
                         <tfoot>
                         <tr>
-                            <th>Title</th>
+                            <th>Task Title</th>
                             <th>Unique Identifier</th>
 
 <th>Agent Name</th>
