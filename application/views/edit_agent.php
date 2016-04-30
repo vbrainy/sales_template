@@ -29,6 +29,15 @@ function page_css(){ ?>
                 <!-- form start -->
                 <?php echo form_open_multipart('', ['role' => 'form', 'class' => 'form-horizontal']); ?>
                     <div class="box-body">
+                           <div class="form-group <?php // if(form_error('street_address')) echo 'has-error'; ?>">
+                            <label for="firstName" class="col-md-3">Photo
+                                <span class="text-aqua"></span>
+                            </label>
+                            <div class="col-md-9">
+                                <input type="file" name="userfile" class="form-control" size="20" />
+                                <?php // echo form_error('street_address') ?>
+                            </div>
+                        </div>
 
                         <div class="form-group <?php if(form_error('first_name')) echo 'has-error'; ?>">
                             <label for="firstName" class="col-md-3">First Name
@@ -182,27 +191,6 @@ function page_css(){ ?>
                         
                         
 
-                        <div class="form-group <?php if(form_error('country')) echo 'has-error'; ?>">
-                            <label for="firstName" class="col-md-3">Country<span class="text-red">*</span></label>
-                            <div class="col-md-9">
-<!--                                <select name="country" class="form-control">
-                                    <option value=""> Select Country </option>
-                                    <?php /*
-                                    if($countries->num_rows() > 0)
-                                    {
-                                        foreach($countries->result() as $c){
-                                            $selected = ($c->id == 19)? 'selected' : '';
-                                            echo '<option value="'.$c->id.'" '.$selected.'> '.$c->country_name.'</option>';
-                                        }
-                                    } */
-                                    ?>
-
-                                </select>-->
-                                <input type="text" name="country" class="form-control" value="<?php echo $agent->country; ?>" placeholder="Country">
-                                
-                                <?php echo form_error('country') ?>
-                            </div>
-                        </div>
                         
                         
                                                 <div class="form-group <?php if(form_error('city')) echo 'has-error'; ?>">
@@ -225,16 +213,30 @@ function page_css(){ ?>
                             </div>
                         </div>
                         
-
-                        <div class="form-group <?php // if(form_error('street_address')) echo 'has-error'; ?>">
-                            <label for="firstName" class="col-md-3">Photo
-                                <span class="text-aqua">(Max size 2MB &amp; Width 1024px, Height 768px )</span>
-                            </label>
+                         <div class="form-group <?php if(form_error('country')) echo 'has-error'; ?>">
+                            <label for="firstName" class="col-md-3">Country<span class="text-red">*</span></label>
                             <div class="col-md-9">
-                                <input type="file" name="userfile" class="form-control" size="20" />
-                                <?php // echo form_error('street_address') ?>
+<!--                                <select name="country" class="form-control">
+                                    <option value=""> Select Country </option>
+                                    <?php /*
+                                    if($countries->num_rows() > 0)
+                                    {
+                                        foreach($countries->result() as $c){
+                                            $selected = ($c->id == 19)? 'selected' : '';
+                                            echo '<option value="'.$c->id.'" '.$selected.'> '.$c->country_name.'</option>';
+                                        }
+                                    } */
+                                    ?>
+
+                                </select>-->
+                                <input type="text" name="country" class="form-control" value="<?php echo $agent->country; ?>" placeholder="Country">
+                                
+                                <?php echo form_error('country') ?>
                             </div>
                         </div>
+                       
+
+                     
 
 
 
