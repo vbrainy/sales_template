@@ -135,25 +135,20 @@ class Tasks extends CI_Controller {
                 
 		foreach($query->result() as $r){
                 //    print_R($r);exit;
-//			$activeStatus = $r->active;
-//			//Status Button
-//			switch($activeStatus){
-//				case 0:
-//					$statusBtn = '<small class="label label-default"> Pending </small>';
-//					$blockUnblockBtn = '<button class="btn btn-success blockUnblock" id="'.$r->id.'" data-toggle="tooltip" title="Unblock" value="1">
-//						<i class="fa fa-unlock-alt"></i> </button>';
-//					break;
-//				case 1 :
-//					$statusBtn = '<small class="label label-success"> Active </small>';
-//					$blockUnblockBtn = '<button class="btn btn-warning blockUnblock" id="'.$r->id.'" data-toggle="tooltip" title="Block" value="2">
-//						<i class="fa fa-lock"></i> </button>';
-//					break;
-//				case 2 :
-//					$statusBtn = '<small class="label label-danger"> Blocked </small>';
-//					$blockUnblockBtn = '<button class="btn btn-success blockUnblock" id="'.$r->id.'" data-toggle="tooltip" title="Unblock" value="1">
-//						<i class="fa fa-unlock-alt"></i> </button>';
-//					break;
-//			}
+			$activeStatus = $r->status;
+			//Status Button
+			switch($activeStatus){
+				case 0:
+					$statusBtn = '<small class="label label-default"> In Active </small>';
+					$blockUnblockBtn = '<button class="btn btn-success blockUnblock" id="'.$r->id.'" data-toggle="tooltip" title="Unblock" value="1">
+						<i class="fa fa-unlock-alt"></i> </button>';
+					break;
+				case 1 :
+					$statusBtn = '<small class="label label-success"> Active </small>';
+					$blockUnblockBtn = '<button class="btn btn-warning blockUnblock" id="'.$r->id.'" data-toggle="tooltip" title="Block" value="0">
+						<i class="fa fa-lock"></i> </button>';
+					break;
+			}
 
 			//Action Button
 			$button = '';
@@ -164,7 +159,7 @@ class Tasks extends CI_Controller {
 						<i class="fa fa-eye"></i> </a>';
 			$button .= '<a class="btn btn-info editBtn"  href="'.base_url('tasks/edit/'. $r->id).'" data-toggle="tooltip" title="Edit">
 						<i class="fa fa-edit"></i> </a>';
-			//$button .= $blockUnblockBtn;
+			$button .= $blockUnblockBtn;
 			$button .= '<a class="btn btn-danger deleteBtn" id="'.$r->id.'" data-toggle="tooltip" title="Delete">
 						<i class="fa fa-trash"></i> </a>';
                         
@@ -188,5 +183,25 @@ class Tasks extends CI_Controller {
 
 		echo json_encode($data);
 
+	}
+        
+        /**
+	 * Set block or unblock through this api
+	 */
+
+	public function setBlockUnblock(){
+		$id = $this->input->post('id');
+		$buttonValue = $this->input->post('buttonValue');
+		$status = $this->input->post('status');
+
+		//get deleted user info
+		$userInfo = singleDbTableRow($id);
+		$fullName = user_full_name($userInfo);
+		// add a activity
+		create_activity($status." {$fullName} from Task");
+		//Now delete permanently
+
+		$this->db->where('id', $id)->update('tasks', ['status' => $buttonValue]);
+		return true;
 	}
 }
