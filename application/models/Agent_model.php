@@ -93,7 +93,7 @@ class Agent_model extends CI_Model {
             'modified_at' => time()
         ];
 
-        $query = $this->db->insert('agents', $data);
+        $query = $this->db->insert('users', $data);
 
         if ($query) {
             create_activity('Added ' . $data['first_name'] . ' ' . $data['last_name'] . ' as agent'); //create an activity
@@ -194,11 +194,11 @@ class Agent_model extends CI_Model {
             'modified_at' => time()
         ];
 
-        $query = $this->db->where('id', $id)->update('agents', $data);
+        $query = $this->db->where('id', $id)->update('users', $data);
 
         if($query)
         {
-            create_activity('Updated '.$data['name'].' agents'); //create an activity
+            create_activity('Updated '.$data['name'].' users'); //create an activity
             return true;
         }
         return false;
@@ -207,12 +207,12 @@ class Agent_model extends CI_Model {
     
     
     public function agentListCount() {
-        $query = $this->db->where('role', 'agent')->count_all_results('agents');
+        $query = $this->db->where('role', 'agent')->count_all_results('users');
         return $query;
     }
 
     public function agentList($limit = 0, $start = 0) {
-        $query = $this->db->order_by('id', 'desc')->limit($limit, $start)->get_where('agents', ['role' => 'agent']);
+        $query = $this->db->order_by('id', 'desc')->limit($limit, $start)->get_where('users', ['role' => 'agent']);
         return $query;
     }
 
