@@ -52,6 +52,8 @@ var mapProp = {
             <!-- general form elements -->
             <div class="box box-primary">
                 <div class="box-header">
+                    <span class="box-title"><a class="btn btn-info editBtn" title="Back" data-toggle="tooltip" href="<?php echo base_url(); ?>tasks/index">
+<i class="fa fa-backward"></i> Back</a></span>
                     <h3 class="box-title">Add New Job for <?php echo "Task ". $tasks->unique_name ." ". $jobUniqueName; ?></h3>
                 </div><!-- /.box-header -->
                 <!-- form start -->

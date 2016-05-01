@@ -28,7 +28,8 @@ class Tasks extends CI_Controller {
 
 		$data['countries'] = $this->db->get('countries');
 
-                $data['agents'] = $this->db->get('agents');
+                $data['agents'] = $this->db->where('role', 'agent')->get('users');
+//                print_r($data['agents']);
 
 
 		if($this->input->post())
@@ -36,16 +37,8 @@ class Tasks extends CI_Controller {
 			if($this->input->post('submit') != 'add_task') die('Error! sorry');
 
 			$this->form_validation->set_rules('title', 'Title', 'required|trim');
-//			$this->form_validation->set_rules('contactno', 'Contact No.', 'required|trim');
-//			$this->form_validation->set_rules('email', 'Email', 'required|trim|is_unique[users.email]');
-//			$this->form_validation->set_rules('password', 'Password', 'required|matches[passconf]');
-//			$this->form_validation->set_rules('passconf', 'Password Confirmation', 'required');
-//			$this->form_validation->set_rules('gender', 'Gender', 'required');
-//			$this->form_validation->set_rules('date_of_birth', 'Date of birth', 'required|trim');
-//			$this->form_validation->set_rules('profession', 'Profession', 'required|trim');
-//			$this->form_validation->set_rules('street_address', 'Street Address', 'required|trim');
-			$this->form_validation->set_rules('assign_to', 'agent', 'required');
-//			$this->form_validation->set_rules('country', 'Country', 'required');
+			$this->form_validation->set_rules('assign_to', 'Agent Name', 'required');
+			$this->form_validation->set_rules('agent_area', 'Agent Area', 'required');
 
 			if($this->form_validation->run() == true)
 			{
@@ -169,7 +162,7 @@ class Tasks extends CI_Controller {
 				$r->title,
 				$r->unique_name,
 				$r->first_name.' '.$r->last_name,
-				$r->city,
+				$r->agent_area,
                             $addjobbutton,
 
 				//$r->created_at,
