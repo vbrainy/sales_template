@@ -117,7 +117,7 @@ public function add_job(){
         //set all data for inserting into database
         $data = [
             'task_id'        => $insertedTaskid,
-            'unique_name'        =>$postData->unique_name,
+            'unique_name'        =>"job-".($this->jobsListCount($insertedTaskid)+1),
             'job_at_shop'        => $postData->job_at_shop,
             'job_add1'        => $postData->job_add1,
             'job_add2'        => $postData->job_add2,
