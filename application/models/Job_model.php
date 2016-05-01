@@ -93,4 +93,56 @@ public function add_job(){
     }
     
     
+   public function singleJobTableRow($id = 1, $table = 'jobs', $column = 'task_id'){
+        $CI =& get_instance();
+        $query = $CI->db->get_where($table, [$column => $id ]);
+        if($query->num_rows() > 0)
+        {
+            foreach($query->result() as $row);
+            return $row;
+        }
+        return false;
+    }
+    
+    public function copy_job($postData,$insertedTaskid){
+
+        $user_info = $this->session->userdata('logged_user');
+        $user_id = $user_info['user_id'];
+
+        $this->load->helper('string'); //load string helper
+
+        $title = $this->input->post('title');
+        
+       
+        //set all data for inserting into database
+        $data = [
+            'task_id'        => $insertedTaskid,
+            'unique_name'        =>"job-".($this->jobsListCount($insertedTaskid)+1),
+            'job_at_shop'        => $postData->job_at_shop,
+            'job_add1'        => $postData->job_add1,
+            'job_add2'        => $postData->job_add2,
+            'city'        => $postData->city,
+            'postcode'        => $postData->postcode,
+            'phone'        => $postData->mobile,
+            'description'        => $postData->description,
+            'total_price'        => $postData->total_price,
+            'created_at'        => time(),
+            'modified_at'       => time()
+        ];
+        //print_r($data);exit;
+       $query = $this->db->insert('jobs', $data);
+
+        if($query)
+        {
+            create_activity('Added '.$data['unique_name'] .' as job'); //create an activity
+
+            return true;
+        }
+        return false;
+
+    }
+
+
+    
+    
 }
