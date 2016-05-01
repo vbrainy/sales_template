@@ -23,6 +23,7 @@ class User extends CI_Controller {
 	 */
 
 	public function profile(){
+           
 		theme('profile');
 	}
 
@@ -39,12 +40,11 @@ class User extends CI_Controller {
 		$data['profile_id'] = $id;
 
 		$this->form_validation->set_rules('first_name', 'First Name', 'required|trim');
-		$this->form_validation->set_rules('contactno', 'Contact No.', 'required|trim');
+		$this->form_validation->set_rules('mobile_no_1', 'Contact No.', 'required|trim');
 		$this->form_validation->set_rules('gender', 'Gender', 'required|trim');
 		$this->form_validation->set_rules('date_of_birth', 'Date of birth', 'required|trim');
 		$this->form_validation->set_rules('profession', 'Profession', 'required|trim');
-		$this->form_validation->set_rules('street_address', 'Street Address', 'required|trim');
-
+		$this->form_validation->set_rules('agent_address1', 'Address 1', 'required|trim');
 		if($this->form_validation->run() == true)
 		{
 			$update = $this->user_model->profile_update($id);

@@ -169,7 +169,7 @@ theme('edit_agent', $data);
 				$r->email,
 				ucfirst($r->gender),
 				$r->mobile_no_1,
-			$r->referredByCode,
+			$r->profession,
 					
                             $statusBtn,
 				$button
