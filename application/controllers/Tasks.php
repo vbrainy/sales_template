@@ -156,7 +156,7 @@ class Tasks extends CI_Controller {
 			$button .= '<a class="btn btn-danger deleteBtn" id="'.$r->id.'" data-toggle="tooltip" title="Delete">
 						<i class="fa fa-trash"></i> </a>';
                          $button .= '<a class="btn btn-info editBtn"  href="'.base_url('tasks/copytask/'. $r->id).'" data-toggle="tooltip" title="copy task">
-						<i class="fa "></i>Copy task</a>';
+						<i class="fa fa-copy"></i></a>';
 		        
                         $addjobbutton = '<a class="btn btn-primary editBtn" href="'.base_url('jobs/add_job/'. $r->id).'" data-toggle="tooltip" title="Add Job">
 						<i class="fa fa-plus"></i>&nbsp;Add Job </a>';
