@@ -23,12 +23,14 @@ public function add_task(){
         ];
 
        $query = $this->db->insert('tasks', $data);
+       
+       $insert_id = $this->db->insert_id();
 
         if($query)
-        {
+        { 
             create_activity('Added '.$data['title'] .' as task'); //create an activity
 
-            return true;
+            return $insert_id;
         }
         return false;
 

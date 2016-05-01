@@ -13,7 +13,7 @@ class Jobs extends CI_Controller {
 	public function index($task_id)
 	{
                 $data['task_id'] = $task_id;
-		//restricted this area, only for admin
+                $data['task'] = singleDbTableRow($task_id,'tasks');		//restricted this area, only for admin
 		permittedArea();
                 
 		theme('jobs_index', $data);

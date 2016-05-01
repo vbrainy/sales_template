@@ -1,5 +1,6 @@
 
-<?php function page_css(){ ?>
+<?php 
+function page_css(){ ?>
     <!-- datatable css -->
     <link href="<?php echo base_url('assets/admin'); ?>/css/datatables/dataTables.bootstrap.css" rel="stylesheet" type="text/css" />
 
@@ -7,14 +8,25 @@
 
 <?php include('header.php'); ?>
     <input type="hidden" id="task_id" value="<?php echo $task_id; ?>"/>
+    
+
 <!-- Main content -->
 <section class="content">
     <div class="row">
         <div class="col-md-12">
 
             <div class="box">
-
-                
+   <div class="box-header">
+                    <span class="box-title">
+                        <div>
+                            Unique Identifier :<?php echo $task->unique_name ; ?>
+                        </div>
+                        <div>
+                            Task :<?php echo $task->title; ?>
+                        </div>
+                    </span>
+                </div>
+                <hr>
                 <div class="box-header">
                    
                     
