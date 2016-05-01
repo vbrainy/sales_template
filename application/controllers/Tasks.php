@@ -6,7 +6,7 @@ class Tasks extends CI_Controller {
 	function __construct(){
 		parent:: __construct();
 		$this->load->model('task_model');
-
+                $this->load->model('job_model');
 		check_auth(); //check is logged in.
 	}
 
@@ -62,7 +62,7 @@ class Tasks extends CI_Controller {
                 
 		$data['tasks'] = singleDbTableRow($id,'tasks');
                 
-                $data['agents'] = $this->db->get('agents');
+                $data['agents'] = $this->db->where('role', 'agent')->get('users');
                 //print_r($data['agents']);exit;
 		if($this->input->post())
 		{
@@ -155,7 +155,9 @@ class Tasks extends CI_Controller {
 			$button .= $blockUnblockBtn;
 			$button .= '<a class="btn btn-danger deleteBtn" id="'.$r->id.'" data-toggle="tooltip" title="Delete">
 						<i class="fa fa-trash"></i> </a>';
-                        
+                         $button .= '<a class="btn btn-info editBtn"  href="'.base_url('tasks/copytask/'. $r->id).'" data-toggle="tooltip" title="copy task">
+						<i class="fa "></i>Copy task</a>';
+		        
                         $addjobbutton = '<a class="btn btn-primary editBtn" href="'.base_url('jobs/add_job/'. $r->id).'" data-toggle="tooltip" title="Add Job">
 						<i class="fa fa-plus"></i>&nbsp;Add Job </a>';
 			$data['data'][] = array(
@@ -197,4 +199,50 @@ class Tasks extends CI_Controller {
 		$this->db->where('id', $id)->update('tasks', ['status' => $buttonValue]);
 		return true;
 	}
+        
+        // Copy task list
+        
+        public function copytask($id){
+            	permittedArea();
+                
+		$data['tasks'] = singleDbTableRow($id,'tasks');
+                if(empty($data['tasks'])){
+                     $this->session->set_flashdata('errorMsg', 'Task not found');
+				    redirect(base_url('tasks'));
+                }
+               $data['agents'] = $this->db->where('role', 'agent')->get('users');
+                 //print_r($data['agents']);exit;
+		if($this->input->post())
+		{ 
+			if($this->input->post('submit') != 'copy_task') die('Error! sorry');
+
+			$this->form_validation->set_rules('title', 'Title', 'required|trim');
+                        $this->form_validation->set_rules('assign_to', 'agent', 'required|trim|is_unique[tasks.assign_to]');
+                                
+                        $this->form_validation->set_rules('agent_area', 'Agent Area', 'required');
+
+                        
+                        if($this->form_validation->run() == true)
+			{
+				$insert = $this->task_model->add_task();
+				if(!empty($insert))
+				{ 
+                                    $jobReacord = $this->job_model->singleJobTableRow($id,'jobs');
+                                   if(empty($jobReacord)){
+                                    
+				    $this->session->set_flashdata('successMsg', 'Task Created Success');
+				    redirect(base_url('tasks'));   
+                                   }else{
+                                    $this->job_model->copy_job($jobReacord,$insert);
+				    $this->session->set_flashdata('successMsg', 'Task Created Success');
+				    redirect(base_url('tasks'));   
+                                   }
+                                    
+				}
+
+                        }
+		}
+
+		theme('copy_task', $data);
+        }
 }
