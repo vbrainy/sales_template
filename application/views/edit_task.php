@@ -52,6 +52,15 @@
                             </div>
                         </div>
                         
+                        <div class="form-group <?php if(form_error('agent_area')) echo 'has-error'; ?>">
+                            <label for="agent_area" class="col-md-3">Agent Area
+                                <span class="text-red">*</span>
+                            </label>
+                            <div class="col-md-9">
+                                <input type="text" name="agent_area" class="form-control" value="<?php echo $tasks->agent_area; ?>" placeholder="Enter Agent Area">
+                                <?php echo form_error('agent_area') ?>
+                            </div>
+                        </div>
 
                         <div class="clearfix"></div>
                     </div><!-- /.box-body -->
