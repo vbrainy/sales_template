@@ -52,11 +52,11 @@
                             </div>
                         </div>
 
-                        <div class="form-group <?php if(form_error('contactno')) echo 'has-error'; ?>">
+                        <div class="form-group <?php if(form_error('mobile_no_1')) echo 'has-error'; ?>">
                             <label for="firstName" class="col-md-3">Contact No</label>
                             <div class="col-md-9">
-                                <input type="text" name="contactno" class="form-control" value="<?php echo $c_user->contactno; ?>" placeholder="Contact No">
-                                <?php echo form_error('contactno') ?>
+                                <input type="text" name="mobile_no_1" class="form-control" value="<?php echo $c_user->mobile_no_1; ?>" placeholder="Contact No">
+                                <?php echo form_error('mobile_no_1') ?>
 
                             </div>
                         </div>
@@ -98,17 +98,19 @@
 
 
 
-                        <div class="form-group <?php if(form_error('street_address')) echo 'has-error'; ?>">
-                            <label for="firstName" class="col-md-3">Street Address</label>
+                         <div class="form-group <?php if(form_error('agent_address1')) echo 'has-error'; ?>">
+                            <label for="firstName" class="col-md-3">Address 1
+                                <span class="text-red">*</span>
+                            </label>
                             <div class="col-md-9">
-                                <input type="text" name="street_address" value="<?php echo $c_user->street_address; ?>" class="form-control" placeholder="Street Address">
-                                <?php echo form_error('street_address') ?>
+                              <input type="text" name="agent_address1" class="form-control" value="<?php echo $c_user->agent_address1; ?>" placeholder="Address 1">
+                                  <?php echo form_error('agent_address1') ?>
                             </div>
                         </div>
 
                         <div class="form-group <?php // if(form_error('street_address')) echo 'has-error'; ?>">
                             <label for="firstName" class="col-md-3">Photo
-                                <span class="text-aqua">(Max size 2MB &amp; Width 1024px, Height 768px )</span>
+                                <span class="text-aqua"></span>
                             </label>
                             <div class="col-md-9">
                                 <input type="file" name="userfile" class="form-control" size="20" />

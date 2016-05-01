@@ -27,7 +27,7 @@
                             <th>Email</th>
                             <th>Password</th>
                             <th>Mobile No 1.</th>
-                            <th>Referred By Code</th>
+                            <th>Profession</th>
                            
                             <th>Status</th>
                                <th width="20%">Action</th>
@@ -40,7 +40,7 @@
                             <th>Email</th>
                             <th>Password</th>
                             <th>Mobile No 1.</th>
-                            <th>Referred By Code</th>
+                            <th>Profession</th>
                            
                             <th>Status</th>
                              <th>Action</th>

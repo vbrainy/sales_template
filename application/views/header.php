@@ -1,5 +1,6 @@
 <?php
 $c_user = get_profile();
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -59,7 +60,7 @@ $c_user = get_profile();
                                 <?php echo $c_user->first_name .' '.$c_user->last_name. ' <br />';
                                     echo $c_user->profession;
                                 ?>
-                                <small>Member since <?php echo date('M, Y',$c_user->created_at); ?></small>
+                                <small>Member since <?php  date($c_user->created_at); ?></small>
                             </p>
                         </li>
 
