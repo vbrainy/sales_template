@@ -19,7 +19,7 @@ function page_css(){ ?>
    <div class="box-header">
                     <span class="box-title">
                         <div>
-                            Unique Identifier :<?php echo $task->unique_name ; ?>
+                            Task Id :<?php echo $task->unique_name ; ?>
                         </div>
                         <div>
                             Task :<?php echo $task->title; ?>

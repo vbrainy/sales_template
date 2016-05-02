@@ -1,5 +1,8 @@
 
-<?php function page_css(){ ?>
+<?php 
+
+
+function page_css(){ ?>
 
 
 <?php } ?>
@@ -33,7 +36,7 @@
                         <div class="form-group <?php if(form_error('assign_to')) echo 'has-error'; ?>">
                             <label for="firstName" class="col-md-3">Assign Agent<span class="text-red">*</span></label>
                             <div class="col-md-9">
-                              <select name="assign_to" class="form-control">
+                              <select name="assign_to" onChange="getcity(this.value);" class="form-control">
                                     <option value=""> Select Agent </option>
                                     <?php 
                                     
@@ -41,8 +44,10 @@
                                     {
                                         foreach($agents->result() as $c){
                                          $selected = ($c->id == set_value('assign_to'))? "selected='selected'" : '';
-                                            echo '<option value="'.$c->id.'" '.$selected.' > '.$c->first_name . ' '. $c->last_name   .'</option>';
-                                        }
+                                            echo '<option  value="'.$c->id.'" '.$selected.' > '.$c->first_name . ' '. $c->last_name   .'-'.$c->postal_code.'</option>';
+                                           
+                                            
+                                            }
                                     } 
                                     ?>
 
@@ -52,16 +57,26 @@
                             </div>
                         </div>
                         
-                        <div class="form-group <?php if(form_error('agent_area')) echo 'has-error'; ?>">
-                            <label for="agent_area" class="col-md-3">Agent Area
+                        <div class="form-group <?php if(form_error('city')) echo 'has-error'; ?>">
+                            <label for="agent_area" class="col-md-3">City
                                 <span class="text-red">*</span>
                             </label>
                             <div class="col-md-9">
-                                <input type="text" name="agent_area" class="form-control" value="<?php echo $tasks->agent_area; ?>" placeholder="Enter Agent Area">
-                                <?php echo form_error('agent_area') ?>
+                                <input type="text" name="city" id="city" readonly="readonly"  class="form-control" value="" placeholder="City">
+                                <?php echo form_error('city') ?>
                             </div>
                         </div>
 
+                           <div class="form-group <?php if(form_error('created_at')) echo 'has-error'; ?>">
+                            <label for="agent_area" class="col-md-3">Task Date
+                                <span class="text-red">*</span>
+                            </label>
+                            <div class="col-md-9">
+                                <input type="text" name="created_at" id="city" readonly="readonly"  class="form-control" value="<?php echo date("Y-m-d"); ?>" placeholder="City">
+                                <?php echo form_error('created_at') ?>
+                            </div>
+                        </div>
+                        
                         <div class="clearfix"></div>
                     </div><!-- /.box-body -->
 
@@ -82,5 +97,22 @@
 </section><!-- /.content -->
 
 <?php function page_js(){ ?>
+
+<script>
+function getcity(val) {
+    
+    
+	$.ajax({
+	type: "POST",
+	url: "<?php echo base_url('tasks/getAgentcity'); ?>",
+	data:'id='+val,
+        
+	success: function(data){
+           // alert(data);
+		$("#city").val(data);
+	}
+	});
+}
+</script>
 <?php } ?>
 

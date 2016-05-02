@@ -75,7 +75,7 @@ class Agent extends CI_Controller {
                        redirect(base_url('agent'));
                     }
 
-		$data['agent'] = singleDbTableRow($id,'agents');
+		$data['agent'] = singleDbTableRow($id,'users');
 		if($this->input->post())
 		{
 			if($this->input->post('submit') != 'add_agent') die('Error! sorry');

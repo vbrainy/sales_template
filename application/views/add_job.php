@@ -9,6 +9,8 @@
     <!-- Bootstrap time Picker -->
     <link href="<?php echo base_url('assets/admin'); ?>/css/timepicker/bootstrap-timepicker.min.css" rel="stylesheet"/>
     <link href="<?php echo base_url('assets/admin'); ?>/css/AdminLTE.css" rel="stylesheet" type="text/css" />
+    <!-- bootstrap wysihtml5 - text editor -->
+    <link href="<?php echo base_url('assets/admin'); ?>/css/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css" rel="stylesheet" type="text/css" />
 
 <?php } ?>
 <script src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places" type="text/javascript"></script>
@@ -34,11 +36,6 @@ var mapProp = {
   //var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
 
         });
-        
-        
-  
-
-
     }
     google.maps.event.addDomListener(window, 'load', initialize); 
 </script>
@@ -52,10 +49,16 @@ var mapProp = {
             <!-- general form elements -->
             <div class="box box-primary">
                 <div class="box-header">
-                    <span class="box-title"><a class="btn btn-info editBtn" title="Back" data-toggle="tooltip" href="<?php echo base_url(); ?>tasks/index">
-<i class="fa fa-backward"></i> Back</a></span>
-                    <h3 class="box-title">Add New Job for <?php echo "Task ". $tasks->unique_name ." ". $jobUniqueName; ?></h3>
+<!--                    <span class="box-title"><a class="btn btn-info editBtn" title="Back" data-toggle="tooltip" href="<?php echo base_url(); ?>tasks/index">
+<i class="fa fa-backward"></i> Back</a></span>-->
+                    <h3 class="box-title">
+                        Task Id: <?php echo $tasks->unique_name; ?><br/>
+                        Task: <?php echo $tasks->title; ?><br/>
+                        Task: <?php echo $jobUniqueName; ?>
+                    </h3>
+                    
                 </div><!-- /.box-header -->
+                <hr>
                 <!-- form start -->
                 <?php echo form_open_multipart('jobs/add_job/'.$this->uri->segment(3), ['role' => 'form', 'class' => 'form-horizontal']); ?>
                     <div class="box-body">
@@ -139,15 +142,15 @@ var mapProp = {
                             </div>
                         </div>
                         
-                        <div id="googleMap" style="width:500px;height:380px;"></div>
+                        <div id="googleMap" style="width:350px;height:380px;"></div>
                         
                         
                         <div class="form-group <?php if(form_error('description')) echo 'has-error'; ?>">
                             <label for="description" class="col-md-2">Job Description
                                 <span class="text-red">*</span>
                             </label>
-                            <div class="col-md-6">
-                                <textarea name="description" class="form-control" value="<?php echo set_value('description'); ?>" placeholder="Enter Descrption"></textarea>
+                            <div class="col-md-8">
+                                <textarea name="description" class="form-control textareaWysih" value="<?php echo set_value('description'); ?>" placeholder="Enter Descrption"></textarea>
                                 <?php echo form_error('description') ?>
                             </div>
                         </div>
@@ -442,6 +445,15 @@ var mapProp = {
     <script src="<?php echo base_url('assets/admin'); ?>/js/plugins/colorpicker/bootstrap-colorpicker.min.js" type="text/javascript"></script>
     <!-- bootstrap time picker -->
     <script src="<?php echo base_url('assets/admin'); ?>/js/plugins/timepicker/bootstrap-timepicker.min.js" type="text/javascript"></script>
+    
+    <!-- Bootstrap WYSIHTML5 -->
+    <script src="<?php echo base_url('assets/admin'); ?>/js/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(function() {
+            $(".textareaWysih").wysihtml5();
+        });
+    </script>
+
     <!-- Page script -->
     <script type="text/javascript">
  
