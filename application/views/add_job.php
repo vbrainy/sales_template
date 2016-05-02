@@ -36,11 +36,6 @@ var mapProp = {
   //var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
 
         });
-        
-        
-  
-
-
     }
     google.maps.event.addDomListener(window, 'load', initialize); 
 </script>
@@ -54,10 +49,16 @@ var mapProp = {
             <!-- general form elements -->
             <div class="box box-primary">
                 <div class="box-header">
-                    <span class="box-title"><a class="btn btn-info editBtn" title="Back" data-toggle="tooltip" href="<?php echo base_url(); ?>tasks/index">
-<i class="fa fa-backward"></i> Back</a></span>
-                    <h3 class="box-title">Add New Job for <?php echo "Task ". $tasks->unique_name ." ". $jobUniqueName; ?></h3>
+<!--                    <span class="box-title"><a class="btn btn-info editBtn" title="Back" data-toggle="tooltip" href="<?php echo base_url(); ?>tasks/index">
+<i class="fa fa-backward"></i> Back</a></span>-->
+                    <h3 class="box-title">
+                        Task Id: <?php echo $tasks->unique_name; ?><br/>
+                        Task: <?php echo $tasks->title; ?><br/>
+                        Task: <?php echo $jobUniqueName; ?>
+                    </h3>
+                    
                 </div><!-- /.box-header -->
+                <hr>
                 <!-- form start -->
                 <?php echo form_open_multipart('jobs/add_job/'.$this->uri->segment(3), ['role' => 'form', 'class' => 'form-horizontal']); ?>
                     <div class="box-body">
