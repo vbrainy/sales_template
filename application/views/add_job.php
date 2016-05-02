@@ -9,6 +9,8 @@
     <!-- Bootstrap time Picker -->
     <link href="<?php echo base_url('assets/admin'); ?>/css/timepicker/bootstrap-timepicker.min.css" rel="stylesheet"/>
     <link href="<?php echo base_url('assets/admin'); ?>/css/AdminLTE.css" rel="stylesheet" type="text/css" />
+    <!-- bootstrap wysihtml5 - text editor -->
+    <link href="<?php echo base_url('assets/admin'); ?>/css/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css" rel="stylesheet" type="text/css" />
 
 <?php } ?>
 <script src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places" type="text/javascript"></script>
@@ -146,8 +148,8 @@ var mapProp = {
                             <label for="description" class="col-md-2">Job Description
                                 <span class="text-red">*</span>
                             </label>
-                            <div class="col-md-6">
-                                <textarea name="description" class="form-control" value="<?php echo set_value('description'); ?>" placeholder="Enter Descrption"></textarea>
+                            <div class="col-md-8">
+                                <textarea name="description" class="form-control textareaWysih" value="<?php echo set_value('description'); ?>" placeholder="Enter Descrption"></textarea>
                                 <?php echo form_error('description') ?>
                             </div>
                         </div>
@@ -442,6 +444,15 @@ var mapProp = {
     <script src="<?php echo base_url('assets/admin'); ?>/js/plugins/colorpicker/bootstrap-colorpicker.min.js" type="text/javascript"></script>
     <!-- bootstrap time picker -->
     <script src="<?php echo base_url('assets/admin'); ?>/js/plugins/timepicker/bootstrap-timepicker.min.js" type="text/javascript"></script>
+    
+    <!-- Bootstrap WYSIHTML5 -->
+    <script src="<?php echo base_url('assets/admin'); ?>/js/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(function() {
+            $(".textareaWysih").wysihtml5();
+        });
+    </script>
+
     <!-- Page script -->
     <script type="text/javascript">
  
