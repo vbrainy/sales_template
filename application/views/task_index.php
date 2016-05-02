@@ -2,6 +2,10 @@
 <?php function page_css(){ ?>
     <!-- datatable css -->
     <link href="<?php echo base_url('assets/admin'); ?>/css/datatables/dataTables.bootstrap.css" rel="stylesheet" type="text/css" />
+    
+      <!-- daterange picker -->
+    <link href="<?php echo base_url('assets/admin'); ?>/css/daterangepicker/daterangepicker-bs3.css" rel="stylesheet" type="text/css" />
+
 
 <?php } ?>
 
@@ -23,9 +27,35 @@
                 
 
                 <div class="box-header">
-                    <span class="box-title"><a class="btn btn-info editBtn" title="Add Task" data-toggle="tooltip" href="<?php echo base_url(); ?>tasks/add_task">
+                    <span class="box-title">
+                        <a class="btn btn-info editBtn" title="Add Task" data-toggle="tooltip" href="<?php echo base_url(); ?>tasks/add_task">
 
-<i class="fa fa-edit"></i> Add Task</a></span>
+<i class="fa fa-edit"></i> Add Task</a>
+                        <a class="btn btn-success" title="Active Task" data-toggle="tooltip" href="#">
+
+<i class="fa "></i> Active Task</a>
+
+                    </span>
+                    <div class="col-md-6" style="padding-top: 10px;">
+
+
+
+                        <div class="form-inline">
+
+
+                            <div class="form-group">
+                                <label class="sr-only" for="exampleInputAmount">Amount (in dollars)</label>
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-calendar"></i>
+                                    </div>
+                                    <input type="text" class="form-control" id="reservation" name="searchByNameInput" placeholder="Search within date range">
+                                </div>
+                            </div>
+                            <button type="submit" id="searchByDateBtn" class="btn btn-primary">Search</button>
+
+                        </div>
+                    </div>
                 </div><!-- /.box-header -->
 
                 <div class="box-body">
@@ -151,6 +181,21 @@
 
 
 </script>
+
+
+    <script src="<?php echo base_url('assets/admin'); ?>/js/plugins/daterangepicker/daterangepicker.js" type="text/javascript"></script>
+    <!-- bootstrap color picker -->
+    <!-- bootstrap time picker -->
+    <script src="<?php echo base_url('assets/admin'); ?>/js/plugins/timepicker/bootstrap-timepicker.min.js" type="text/javascript"></script>
+    <!-- Page script -->
+    <script type="text/javascript">
+        $(function() {
+            //Date range picker
+            $('#reservation').daterangepicker({ format: 'YYYY-MM-DD' });
+            //Date range picker with time picker
+            $('#reservationtime').daterangepicker({timePicker: true, timePickerIncrement: 30, format: 'MM/DD/YYYY h:mm A'});
+        });
+    </script>
 
 
 <?php } ?>
