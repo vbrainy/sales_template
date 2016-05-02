@@ -139,7 +139,7 @@ var mapProp = {
                             </div>
                         </div>
                         
-                        <div id="googleMap" style="width:500px;height:380px;"></div>
+                        <div id="googleMap" style="width:350px;height:380px;"></div>
                         
                         
                         <div class="form-group <?php if(form_error('description')) echo 'has-error'; ?>">

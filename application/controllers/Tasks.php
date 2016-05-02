@@ -247,4 +247,14 @@ class Tasks extends CI_Controller {
 
 		theme('copy_task', $data);
         }
+        
+        // City Name
+        public function getAgentcity(){
+            if(empty($_POST['id'])){
+                return "";
+            }
+           $dataCity = singleDbTableRow($_POST['id'],'users');
+          // p($dataCity->city);
+           echo $dataCity->city;
+        }
 }
