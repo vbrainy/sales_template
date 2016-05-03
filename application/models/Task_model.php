@@ -71,7 +71,7 @@ public function add_task(){
 
     //Generate task unique name
     public function taskUniqueName(){
-        return "Task-".($this->tasksListCount()+1);
+        return "Task-".($this->tasksListCount()+1).date('M Y');
     }
     /**
      * @return Agent List

@@ -14,9 +14,11 @@
 
 <?php } ?>
 <script src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places" type="text/javascript"></script>
+<!--<script src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>-->
+
 
 <script type="text/javascript">
-     function initialize() {
+     /*function initialize() {
         var input = document.getElementById('searchTextField');
         var autocomplete = new google.maps.places.Autocomplete(input);
         google.maps.event.addListener(autocomplete, 'place_changed', function () {
@@ -28,16 +30,62 @@
             //alert(place.name);
            // alert(place.address_components[0].long_name);
 
+        });
+        
 var mapProp = {
     center:new google.maps.LatLng(place.geometry.location.lat().value,place.geometry.location.lng()),
     zoom:5,
     mapTypeId:google.maps.MapTypeId.ROADMAP
   };
-  //var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
+  var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
 
-        });
     }
     google.maps.event.addDomListener(window, 'load', initialize); 
+    */
+//   function initialize() {
+//
+//    var myLatLng = new google.maps.LatLng( 50, 50 ),
+//        myOptions = {
+//            zoom: 4,
+//            center: myLatLng,
+//            mapTypeId: google.maps.MapTypeId.ROADMAP
+//            },
+//        map = new google.maps.Map( document.getElementById( 'map-canvas' ), myOptions ),
+//        marker = new google.maps.Marker( {position: myLatLng, map: map} );
+//
+//    marker.setMap( map );
+//    moveBus( map, marker );
+//
+//}
+
+//function moveBus( map, marker ) {
+//
+//    marker.setPosition( new google.maps.LatLng( 0, 0 ) );
+//    map.panTo( new google.maps.LatLng( 0, 0 ) );
+//
+//};
+//
+//initialize();
+//   
+//   
+   
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#image_upload_preview').attr('src', e.target.result);
+            }
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+    
+    function removeImage(){
+        $('#image_upload_preview').attr('src', '');
+        $('#inputFile').show();
+        $('#image_preview_div').hide();
+    }
 </script>
 <?php include('header.php'); ?>
 
@@ -62,6 +110,7 @@ var mapProp = {
                 <!-- form start -->
                 <?php echo form_open_multipart('jobs/add_job/'.$this->uri->segment(3), ['role' => 'form', 'class' => 'form-horizontal']); ?>
                     <div class="box-body">
+                        
                         <input type="hidden" name="unique_name" value="<?php echo $jobUniqueName; ?>"/>
                         <input type="hidden" name="task_id" value="<?php echo $tasks->id; ?>"/>
                         <div class="form-group <?php if(form_error('shop_nameplate')) echo 'has-error'; ?>">
@@ -69,7 +118,11 @@ var mapProp = {
                                 <span class="text-red">*</span>
                             </label>
                             <div class="col-md-6">
-                                <?php echo form_upload('shop_nameplate'); ?><br />
+                                <?php //echo form_upload('shop_nameplate'); ?>
+                                <input type="file" id="inputFile" name="shop_nameplate" /><br />
+                                <div id="image_preview_div" style="display: none;">
+                                    <img id="image_upload_preview" /><a style="position: absolute;" href="javascript: void(0)" onclick="removeImage();"><i class="fa fa-remove"></i></a>
+                                </div>
                                 <?php echo form_error('shop_nameplate') ?>
                             </div>
                         </div>
@@ -142,7 +195,7 @@ var mapProp = {
                             </div>
                         </div>
                         
-                        <div id="googleMap" style="width:350px;height:380px;"></div>
+                        <div id="map-canvas" style="width:350px;height:380px;"></div>
                         
                         
                         <div class="form-group <?php if(form_error('description')) echo 'has-error'; ?>">
@@ -407,8 +460,8 @@ var mapProp = {
                         </div>-->
 
                         <input type="hidden" id="place_name" name="place_name" />
-                        <input type="hidden" id="latitude" name="latitude" />
-                        <input type="hidden" id="longitude" name="longitude" />
+                        <input type="text" id="latitude" name="latitude" />
+                        <input type="text" id="longitude" name="longitude" />
                         
                         <div class="clearfix"></div>
                     </div><!-- /.box-body -->
@@ -452,6 +505,17 @@ var mapProp = {
         $(function() {
             $(".textareaWysih").wysihtml5();
         });
+        
+        $(function() {
+            $("#inputFile").change(function () {
+                readURL(this);
+                $(this).val('');
+                $(this).hide();
+                $('#image_preview_div').show();
+            });
+        });
+
+    
     </script>
 
     <!-- Page script -->

@@ -3,7 +3,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Job_model extends CI_Model {
 
-
 public function add_job(){
 
         $user_info = $this->session->userdata('logged_user');
@@ -16,6 +15,10 @@ public function add_job(){
         
         //set all data for inserting into database
         $data = [
+            'geo_location' => $this->input->post('geo_location'),
+            'total_price' => $this->input->post('total_price'),
+            'desc1' => $this->input->post('desc1'),
+            'price1' =>$this->input->post('price1'),
             'task_id'        => $this->input->post('task_id'),
             'unique_name'    => $this->input->post('unique_name'),
             'geo_location'   => $this->input->post('geo_location'),
@@ -99,7 +102,7 @@ public function add_job(){
 
     //Generate task unique name
     public function jobUniqueName($task_id){
-        return "job-".($this->jobsListCount($task_id)+1);
+        return "job-".($this->jobsListCount($task_id)+1).date('M Y');
     }
     /**
      * @return Agent List
@@ -141,7 +144,7 @@ public function add_job(){
         //set all data for inserting into database
         $data = [
             'task_id' => $insertedTaskid,
-            'unique_name' => "job-" . ($this->jobsListCount($insertedTaskid) + 1),
+            'unique_name' => "job-" . ($this->jobsListCount($insertedTaskid) + 1).date('M Y'),
             'shop_nameplate' => $postData->shop_nameplate,
             'geo_location' => $postData->geo_location,
             'total_price' => $postData->total_price,
