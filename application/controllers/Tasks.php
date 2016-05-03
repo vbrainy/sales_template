@@ -37,9 +37,9 @@ class Tasks extends CI_Controller {
 			if($this->input->post('submit') != 'add_task') die('Error! sorry');
 
 			$this->form_validation->set_rules('title', 'Title', 'required|trim');
-			$this->form_validation->set_rules('assign_to', 'Agent Name', 'required');
-			$this->form_validation->set_rules('agent_area', 'Agent Area', 'required');
-
+                        $this->form_validation->set_rules('assign_to', 'Agent Name', 'required|trim|is_unique[tasks.assign_to]');
+                        $this->form_validation->set_rules('city', 'City', 'required');
+                        
 			if($this->form_validation->run() == true)
 			{
 				$insert = $this->task_model->add_task();
@@ -70,6 +70,9 @@ class Tasks extends CI_Controller {
 
 			$this->form_validation->set_rules('title', 'Title', 'required|trim');
                         $this->form_validation->set_rules('assign_to', 'agent', 'required');
+                                
+                        $this->form_validation->set_rules('city', 'City', 'required');
+                        
 
 			if($this->form_validation->run() == true)
 			{
@@ -221,7 +224,7 @@ class Tasks extends CI_Controller {
 			$this->form_validation->set_rules('title', 'Title', 'required|trim');
                         $this->form_validation->set_rules('assign_to', 'agent', 'required|trim|is_unique[tasks.assign_to]');
                                 
-                        $this->form_validation->set_rules('agent_area', 'Agent Area', 'required');
+                        $this->form_validation->set_rules('city', 'City', 'required');
 
                         
                         if($this->form_validation->run() == true)

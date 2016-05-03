@@ -33,7 +33,7 @@
                         <div class="form-group <?php if(form_error('assign_to')) echo 'has-error'; ?>">
                             <label for="firstName" class="col-md-3">Assign Agent<span class="text-red">*</span></label>
                             <div class="col-md-9">
-                              <select name="assign_to" class="form-control">
+                              <select name="assign_to" class="form-control" onChange="getcity(this.value);">
                                     <option value=""> Select Agent </option>
                                     <?php 
                                     
@@ -52,13 +52,13 @@
                             </div>
                         </div>
                         
-                        <div class="form-group <?php if(form_error('agent_area')) echo 'has-error'; ?>">
+                        <div class="form-group <?php if(form_error('city')) echo 'has-error'; ?>">
                             <label for="agent_area" class="col-md-3">Agent Area
                                 <span class="text-red">*</span>
                             </label>
                             <div class="col-md-9">
-                                <input type="text" name="agent_area" class="form-control" value="<?php echo $tasks->agent_area; ?>" placeholder="Enter Agent Area">
-                                <?php echo form_error('agent_area') ?>
+                                <input type="text" name="city" id="city" value="<?php echo $tasks->agent_area; ?>" readonly="readonly"  class="form-control" value="" placeholder="City">
+                                <?php echo form_error('city') ?>
                             </div>
                         </div>
 
@@ -82,6 +82,21 @@
 </section><!-- /.content -->
 
 <?php function page_js(){ ?>
-
+    <script>
+function getcity(val) {
+    
+    
+	$.ajax({
+	type: "POST",
+	url: "<?php echo base_url('tasks/getAgentcity'); ?>",
+	data:'id='+val,
+        
+	success: function(data){
+           // alert(data);
+		$("#city").val(data);
+	}
+	});
+}
+</script>
 <?php } ?>
 

@@ -16,7 +16,7 @@ public function add_task(){
         $data = [
             'title'        => $this->input->post('title'),
             'assign_to' => $this->input->post('assign_to'),
-            'agent_area' => $this->input->post('agent_area'),
+            'agent_area' => $this->input->post('city'),
             'unique_name' =>    $this->taskUniqueName(),
             'created_at'        => time(),
             //'modified_at'       => time()
@@ -52,7 +52,7 @@ public function add_task(){
         $data = [
             'title'         => $this->input->post('title'),
             'assign_to' => $this->input->post('assign_to'),
-            'agent_area' => $this->input->post('agent_area'),
+            'agent_area' => $this->input->post('city'),
             'modified_at'           => time()
         ];
 
@@ -71,7 +71,7 @@ public function add_task(){
 
     //Generate task unique name
     public function taskUniqueName(){
-        return "Task-".($this->tasksListCount()+1);
+        return "Task-".($this->tasksListCount()+1).date('M Y');
     }
     /**
      * @return Agent List
