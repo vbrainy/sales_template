@@ -3,7 +3,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Job_model extends CI_Model {
 
-
 public function add_job(){
 
         $user_info = $this->session->userdata('logged_user');
@@ -16,19 +15,41 @@ public function add_job(){
         
         //set all data for inserting into database
         $data = [
-            'task_id'        => $this->input->post('task_id'),
-            'unique_name'        => $this->input->post('unique_name'),
-            'job_at_shop'        => $this->input->post('job_at_shop'),
-            'job_add1'        => $this->input->post('job_add1'),
-            'job_add2'        => $this->input->post('job_add2'),
-            'city'        => $this->input->post('city'),
-            'postcode'        => $this->input->post('postcode'),
-            'phone'        => $this->input->post('mobile'),
-            'description'        => $this->input->post('description'),
-            'total_price'        => $this->input->post('total_price'),
-            'created_at'        => time(),
-            'modified_at'       => time()
-        ];
+            'geo_location' => $this->input->post('geo_location'),
+            'total_price' => $this->input->post('total_price'),
+            'desc1' => $this->input->post('desc1'),
+            'price1' =>$this->input->post('price1'),
+            'desc2' => $this->input->post('desc2'),
+            'price2' => $this->input->post('price2'),
+            'desc3' => $this->input->post('desc3'),
+            'price3' =>$this->input->post('price3'),
+            'desc4' => $this->input->post('desc4'),
+            'price4' => $this->input->post('price4'),
+            'desc5' => $this->input->post('desc5'),
+            'price5' =>$this->input->post('price5'),
+            'desc6' => $this->input->post('desc6'),
+            'price6' => $this->input->post('price6'),
+            'desc7' => $this->input->post('desc7'),
+            'price7' =>$this->input->post('price7'),
+            'desc8' => $this->input->post('desc8'),
+            'price8' => $this->input->post('price8'),
+            'desc9' => $this->input->post('desc9'),
+            'price9' => $this->input->post('price9'),
+            'desc10' => $this->input->post('desc10'),
+            'price10' =>$this->input->post('price10'),
+            'job_at_shop' =>$this->input->post('job_at_shop'),
+            'job_add1' => $this->input->post('job_add1'),
+            'job_add2' => $this->input->post('job_add2'),
+            'city' => $this->input->post('city'),
+            'postcode' => $this->input->post('postcode'),
+            'phone' => $this->input->post('mobile'),
+            'description' => $this->input->post('description'),
+            'total_price' => $this->input->post('total_price'),
+            'created_at' => time(),
+            'modified_at' => time()
+            
+            
+            ];
         //print_r($data);exit;
        $query = $this->db->insert('jobs', $data);
 
