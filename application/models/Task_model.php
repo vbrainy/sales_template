@@ -93,4 +93,19 @@ public function add_task(){
     }
     
     
+    public function getmytaskByid(){
+        $user_info = $this->session->userdata('logged_user');
+        $user_id = $user_info['user_id'];
+       
+          $query = $this->db->where('assign_to',$user_id)->get_where('tasks');
+         
+        return $query->row();
+        
+
+
+        
+    }
+    
+    
+    
 }
