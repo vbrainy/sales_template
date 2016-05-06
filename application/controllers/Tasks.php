@@ -80,7 +80,7 @@ class Tasks extends CI_Controller {
 				if($insert)
 				{
 					$this->session->set_flashdata('successMsg', 'Task Updated Success');
-					redirect($_SERVER['HTTP_REFERER']);
+					redirect(base_url('tasks'));
 				}
 			}
 		}
