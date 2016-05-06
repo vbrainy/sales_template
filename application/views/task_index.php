@@ -63,17 +63,17 @@
 
                         <thead>
                         <tr>
-                            <th>Task Title</th>
-                            <th>Unique Identifier</th>
+                            <th width="15%">Task Title</th>
+                            <th width="15%">Unique Identifier</th>
 
-                            <th>Agent Name</th>
-                            <th>Agent Area</th>
-                            <th>Add Job</th>
+                            <th width="15%">Agent Name</th>
+                            <th width="15%">Agent Area</th>
+                            <th width="10%">Add Job</th>
                             
 
 <!--                            <th>Created at</th>
                             <th>Modified at</th>-->
-                            <th width="20%">Action</th>
+                            <th width="30%">Action</th>
                         </tr>
                         </thead>
 

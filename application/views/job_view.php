@@ -52,7 +52,86 @@
                                 <td>Total Price</td>
                                 <td><?php echo $job->total_price; ?></td>
                             </tr>
-
+                            <tr>
+                                <td>Description 1</td>
+                                <td><?php echo $job->desc1; ?></td>
+                            </tr>
+                            <tr>
+                                <td>Price 1</td>
+                                <td><?php echo $job->price1; ?></td>
+                            </tr>
+                            <tr>
+                                <td>Description 2</td>
+                                <td><?php echo $job->desc2; ?></td>
+                            </tr>
+                            <tr>
+                                <td>Price 2</td>
+                                <td><?php echo $job->price2; ?></td>
+                            </tr>
+                            <tr>
+                                <td>Description 3</td>
+                                <td><?php echo $job->desc3; ?></td>
+                            </tr>
+                            <tr>
+                                <td>Price 3</td>
+                                <td><?php echo $job->price3; ?></td>
+                            </tr>
+                            <tr>
+                                <td>Description 4</td>
+                                <td><?php echo $job->desc4; ?></td>
+                            </tr>
+                            <tr>
+                                <td>Price 4</td>
+                                <td><?php echo $job->price4; ?></td>
+                            </tr>
+                            <tr>
+                                <td>Description 5</td>
+                                <td><?php echo $job->desc5; ?></td>
+                            </tr>
+                            <tr>
+                                <td>Price 5</td>
+                                <td><?php echo $job->price5; ?></td>
+                            </tr>
+                            <tr>
+                                <td>Description 6</td>
+                                <td><?php echo $job->desc6; ?></td>
+                            </tr>
+                            <tr>
+                                <td>Price 6</td>
+                                <td><?php echo $job->price6; ?></td>
+                            </tr>
+                            <tr>
+                                <td>Description 7</td>
+                                <td><?php echo $job->desc7; ?></td>
+                            </tr>
+                            <tr>
+                                <td>Price 7</td>
+                                <td><?php echo $job->price7; ?></td>
+                            </tr>
+                            <tr>
+                                <td>Description 8</td>
+                                <td><?php echo $job->desc8; ?></td>
+                            </tr>
+                            <tr>
+                                <td>Price 8</td>
+                                <td><?php echo $job->price8; ?></td>
+                            </tr>
+                            <tr>
+                                <td>Description 9</td>
+                                <td><?php echo $job->desc9; ?></td>
+                            </tr>
+                            <tr>
+                                <td>Price 9</td>
+                                <td><?php echo $job->price9; ?></td>
+                            </tr>
+                            <tr>
+                                <td>Description 10</td>
+                                <td><?php echo $job->desc10; ?></td>
+                            </tr>
+                            <tr>
+                                <td>Price 10</td>
+                                <td><?php echo $job->price10; ?></td>
+                            </tr>
                         </table>
 
                     </div><!-- /.box-body -->

@@ -17,29 +17,17 @@ function page_css(){ ?>
 
             <div class="box">
    <div class="box-header">
+       <span class="box-title"><a class="btn btn-info editBtn" title="Back" data-toggle="tooltip" href="<?php echo base_url(); ?>tasks/index">
+<i class="fa fa-backward"></i> Back</a></span>
+<div class="clearfix"></div>
                     <span class="box-title">
-                        <div>
-                            Task Id :<?php echo $task->unique_name ; ?>
-                        </div>
-                        <div>
-                            Task :<?php echo $task->title; ?>
-                        </div>
+                        <h3>
+                            <p>Task Id: <?php echo $task->unique_name ; ?></p>
+                            <p>Task: <?php echo $task->title; ?></p>
+                        </h3>
                     </span>
                 </div>
                 <hr>
-                <div class="box-header">
-                   
-                    
-                    
-                </div><!-- 52.37.147.104 /.box-header -->
-                
-
-<!--                <div class="box-header">
-                    <span class="box-title"><a class="btn btn-info editBtn" title="Add Task" data-toggle="tooltip" href="<?php echo base_url(); ?>tasks/add_task">
-
-<i class="fa fa-edit"></i> Add Task</a></span>
-                </div> /.box-header -->
-
                 <div class="box-body">
                     <table id="example" class="table table-bordered table-striped table-hover">
 
