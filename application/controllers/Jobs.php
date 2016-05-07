@@ -42,7 +42,6 @@ class Jobs extends CI_Controller {
                         $this->form_validation->set_rules('description', 'Description', 'required|trim');
                         $this->form_validation->set_rules('total_price', 'Total Price', 'required|numeric');
                         $this->form_validation->set_rules('city', 'City', 'required|trim');
-                        $this->form_validation->set_rules('location', 'Location', 'required|trim');
                         $this->form_validation->set_rules('postcode', 'Postcode', 'required|trim');
                         $this->form_validation->set_rules('mobile', 'Mobile', 'required|trim');
                         
@@ -60,8 +59,9 @@ class Jobs extends CI_Controller {
         
                             if(!$this->upload->do_upload('shop_nameplate')) {               
                                 $this->data['error'] = $this->upload->display_errors();
-                                
+                                print_r($this->data);
                             }
+                            exit;
                             
                             
 				$insert = $this->job_model->add_job();
