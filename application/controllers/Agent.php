@@ -241,6 +241,12 @@ theme('edit_agent', $data);
             theme('agent_tasks');
         }
         
+        public function agent_jobs($taskId)
+        {
+            
+            theme('agent_jobs', $data);
+        }
+        
         /**
 	 * Agent list from db
 	 * @return Json format
@@ -267,14 +273,14 @@ theme('edit_agent', $data);
 			//Status Button
 			switch($activeStatus){
 				case 0:
-					$statusBtn = '<small class="label label-default"> In Active </small>';
-					$blockUnblockBtn = '<button class="btn btn-success blockUnblock" id="'.$r->id.'" data-toggle="tooltip" title="Unblock" value="1">
-						<i class="fa fa-unlock-alt"></i> </button>';
+					$statusBtn = '<small class="label label-default"> In Progress </small>';
+//					$blockUnblockBtn = '<button class="btn btn-success blockUnblock" id="'.$r->id.'" data-toggle="tooltip" title="Unblock" value="1">
+//						<i class="fa fa-unlock-alt"></i> </button>';
 					break;
 				case 1 :
-					$statusBtn = '<small class="label label-success"> Active </small>';
-					$blockUnblockBtn = '<button class="btn btn-warning blockUnblock" id="'.$r->id.'" data-toggle="tooltip" title="Block" value="0">
-						<i class="fa fa-lock"></i> </button>';
+					$statusBtn = '<small class="label label-success"> Completed </small>';
+//					$blockUnblockBtn = '<button class="btn btn-warning blockUnblock" id="'.$r->id.'" data-toggle="tooltip" title="Block" value="0">
+//						<i class="fa fa-lock"></i> </button>';
 					break;
 			}
 
@@ -283,26 +289,24 @@ theme('edit_agent', $data);
                         $addjobbutton = '';
                         /*$button .= '<a class="btn btn-primary editBtn" href="'.base_url('jobs/add_job/'. $r->id).'" data-toggle="tooltip" title="Add Job">
 						<i class="fa fa-plus"></i> </a>';*/
-			$button .= '<a class="btn btn-primary editBtn" href="'.base_url('jobs/index/'. $r->id).'" data-toggle="tooltip" title="View">
-						<i class="fa fa-eye"></i> </a>';
-			$button .= '&nbsp; <a class="btn btn-info editBtn"  href="'.base_url('tasks/edit/'. $r->id).'" data-toggle="tooltip" title="Edit">
-						<i class="fa fa-edit"></i> </a>';
-			$button .= "&nbsp;". $blockUnblockBtn;
-			$button .= '&nbsp;  <a class="btn btn-danger deleteBtn" id="'.$r->id.'" data-toggle="tooltip" title="Delete">
-						<i class="fa fa-trash"></i> </a>';
-                         $button .= '&nbsp; <a class="btn btn-info editBtn"  href="'.base_url('tasks/copytask/'. $r->id).'" data-toggle="tooltip" title="copy task">
-						<i class="fa fa-copy"></i></a>';
-                          $button .= '&nbsp; <a class="btn btn-danger editBtn"  href="#" data-toggle="tooltip" title="Archive task">
-						<i class="fa fa-archive"></i></a>';
-		        
-                        $addjobbutton = '<a class="btn btn-primary editBtn" href="'.base_url('jobs/add_job/'. $r->id).'" data-toggle="tooltip" title="Add Job">
-						<i class="fa fa-plus"></i>&nbsp;Add Job </a>';
+			$button .= '<a class="btn btn-primary editBtn" href="'.base_url('agent/agent_jobs/'. $r->id).'" data-toggle="tooltip" title="View">
+						<i class="fa fa-eye"></i>&nbsp; View Jobs</a>';
+//			$button .= '&nbsp; <a class="btn btn-info editBtn"  href="'.base_url('tasks/edit/'. $r->id).'" data-toggle="tooltip" title="Edit">
+//						<i class="fa fa-edit"></i> </a>';
+//			$button .= "&nbsp;". $blockUnblockBtn;
+//			$button .= '&nbsp;  <a class="btn btn-danger deleteBtn" id="'.$r->id.'" data-toggle="tooltip" title="Delete">
+//						<i class="fa fa-trash"></i> </a>';
+//                         $button .= '&nbsp; <a class="btn btn-info editBtn"  href="'.base_url('tasks/copytask/'. $r->id).'" data-toggle="tooltip" title="copy task">
+//						<i class="fa fa-copy"></i></a>';
+//                          $button .= '&nbsp; <a class="btn btn-danger editBtn"  href="#" data-toggle="tooltip" title="Archive task">
+//						<i class="fa fa-archive"></i></a>';
 			$data['data'][] = array(
 				$r->title,
 				$r->unique_name,
 				//$r->first_name.' '.$r->last_name,
 				$r->agent_area,
-                            $addjobbutton,
+                                $statusBtn,
+                            //$addjobbutton,
 
 				//$r->created_at,
 				//$r->modified_at,

@@ -47,6 +47,8 @@
                 <div class="box-header">
                     <span class="box-title"><a class="btn btn-info editBtn" title="Back" data-toggle="tooltip" href="<?php echo base_url(); ?>tasks/index">
 <i class="fa fa-backward"></i> Back</a></span>
+                    <span class="box-title"><a class="btn btn-info editBtn" title="View Jobs" data-toggle="tooltip" href="<?php echo base_url(); ?>jobs/index/<?php echo $this->uri->segment(3); ?>">
+<i class="fa fa-eye"></i> View Jobs</a></span>
 <div class="clearfix"></div>
                     <h3 class="box-title">
                         <p>
@@ -68,6 +70,13 @@
                         
                         <input type="hidden" name="unique_name" value="<?php echo $jobUniqueName; ?>"/>
                         <input type="hidden" name="task_id" value="<?php echo $tasks->id; ?>"/>
+                        <div class="form-group">
+                            <label class="col-md-2">Agent
+                            </label>
+                            <label class="col-md-6"><?php echo $agent->first_name . ' '.$agent->last_name;?>
+                            </label>
+                        </div>
+                        
                         <div class="form-group <?php if(form_error('shop_nameplate')) echo 'has-error'; ?>">
                             <label for="shop_nameplate" class="col-md-2">Shop Nameplate
                                 <span class="text-red">*</span>

@@ -28,9 +28,8 @@ class Jobs extends CI_Controller {
 		permittedArea();
 
 		$data['countries'] = $this->db->get('countries');
-                
                 $data['tasks'] = singleDbTableRow($taskId,'tasks');
-                
+                $data['agent'] = singleDbTableRow($data['tasks']->assign_to,'users');
                 $data['jobUniqueName'] = $this->job_model->jobUniqueName($taskId);
                 
 		if($this->input->post())
