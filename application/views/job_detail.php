@@ -1,5 +1,6 @@
 <?php include('header.php');
 ?>
+<input type="" value="<?php echo $job_details->geo_location; ?>" id="geolocation">
 <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
 <!-- Main content -->
 <section class="content">
@@ -153,8 +154,16 @@
 function page_js() { ?>
     <script type="text/javascript">
         $(function () {
+            
+            
+           // alert(geolocation);
             function initialize() {
-                var myLatlng = new google.maps.LatLng('<?php echo $job_details->geo_location ?>');
+                var geolocation = $("#geolocation").val();
+            
+               
+                var myLatlng = new google.maps.LatLng(geolocation);
+                
+                
                 var myOptions = {
                     zoom: 10,
                     center: myLatlng,
