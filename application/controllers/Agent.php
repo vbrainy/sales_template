@@ -234,18 +234,23 @@ theme('edit_agent', $data);
 		theme('profile_view', $data);
 	}
 
+        
+        public function agent_tasks(){
+            theme('agent_tasks');
+        }
+        
         /**
 	 * Agent list from db
 	 * @return Json format
 	 * usable only via API
 	 */
 
-	public function tasksListJson(){
+	public function agentTasksListJson(){
 		$limit = $this->input->get('length');
 		$start = $this->input->get('start');
-
-		$queryCount = $this->task_model->tasksListCount();
-		$query = $this->task_model->tasksList($limit, $start);
+                $agentId = $this->input->get('agent_id');
+		$queryCount = $this->task_model->agentTasksListCount($agentId);
+		$query = $this->task_model->agentTasksList($limit, $start, $agentId);
                 
 		$draw = $this->input->get('draw');
 
@@ -293,7 +298,7 @@ theme('edit_agent', $data);
 			$data['data'][] = array(
 				$r->title,
 				$r->unique_name,
-				$r->first_name.' '.$r->last_name,
+				//$r->first_name.' '.$r->last_name,
 				$r->agent_area,
                             $addjobbutton,
 

@@ -132,7 +132,7 @@ class Tasks extends CI_Controller {
 		$data['recordsFiltered'] = $queryCount;
                 
 		foreach($query->result() as $r){
-                //    print_R($r);exit;
+                 //   print_R($r);exit;
 			$activeStatus = $r->status;
 			//Status Button
 			switch($activeStatus){

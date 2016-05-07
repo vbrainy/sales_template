@@ -15,6 +15,7 @@ public function add_task(){
         //set all data for inserting into database
         $data = [
             'title'        => $this->input->post('title'),
+            'added_by'=> $user_id,
             'assign_to' => $this->input->post('assign_to'),
             'agent_area' => $this->input->post('city'),
             'unique_name' =>    $this->taskUniqueName(),
@@ -84,13 +85,24 @@ public function add_task(){
     }
 
     public function tasksList($limit = 0, $start = 0){
+        $query   = $this->db->order_by('id', 'desc')->limit($limit, $start)->select('tasks.*, users.first_name, users.last_name, users.city')->join('users', 'tasks.assign_to = users.id', 'left')->get_where('tasks');
+        return $query;
+    }
+    
+    public function agentTasksListCount($agentId){
+        $query = $this->db->where('assign_to', $agentId)->count_all_results('tasks');
+        return $query;
+    }
 
-       // $query1 =  $this->db->;
-        $query   = $this->db->order_by('email', 'desc')->limit($limit, $start)->select('tasks.*, agents.first_name, agents.last_name, agents.city')->join('agents', 'tasks.assign_to = agents.id', 'left')->get_where('tasks');
+    public function agentTasksList($limit = 0, $start = 0, $agentId){
+
+        $query   = $this->db->where('assign_to', $agentId)->limit($limit, $start)->select('tasks.*')->get_where('tasks');
         // $query = $this->db->order_by('id', 'desc')->limit($limit, $start)->get_where('tasks');
 
         return $query;
     }
+    
+    
     
     
     public function getmytaskByid(){
