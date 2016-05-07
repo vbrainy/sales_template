@@ -32,6 +32,14 @@
                             <?php 
                                 }
                             } 
+                            else
+                            {
+                                ?>
+                                <tr>
+                                    <td>No Jobs Found</td>
+                                </tr>
+                                <?php 
+                            }
                             ?>
                             
                         </table>
