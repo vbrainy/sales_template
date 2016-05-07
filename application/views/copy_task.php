@@ -24,18 +24,18 @@ function page_css(){ ?>
                     <div class="box-body">
 
                         <div class="form-group <?php if(form_error('title')) echo 'has-error'; ?>">
-                            <label for="firstName" class="col-md-3">Title
+                            <label for="firstName" class="col-md-2">Title
                                 <span class="text-red">*</span>
                             </label>
-                            <div class="col-md-9">
+                            <div class="col-md-6">
                                 <input type="text" name="title" class="form-control" value="<?php echo $tasks->title; ?>" placeholder="Enter Title">
                                 <?php echo form_error('title') ?>
                             </div>
                         </div>
                         
                         <div class="form-group <?php if(form_error('assign_to')) echo 'has-error'; ?>">
-                            <label for="firstName" class="col-md-3">Assign Agent<span class="text-red">*</span></label>
-                            <div class="col-md-9">
+                            <label for="firstName" class="col-md-2">Assign Agent<span class="text-red">*</span></label>
+                            <div class="col-md-6">
                               <select name="assign_to" onChange="getcity(this.value);" class="form-control">
                                     <option value=""> Select Agent </option>
                                     <?php 
@@ -58,20 +58,20 @@ function page_css(){ ?>
                         </div>
                         
                         <div class="form-group <?php if(form_error('city')) echo 'has-error'; ?>">
-                            <label for="agent_area" class="col-md-3">City
+                            <label for="agent_area" class="col-md-2">City
                                 <span class="text-red">*</span>
                             </label>
-                            <div class="col-md-9">
+                            <div class="col-md-6">
                                 <input type="text" name="city" id="city" readonly="readonly"  class="form-control" value="" placeholder="City">
                                 <?php echo form_error('city') ?>
                             </div>
                         </div>
 
                            <div class="form-group <?php if(form_error('created_at')) echo 'has-error'; ?>">
-                            <label for="agent_area" class="col-md-3">Task Date
+                            <label for="agent_area" class="col-md-2">Task Date
                                 <span class="text-red">*</span>
                             </label>
-                            <div class="col-md-9">
+                            <div class="col-md-6">
                                 <input type="text" name="created_at" id="city" readonly="readonly"  class="form-control" value="<?php echo date("Y-m-d"); ?>" placeholder="City">
                                 <?php echo form_error('created_at') ?>
                             </div>
