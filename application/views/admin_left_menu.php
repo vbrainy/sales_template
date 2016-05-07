@@ -140,17 +140,15 @@ $currentUser = $currentAuthDta['role'];
                     </ul>
                 </li>
                 
-                    <li class="treeview <?php echo menu_li_active('myjobs'); ?>">
-                    <a href="#">
-                        <i class="fa fa-user"></i>
-                        <span>My Jobs</span>
-                        <i class="fa fa-angle-left pull-right"></i>
-                    </a>
-                    <ul class="treeview-menu">
-                        <?php echo menu_link('myjobs', 'Myjobs'); ?>
-                        
-                    </ul>
-                </li>
+                
+                
+                
+                   <li>
+                <a href="<?php echo base_url('myjobs'); ?>">
+                    <i class="fa fa-briefcase"></i> <span>My Jobs</span>
+                </a>
+            </li>
+                
 
                 <li class="treeview <?php echo menu_li_active('account'); ?>">
                     <a href="#">
