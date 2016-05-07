@@ -16,7 +16,7 @@
                 <div class="box-header">
                     <span class="box-title"><a class="btn btn-info editBtn" title="Add Agent" data-toggle="tooltip" href="<?php echo base_url(); ?>agent/add_agent">
 
-<i class="fa fa-edit"></i> Add Agent</a></span>
+<i class="fa fa-plus"></i> Add Agent</a></span>
                 </div>
                 <div class="box-body">
                     <table id="example" class="table table-bordered table-striped table-hover">

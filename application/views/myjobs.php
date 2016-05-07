@@ -1,15 +1,14 @@
 
-<?php function page_css(){ ?>
+<?php 
+function page_css(){ ?>
     <!-- datatable css -->
     <link href="<?php echo base_url('assets/admin'); ?>/css/datatables/dataTables.bootstrap.css" rel="stylesheet" type="text/css" />
-    
-      <!-- daterange picker -->
-    <link href="<?php echo base_url('assets/admin'); ?>/css/daterangepicker/daterangepicker-bs3.css" rel="stylesheet" type="text/css" />
-
 
 <?php } ?>
 
 <?php include('header.php'); ?>
+    <input type="hidden" id="task_id" value="<?php echo $task_id; ?>"/>
+    
 
 <!-- Main content -->
 <section class="content">
@@ -17,66 +16,51 @@
         <div class="col-md-12">
 
             <div class="box">
-
-                <div class="box-header">
+   <div class="box-header">
                     <span class="box-title">
-                        <a class="btn btn-info editBtn" title="Add Task" data-toggle="tooltip" href="<?php echo base_url(); ?>tasks/add_task">
-
-<i class="fa fa-plus"></i> Add Task</a>
-                        <a class="btn btn-success" title="Active Task" data-toggle="tooltip" href="#">
-
-<i class="fa "></i> Active Task</a>
-
-                    </span>
-                    <div class="col-md-6" style="padding-top: 10px;">
-
-
-
-                        <div class="form-inline">
-
-
-                            <div class="form-group">
-                                <label class="sr-only" for="exampleInputAmount">Amount (in dollars)</label>
-                                <div class="input-group">
-                                    <div class="input-group-addon">
-                                        <i class="fa fa-calendar"></i>
-                                    </div>
-                                    <input type="text" class="form-control" id="reservation" name="searchByNameInput" placeholder="Search within date range">
-                                </div>
-                            </div>
-                            <button type="submit" id="searchByDateBtn" class="btn btn-primary">Search</button>
-
+                        <div>
+                            Task Id :<?php echo $task->unique_name ; ?>
                         </div>
-                    </div>
-                </div><!-- /.box-header -->
+                        <div>
+                            Task :<?php echo $task->title; ?>
+                        </div>
+                    </span>
+                </div>
+                <hr>
+                <div class="box-header">
+                   
+                    
+                    
+                </div><!-- 52.37.147.104 /.box-header -->
+                
+
+<!--                <div class="box-header">
+                    <span class="box-title"><a class="btn btn-info editBtn" title="Add Task" data-toggle="tooltip" href="<?php echo base_url(); ?>tasks/add_task">
+
+<i class="fa fa-edit"></i> Add Task</a></span>
+                </div> /.box-header -->
 
                 <div class="box-body">
                     <table id="example" class="table table-bordered table-striped table-hover">
 
                         <thead>
                         <tr>
-                            <th width="15%">Task Title</th>
-                            <th width="15%">Unique Identifier</th>
-
-                            <th width="15%">Agent Name</th>
-                            <th width="15%">Agent Area</th>
-                            <th width="10%">Add Job</th>
+                            <th>Unique Identifier</th>
+                            <th>City</th>
+<!--                            <th>Agent Area</th>
+                            <th>Add Job</th>-->
                             
 
 <!--                            <th>Created at</th>
                             <th>Modified at</th>-->
-                            <th width="30%">Action</th>
+                            <th width="20%">Action</th>
                         </tr>
                         </thead>
 
                         <tfoot>
                         <tr>
-                            <th>Task Title</th>
                             <th>Unique Identifier</th>
-
-<th>Agent Name</th>
-                            <th>Agent Area</th>
-                            <th>Add Job</th>
+                            <th>City</th>
 
 <!--                            <th>Created at</th>
                             <th>Modified at</th>-->
@@ -106,11 +90,12 @@
             $("#example").dataTable({
                 "processing": true,
                 "serverSide": true,
-                "destroy": true,
-                "ajax": "<?php echo base_url('tasks/tasksListJson'); ?>",
-                "language": {
-        "emptyTable":     "My Custom Message On Empty Table"
-    }
+                "ajax": {
+                    "url": "<?php echo base_url('myjobs/jobsListJson'); ?>",
+                    "data": function ( d ) {
+                        d.task_id = $('#task_id').val();
+                    }
+                }
             });
         });
 
@@ -126,7 +111,7 @@
         if(verifyConfirm) {
             $.ajax({
                 type: "POST",
-                url: "<?php echo base_url('tasks/deleteAjax') ?>",
+                url: "<?php echo base_url('jobs/deleteAjax') ?>",
                 data: {id: agentId},
             })
             .done(function (msg) {
@@ -136,7 +121,7 @@
     });
 
 
-    $('body').on('click', 'button.blockUnblock', function () {
+        $('body').on('click', 'button.blockUnblock', function () {
         var agentId = $(this).attr('id');
         var buttonValue = $(this).val();
         //alert(buttonValue);
@@ -150,7 +135,7 @@
 
         $.ajax({
             type: "POST",
-            url: "<?php echo base_url('tasks/setBlockUnblock') ?>",
+            url: "<?php echo base_url('jobs/setBlockUnblock') ?>",
             data: {id: agentId, buttonValue : buttonValue, status : status}
         })
         .done(function (msg) {
@@ -171,23 +156,7 @@
     });
 
 
-
 </script>
-
-
-    <script src="<?php echo base_url('assets/admin'); ?>/js/plugins/daterangepicker/daterangepicker.js" type="text/javascript"></script>
-    <!-- bootstrap color picker -->
-    <!-- bootstrap time picker -->
-    <script src="<?php echo base_url('assets/admin'); ?>/js/plugins/timepicker/bootstrap-timepicker.min.js" type="text/javascript"></script>
-    <!-- Page script -->
-    <script type="text/javascript">
-        $(function() {
-            //Date range picker
-            $('#reservation').daterangepicker({ format: 'YYYY-MM-DD' });
-            //Date range picker with time picker
-            $('#reservationtime').daterangepicker({timePicker: true, timePickerIncrement: 30, format: 'MM/DD/YYYY h:mm A'});
-        });
-    </script>
 
 
 <?php } ?>

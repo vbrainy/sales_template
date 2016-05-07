@@ -1,6 +1,5 @@
 <?php
 $c_user = get_profile();
-
 ?>
 <!DOCTYPE html>
 <html>
