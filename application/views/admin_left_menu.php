@@ -139,6 +139,16 @@ $currentUser = $currentAuthDta['role'];
                         <?php echo menu_link('user/change_pass', 'Change Password'); ?>
                     </ul>
                 </li>
+                
+                
+                
+                
+                   <li>
+                <a href="<?php echo base_url('myjobs'); ?>">
+                    <i class="fa fa-briefcase"></i> <span>My Jobs</span>
+                </a>
+            </li>
+                
 
                 <li class="treeview <?php echo menu_li_active('account'); ?>">
                     <a href="#">

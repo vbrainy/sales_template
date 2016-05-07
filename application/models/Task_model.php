@@ -111,7 +111,7 @@ public function add_task(){
        
           $query = $this->db->where('assign_to',$user_id)->get_where('tasks');
          
-        return $query->row();
+        return $query->result();
         
 
 

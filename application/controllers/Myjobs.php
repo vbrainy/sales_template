@@ -13,35 +13,38 @@ class Myjobs extends CI_Controller {
 
 	public function index()
 	{
-            
-             $Mytask =   $this->task_model->getmytaskByid();
-            
-                $data['task_id'] = $Mytask->id;
-                $data['task'] = $Mytask;		//restricted this area, only for admin
-		//permittedArea();
-                
-		theme('myjobs', $data);
+           
+            $data['mytask'] =   $this->task_model->getmytaskByid();
+            theme('myjobs',$data);
 	}
+        
+        public function job_detail($job_id){
+            if(!empty($job_id)){
+               $data['job_details'] = singleDbTableRow($job_id,'jobs');
+               $data['tasks'] = singleDbTableRow($data['job_details']->task_id,'tasks'); 
+                           
+               theme('job_detail',$data);
+               
+            }
+    
+        }
         
         /**
 	 * Add agent script
 	 */
 
-	public function update_job_status($taskId){
+	public function update_status($jobid=""){
 		//restricted this area, only for admin
+            
+            if(!empty($jobid)){
+               $this->job_model->updatestatus($jobid);
+           	$this->session->set_flashdata('successMsg', 'Status updated successfully');
+		redirect($_SERVER['HTTP_REFERER']);
+            }
 	
-		$data['countries'] = $this->db->get('countries');
-                
-                $data['tasks'] = singleDbTableRow($taskId,'tasks');
-                
-                $data['jobUniqueName'] = $this->job_model->jobUniqueName($taskId);
-                
-		
-
-		theme('update_job', $data);
 	}
         
-        
+    
         /**
 	 * Agent list from db
 	 * @return Json format
