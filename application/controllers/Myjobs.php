@@ -29,7 +29,7 @@ class Myjobs extends CI_Controller {
 
 	public function update_job_status($taskId){
 		//restricted this area, only for admin
-	p(1112);
+	
 		$data['countries'] = $this->db->get('countries');
                 
                 $data['tasks'] = singleDbTableRow($taskId,'tasks');

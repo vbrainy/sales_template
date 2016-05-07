@@ -39,6 +39,8 @@ class Agent_model extends CI_Model {
 
         //check user is selected photo
         if ($_FILES['userfile']['name'] != '') {
+            
+            
             $upload_dir = './uploads/'; //Upload directory
             if (!file_exists($upload_dir))
                 mkdir($upload_dir); //create directory if not found.
@@ -129,14 +131,15 @@ class Agent_model extends CI_Model {
     
     
         public function update_agent($id){
-            
+          
              $this->load->helper('string'); //load string helper
-
-       $row_password = $this->input->post('password');
+        $row_password = $this->input->post('password');
         $password = sha1($row_password);
         $photoName = '';
-  $email = $this->input->post('email');
+        $email = $this->input->post('email');
       
+        
+        
         //check user is selected photo
         if ($_FILES['userfile']['name'] != '') {
             $upload_dir = './uploads/'; //Upload directory
