@@ -16,31 +16,7 @@
 <!--<script src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places" type="text/javascript"></script>-->
 <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
 <script type="text/javascript">
-  var map;
-  function initialize() {
-  var myLatlng = new google.maps.LatLng(40.713956,-74.006653);
-
-  var myOptions = {
-     zoom: 8,
-     center: myLatlng,
-     mapTypeId: google.maps.MapTypeId.ROADMAP
-     }
-  map = new google.maps.Map(document.getElementById("map-canvas"), myOptions); 
-
-  var marker = new google.maps.Marker({
-  draggable: true,
-  position: myLatlng, 
-  map: map,
-  title: "Your location"
-  });
-
-  google.maps.event.addListener(marker,'click',function(overlay,point){
-     document.getElementById("latbox").value = lat();
-     document.getElementById("lngbox").value = lng();
-     });
-
-}
-initialize();
+    
     function readURL(input) {
         if (input.files && input.files[0]) {
             var reader = new FileReader();
@@ -80,7 +56,7 @@ initialize();
                         Task: <?php echo $tasks->title; ?>
                         </p>
                         <p>
-                        Task: <?php echo $jobUniqueName; ?>
+                        Job: <?php echo $jobUniqueName; ?>
                         </p>
                     </h3>
                     
@@ -164,17 +140,31 @@ initialize();
                         </div>
                         
                         
-                        <div class="form-group <?php if(form_error('location')) echo 'has-error'; ?>">
-                            <label for="location" class="col-md-2">Location
+                        <div class="form-group">
+                            <label for="shop_map" class="col-md-2">Shop Map
                                 <span class="text-red">*</span>
                             </label>
                             <div class="col-md-6">
-                                <input id="searchTextField" name="location" class="form-control" value="<?php echo set_value('location'); ?>" type="text" size="50" placeholder="Enter a location" autocomplete="on" runat="server" />  
-                                <?php echo form_error('location') ?>
+                                <div id="map-canvas" style="width:530px;height:380px;"></div>
                             </div>
                         </div>
                         
-                        <div id="map-canvas" style="width:350px;height:380px;"></div>
+                        <div class="form-group">
+                            <label for="Latitude" class="col-md-2">Latitude
+                            </label>
+                            <div class="col-md-6">
+                                <input type="text" id="lat" name="latitude" class="form-control" />
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="Longitude" class="col-md-2">Longitude
+                            </label>
+                            <div class="col-md-6">
+                                <input type="text" id="lng" name="longitude" class="form-control" />
+                            </div>
+                        </div>
+                        
                         
                         
                         <div class="form-group <?php if(form_error('description')) echo 'has-error'; ?>">
@@ -440,8 +430,7 @@ initialize();
                         </div>-->
 
                         <input type="hidden" id="place_name" name="place_name" />
-                        <input type="text" id="latitude" name="latitude" />
-                        <input type="text" id="longitude" name="longitude" />
+                        
                         
                         <div class="clearfix"></div>
                     </div><!-- /.box-body -->
@@ -482,6 +471,45 @@ initialize();
     <!-- Bootstrap WYSIHTML5 -->
     <script src="<?php echo base_url('assets/admin'); ?>/js/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js" type="text/javascript"></script>
     <script type="text/javascript">
+        $(function() {
+  	function initialize() {
+	var myLatlng = new google.maps.LatLng(41.015137,28.979530);
+	var myOptions = {
+	  zoom: 10, 
+	  center: myLatlng,
+	  mapTypeId: google.maps.MapTypeId.ROADMAP
+	}
+	var map = new google.maps.Map(document.getElementById("map-canvas"), myOptions);
+	addMarker(myLatlng, 'Default Marker', map);
+	map.addListener('click',function(event) {
+		addMarker(event.latLng, 'Click Generated Marker', map);
+	});
+	}
+	function addMarker(latlng,title,map) {
+	var marker = new google.maps.Marker({
+			position: latlng,
+			map: map,
+			title: title,
+			draggable:true
+	});
+	marker.addListener('drag',function(event) {
+		 $('#lat').val(event.latLng.lat())  ;
+		$('#lng').val(event.latLng.lng())  ;
+	});
+	marker.addListener('dragend',function(event) {
+		$('#lat').val(event.latLng.lat())  ;		
+		$('#lng').val(event.latLng.lng())  ;
+		var x=event.latLng.lat();
+		var y=event.latLng.lng();
+		$("#results").append($('<div>').text(event.latLng.toUrlValue()).data('latlng',event.latLng).click(function(){marker.setPosition($(this).data('latlng'));}));
+	});
+	};	
+		
+	initialize();
+  
+  });
+  
+        
         $(function() {
             $(".textareaWysih").wysihtml5();
         });

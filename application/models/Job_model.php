@@ -12,17 +12,14 @@ public function add_job(){
 
         $title = $this->input->post('title');
         
+        $geoLocation = $this->input->post('latitude').",".$this->input->post('longitude');
         
         //set all data for inserting into database
         $data = [
-            'geo_location' => $this->input->post('geo_location'),
-            'total_price' => $this->input->post('total_price'),
-            'desc1' => $this->input->post('desc1'),
-            'price1' =>$this->input->post('price1'),
+            'shop_nameplate' => $_FILES['shop_nameplate']['name'],
             'task_id'        => $this->input->post('task_id'),
             'unique_name'    => $this->input->post('unique_name'),
-            'geo_location'   => $this->input->post('geo_location'),
-            'total_price'    => $this->input->post('total_price'),
+            'geo_location'   => $geoLocation,
             'desc1'          => $this->input->post('desc1'),
             'price1'         =>$this->input->post('price1'),
             'desc2' => $this->input->post('desc2'),
@@ -53,8 +50,6 @@ public function add_job(){
             'total_price' => $this->input->post('total_price'),
             'created_at' => time(),
             'modified_at' => time()
-            
-            
             ];
         //print_r($data);exit;
        $query = $this->db->insert('jobs', $data);
