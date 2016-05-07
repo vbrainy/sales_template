@@ -32,12 +32,12 @@
 
 <!--                            <th width="15%">Agent Name</th>-->
                             <th width="15%">Agent Area</th>
-                            <th width="10%">Add Job</th>
+                            <th width="10%">Status</th>
                             
 
 <!--                            <th>Created at</th>
                             <th>Modified at</th>-->
-                            <th width="30%">Action</th>
+                            <th width="20%">Action</th>
                         </tr>
                         </thead>
 
@@ -48,7 +48,7 @@
 
 <!--<th>Agent Name</th>-->
                             <th>Agent Area</th>
-                            <th>Add Job</th>
+                            <th>Status</th>
 
 <!--                            <th>Created at</th>
                             <th>Modified at</th>-->

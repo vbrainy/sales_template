@@ -19,6 +19,8 @@ function page_css(){ ?>
    <div class="box-header">
        <span class="box-title"><a class="btn btn-info editBtn" title="Back" data-toggle="tooltip" href="<?php echo base_url(); ?>tasks/index">
 <i class="fa fa-backward"></i> Back</a></span>
+<span class="box-title"><a class="btn btn-info editBtn" title="Add Job" data-toggle="tooltip" href="<?php echo base_url(); ?>jobs/add_job/<?php echo $task_id ?>">
+<i class="fa fa-plus"></i> Add Job</a></span>
 <div class="clearfix"></div>
                     <span class="box-title">
                         <h3>
