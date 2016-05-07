@@ -65,7 +65,17 @@ function page_css() { ?>
                                                                     <th width="40%">Action</th>
                                                                 </tr>
                                                             </thead>
-                                                            <?php foreach($query->result() as $r){ ?>
+                                                            <?php
+                                                            
+                                                            if(!empty($query)){
+                                                                
+                                                            
+                                                                
+                                                                
+                                                            
+                                                            
+                                                            
+                                                            foreach($query->result() as $r){ ?>
                                                                <tr>
                                                                     <td><?php echo $r->unique_name; ?></td>
                                                                     <td><?php echo $r->city; ?></td>
@@ -77,7 +87,11 @@ function page_css() { ?>
                                      
                                                                         
                                                                     </td>
-                                                            </tr><?php } ?>
+                                                            </tr><?php } } else { 
+                                                                echo "No Jobs Found";
+                                                                ?>
+
+ <?php } ?>
                                                         </table>
                                                      </div>
                                                 </div>
