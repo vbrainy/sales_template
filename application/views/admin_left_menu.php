@@ -140,10 +140,7 @@ $currentUser = $currentAuthDta['role'];
                     </ul>
                 </li>
                 
-                
-                
-                
-                   <li>
+                  <li>
                 <a href="<?php echo base_url('myjobs'); ?>">
                     <i class="fa fa-briefcase"></i> <span>My Jobs</span>
                 </a>
