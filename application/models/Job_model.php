@@ -92,7 +92,23 @@ public function add_job(){
         return false;
 
     }
+   public function updatestatus($jobid){
+    
+           $data = [
+            'job_status'         => 1,
+            'modified_at'           => time()
+        ];
 
+        $query = $this->db->where('id', $jobid)->update('jobs', $data);
+                if($query)
+        {
+            create_activity('Updated '.$data['job_status'].' Jobs'); //create an activity
+            return true;
+        }
+        return false;
+       // return "job-".($this->jobsListCount($task_id)+1).date('M Y');
+    }
+    
 
 
     //Generate task unique name

@@ -12,7 +12,14 @@
                     </h3>
                 </div><!-- /.box-header -->
                     <div class="box-body">
-
+                                 <div class="form-group">
+                            <label for="shop_map" class="col-md-2">Shop Map
+                                <span class="text-red"></span>
+                            </label>
+                            <div class="col-md-6">
+                                <div id="map-canvas" style="width:530px;height:380px;"></div>
+                            </div>
+                        </div>
                         <table class="table table-striped">
                             <tr>
                                 <th>Shop Nameplate</th>
@@ -133,6 +140,7 @@
                                 <td><?php echo $job->price10; ?></td>
                             </tr>
                         </table>
+                        
 
                     </div><!-- /.box-body -->
 
