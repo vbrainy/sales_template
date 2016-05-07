@@ -42,6 +42,10 @@ function page_css() { ?>
                                                         <a data-toggle="collapse" data-parent="#accordion" href="#collapse<?php echo $i; ?>">
                                                             <?php echo $value->unique_name; ?>
                                                         </a>
+                                                         
+                                                    </h4>
+                                                      <h4 class="box-title">
+                                                          <strong>Task status : </strong><?php if ($value->status == 1) { echo "Complete"; }else { echo "In Progress";} ?>  
                                                     </h4>
 
 

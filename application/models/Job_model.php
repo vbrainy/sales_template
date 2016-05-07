@@ -109,6 +109,27 @@ public function add_job(){
        // return "job-".($this->jobsListCount($task_id)+1).date('M Y');
     }
     
+   public function checkTaskstatus($Taskid){
+       
+        $query = $this->db->where( array( 'task_id'=>$Taskid,'job_status'=>0))->count_all_results('jobs');
+        
+        if(empty($query)){
+               $data = [
+            'status'         => 1,
+            'modified_at'           => time()
+        ];
+
+        $query = $this->db->where('id', $Taskid)->update('tasks', $data);
+                if($query)
+        {
+            create_activity('Updated '.$data['status'].' Tasks'); //create an activity
+            return true;
+        }
+        }
+       
+   }    
+    
+    
 
 
     //Generate task unique name
