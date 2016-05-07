@@ -38,6 +38,10 @@ class Myjobs extends CI_Controller {
             
             if(!empty($jobid)){
                $this->job_model->updatestatus($jobid);
+                 $jobs =  singleDbTableRow($jobid,'jobs');
+                $jobCount = $this->job_model->checkTaskstatus($jobs->task_id);
+               
+                
            	$this->session->set_flashdata('successMsg', 'Status updated successfully');
 		redirect($_SERVER['HTTP_REFERER']);
             }
