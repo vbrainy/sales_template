@@ -219,6 +219,11 @@ class Agent_model extends CI_Model {
         return $query;
     }
 
+    public function agentJobList($taskId){
+        $query = $this->db->order_by('id', 'desc')->get_where('jobs', ['task_id'=> $taskId]);
+        return $query;
+    }
+    
     /**
      * @param string $photo
      * Photo Resize

@@ -243,7 +243,8 @@ theme('edit_agent', $data);
         
         public function agent_jobs($taskId)
         {
-            
+            $data['jobs'] = $this->agent_model->agentJobList($taskId);
+            $data['task_id'] = $taskId;
             theme('agent_jobs', $data);
         }
         
