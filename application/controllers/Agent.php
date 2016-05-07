@@ -241,9 +241,10 @@ theme('edit_agent', $data);
             theme('agent_tasks');
         }
         
-        public function agent_jobs($taskId)
+        public function agent_jobs($taskId, $agentId)
         {
             $data['jobs'] = $this->agent_model->agentJobList($taskId);
+            $data['agent_id'] = $agentId;
             $data['task_id'] = $taskId;
             theme('agent_jobs', $data);
         }
@@ -290,7 +291,7 @@ theme('edit_agent', $data);
                         $addjobbutton = '';
                         /*$button .= '<a class="btn btn-primary editBtn" href="'.base_url('jobs/add_job/'. $r->id).'" data-toggle="tooltip" title="Add Job">
 						<i class="fa fa-plus"></i> </a>';*/
-			$button .= '<a class="btn btn-primary editBtn" href="'.base_url('agent/agent_jobs/'. $r->id).'" data-toggle="tooltip" title="View">
+			$button .= '<a class="btn btn-primary editBtn" href="'.base_url('agent/agent_jobs/'. $r->id.'/'.$agentId).'" data-toggle="tooltip" title="View">
 						<i class="fa fa-eye"></i>&nbsp; View Jobs</a>';
 //			$button .= '&nbsp; <a class="btn btn-info editBtn"  href="'.base_url('tasks/edit/'. $r->id).'" data-toggle="tooltip" title="Edit">
 //						<i class="fa fa-edit"></i> </a>';
