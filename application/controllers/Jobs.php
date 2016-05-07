@@ -58,9 +58,9 @@ class Jobs extends CI_Controller {
         
                             if(!$this->upload->do_upload('shop_nameplate')) {               
                                 $this->data['error'] = $this->upload->display_errors();
-                                print_r($this->data);
+                                //print_r($this->data);
                             }
-                            exit;
+                            //exit;
                             
                             
 				$insert = $this->job_model->add_job();
