@@ -23,14 +23,14 @@ function page_css(){ ?>
         <div class="col-md-12">
             <!-- general form elements -->
             <div class="box box-primary">
-                <div class="box-header">
-                    <h3 class="box-title">Edit Agent</h3>
-                </div><!-- /.box-header -->
+                
+                <!-- /.box-header -->
                 <!-- form start -->
                 <?php echo form_open_multipart('', ['role' => 'form', 'class' => 'form-horizontal']); ?>
                     <div class="box-body">
                         
-                        
+                            <span class="box-title"><a class="btn btn-info editBtn" title="Back" data-toggle="tooltip" href="<?php echo base_url(); ?>agent/index">
+<i class="fa fa-backward"></i> Back</a></span>
                             <div class="form-group <?php if(form_error('image')) echo 'has-error'; ?>">
                             <label for="firstName" class="col-md-3">Photo
                                 <span class="text-red"></span>

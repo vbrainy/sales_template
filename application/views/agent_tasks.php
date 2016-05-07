@@ -19,7 +19,8 @@
             <div class="box">
 
                 <div class="box-header">
-                    
+                           <span class="box-title"><a class="btn btn-info editBtn" title="Back" data-toggle="tooltip" href="<?php echo base_url(); ?>agent/index">
+<i class="fa fa-backward"></i> Back</a></span>
                 </div><!-- /.box-header -->
 
                 <div class="box-body">
