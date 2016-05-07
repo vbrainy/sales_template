@@ -6,17 +6,19 @@ class Agent extends CI_Controller {
 	function __construct(){
 		parent:: __construct();
 		$this->load->model('agent_model');
+		$this->load->model('task_model');
 
 		check_auth(); //check is logged in.
 	}
 
 	public function index()
 	{
-            
+                
 		//restricted this area, only for admin
 		permittedArea();
-
-		theme('agent_index');
+                $data['title'] = "Agent list";
+		theme('agent_index', $data);
+                //$this->load->view('agent_index', $data);
 	}
 
 	/**
@@ -156,12 +158,12 @@ theme('edit_agent', $data);
 
 			//Action Button
 			$button = '';
-//			$button .= '<a class="btn btn-primary editBtn" href="'.base_url('agent/profile_view/'. $r->id).'" data-toggle="tooltip" title="View">
-//						<i class="fa fa-eye"></i> </a>';
-			$button .= '<a class="btn btn-info editBtn"  href="'.base_url('agent/edit_agent/'. $r->id).'" data-toggle="tooltip" title="Edit">
+			$button .= '<a class="btn btn-primary editBtn" href="'.base_url('agent/agent_tasks/'. $r->id).'" data-toggle="tooltip" title="View Tasks">
+						<i class="fa fa-eye"></i> </a>';
+			$button .= '&nbsp; <a class="btn btn-info editBtn"  href="'.base_url('agent/edit_agent/'. $r->id).'" data-toggle="tooltip" title="Edit">
 						<i class="fa fa-edit"></i> </a>';
-			$button .= $blockUnblockBtn;
-			$button .= '<a class="btn btn-danger deleteBtn" id="'.$r->id.'" data-toggle="tooltip" title="Delete">
+			$button .= '&nbsp;'.$blockUnblockBtn;
+			$button .= '&nbsp; <a class="btn btn-danger deleteBtn" id="'.$r->id.'" data-toggle="tooltip" title="Delete">
 						<i class="fa fa-trash"></i> </a>';
 
 			$data['data'][] = array(
@@ -232,4 +234,86 @@ theme('edit_agent', $data);
 		theme('profile_view', $data);
 	}
 
+        
+        public function agent_tasks(){
+            theme('agent_tasks');
+        }
+        
+        /**
+	 * Agent list from db
+	 * @return Json format
+	 * usable only via API
+	 */
+
+	public function agentTasksListJson(){
+		$limit = $this->input->get('length');
+		$start = $this->input->get('start');
+                $agentId = $this->input->get('agent_id');
+		$queryCount = $this->task_model->agentTasksListCount($agentId);
+		$query = $this->task_model->agentTasksList($limit, $start, $agentId);
+                
+		$draw = $this->input->get('draw');
+
+		$data = [];
+		$data['draw'] = $draw;
+		$data['recordsTotal'] = $queryCount;
+		$data['recordsFiltered'] = $queryCount;
+                
+		foreach($query->result() as $r){
+                //    print_R($r);exit;
+			$activeStatus = $r->status;
+			//Status Button
+			switch($activeStatus){
+				case 0:
+					$statusBtn = '<small class="label label-default"> In Active </small>';
+					$blockUnblockBtn = '<button class="btn btn-success blockUnblock" id="'.$r->id.'" data-toggle="tooltip" title="Unblock" value="1">
+						<i class="fa fa-unlock-alt"></i> </button>';
+					break;
+				case 1 :
+					$statusBtn = '<small class="label label-success"> Active </small>';
+					$blockUnblockBtn = '<button class="btn btn-warning blockUnblock" id="'.$r->id.'" data-toggle="tooltip" title="Block" value="0">
+						<i class="fa fa-lock"></i> </button>';
+					break;
+			}
+
+			//Action Button
+			$button = '';
+                        $addjobbutton = '';
+                        /*$button .= '<a class="btn btn-primary editBtn" href="'.base_url('jobs/add_job/'. $r->id).'" data-toggle="tooltip" title="Add Job">
+						<i class="fa fa-plus"></i> </a>';*/
+			$button .= '<a class="btn btn-primary editBtn" href="'.base_url('jobs/index/'. $r->id).'" data-toggle="tooltip" title="View">
+						<i class="fa fa-eye"></i> </a>';
+			$button .= '&nbsp; <a class="btn btn-info editBtn"  href="'.base_url('tasks/edit/'. $r->id).'" data-toggle="tooltip" title="Edit">
+						<i class="fa fa-edit"></i> </a>';
+			$button .= "&nbsp;". $blockUnblockBtn;
+			$button .= '&nbsp;  <a class="btn btn-danger deleteBtn" id="'.$r->id.'" data-toggle="tooltip" title="Delete">
+						<i class="fa fa-trash"></i> </a>';
+                         $button .= '&nbsp; <a class="btn btn-info editBtn"  href="'.base_url('tasks/copytask/'. $r->id).'" data-toggle="tooltip" title="copy task">
+						<i class="fa fa-copy"></i></a>';
+                          $button .= '&nbsp; <a class="btn btn-danger editBtn"  href="#" data-toggle="tooltip" title="Archive task">
+						<i class="fa fa-archive"></i></a>';
+		        
+                        $addjobbutton = '<a class="btn btn-primary editBtn" href="'.base_url('jobs/add_job/'. $r->id).'" data-toggle="tooltip" title="Add Job">
+						<i class="fa fa-plus"></i>&nbsp;Add Job </a>';
+			$data['data'][] = array(
+				$r->title,
+				$r->unique_name,
+				//$r->first_name.' '.$r->last_name,
+				$r->agent_area,
+                            $addjobbutton,
+
+				//$r->created_at,
+				//$r->modified_at,
+
+//				$statusBtn,
+//				$r->referral_code,
+				$button
+			);
+		}
+
+		echo json_encode($data);
+
+	}
+        
+        
 }

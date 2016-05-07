@@ -12,10 +12,12 @@ class Tasks extends CI_Controller {
 
 	public function index()
 	{
+                $data['title'] = "Task list";
 		//restricted this area, only for admin
 		permittedArea();
                 
-		theme('task_index');
+		theme('task_index', $data);
+                //$this->load->view('task_index', $data);
 	}
         
         /**
@@ -80,7 +82,7 @@ class Tasks extends CI_Controller {
 				if($insert)
 				{
 					$this->session->set_flashdata('successMsg', 'Task Updated Success');
-					redirect($_SERVER['HTTP_REFERER']);
+					redirect(base_url('tasks'));
 				}
 			}
 		}
@@ -130,7 +132,7 @@ class Tasks extends CI_Controller {
 		$data['recordsFiltered'] = $queryCount;
                 
 		foreach($query->result() as $r){
-                //    print_R($r);exit;
+                 //   print_R($r);exit;
 			$activeStatus = $r->status;
 			//Status Button
 			switch($activeStatus){
@@ -153,14 +155,14 @@ class Tasks extends CI_Controller {
 						<i class="fa fa-plus"></i> </a>';*/
 			$button .= '<a class="btn btn-primary editBtn" href="'.base_url('jobs/index/'. $r->id).'" data-toggle="tooltip" title="View">
 						<i class="fa fa-eye"></i> </a>';
-			$button .= '<a class="btn btn-info editBtn"  href="'.base_url('tasks/edit/'. $r->id).'" data-toggle="tooltip" title="Edit">
+			$button .= '&nbsp; <a class="btn btn-info editBtn"  href="'.base_url('tasks/edit/'. $r->id).'" data-toggle="tooltip" title="Edit">
 						<i class="fa fa-edit"></i> </a>';
-			$button .= $blockUnblockBtn;
-			$button .= '<a class="btn btn-danger deleteBtn" id="'.$r->id.'" data-toggle="tooltip" title="Delete">
+			$button .= "&nbsp;". $blockUnblockBtn;
+			$button .= '&nbsp;  <a class="btn btn-danger deleteBtn" id="'.$r->id.'" data-toggle="tooltip" title="Delete">
 						<i class="fa fa-trash"></i> </a>';
-                         $button .= '<a class="btn btn-info editBtn"  href="'.base_url('tasks/copytask/'. $r->id).'" data-toggle="tooltip" title="copy task">
+                         $button .= '&nbsp; <a class="btn btn-info editBtn"  href="'.base_url('tasks/copytask/'. $r->id).'" data-toggle="tooltip" title="copy task">
 						<i class="fa fa-copy"></i></a>';
-                          $button .= '<a class="btn btn-danger editBtn"  href="#" data-toggle="tooltip" title="Archive task">
+                          $button .= '&nbsp; <a class="btn btn-danger editBtn"  href="#" data-toggle="tooltip" title="Archive task">
 						<i class="fa fa-archive"></i></a>';
 		        
                         $addjobbutton = '<a class="btn btn-primary editBtn" href="'.base_url('jobs/add_job/'. $r->id).'" data-toggle="tooltip" title="Add Job">

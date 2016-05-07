@@ -119,15 +119,15 @@ class Jobs extends CI_Controller {
                         $addjobbutton = '';
                         /*$button .= '<a class="btn btn-primary editBtn" href="'.base_url('jobs/add_job/'. $r->id).'" data-toggle="tooltip" title="Add Job">
 						<i class="fa fa-plus"></i> </a>';*/
-			$button .= '<a class="btn btn-primary editBtn" href="'.base_url('agent/profile_view/'. $r->id).'" data-toggle="tooltip" title="View">
+			$button .= '&nbsp; <a class="btn btn-primary editBtn" href="'.base_url('jobs/job_view/'. $r->id).'" data-toggle="tooltip" title="View">
 						<i class="fa fa-eye"></i> </a>';
-			$button .= '<a class="btn btn-info editBtn"  href="'.base_url('tasks/edit/'. $r->id).'" data-toggle="tooltip" title="Edit">
+			$button .= '&nbsp; <a class="btn btn-info editBtn"  href="'.base_url('jobs/job_edit/'. $r->id).'" data-toggle="tooltip" title="Edit">
 						<i class="fa fa-edit"></i> </a>';
 			//$button .= $blockUnblockBtn;
-			$button .= '<a class="btn btn-danger deleteBtn" id="'.$r->id.'" data-toggle="tooltip" title="Delete">
+			$button .= '&nbsp; <a class="btn btn-danger deleteBtn" id="'.$r->id.'" data-toggle="tooltip" title="Delete">
 						<i class="fa fa-trash"></i> </a>';
                         
-                        $addjobbutton = '<a class="btn btn-primary editBtn" href="'.base_url('jobs/add_job/'. $r->id).'" data-toggle="tooltip" title="Add Job">
+                        $addjobbutton = '&nbsp; <a class="btn btn-primary editBtn" href="'.base_url('jobs/add_job/'. $r->id).'" data-toggle="tooltip" title="Add Job">
 						<i class="fa fa-plus"></i>&nbsp;Add Job </a>';
 			$data['data'][] = array(
 				//$r->title,
@@ -165,4 +165,21 @@ class Jobs extends CI_Controller {
 		$this->db->where('id', $id)->delete('jobs');
 		return true;
 	}
+        
+        	/**
+	 * @param $id
+	 * View Job Details
+	 */
+
+	public function job_view($id){
+		//restricted this area, only for admin
+		permittedArea();
+
+
+		$data['job'] = singleDbTableRow($id, 'jobs');
+                
+		theme('job_view', $data);
+	}
+
+
 }

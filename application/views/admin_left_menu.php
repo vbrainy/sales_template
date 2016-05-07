@@ -56,28 +56,17 @@ $currentUser = $currentAuthDta['role'];
             </li>-->
 
 
-            <li class="treeview <?php echo menu_li_active('agent'); ?>">
-                <a href="#">
-                    <i class="fa fa-group"></i>
-                    <span>Agent</span>
-                    <i class="fa fa-angle-left pull-right"></i>
+            <li>
+                <a href="<?php echo base_url('agent'); ?>">
+                    <i class="fa fa-group"></i> <span>Agent</span>
                 </a>
-                <ul class="treeview-menu">
-                    <?php echo menu_link('agent', 'All Agent'); ?>
-                    <?php //echo menu_link('agent/add_agent', 'Add new agent'); ?>
-                </ul>
             </li>
             
-            <li class="treeview <?php echo menu_li_active('tasks'); ?>">
-                <a href="#">
+            <li>
+                <a href="<?php echo base_url("tasks"); ?>">
                     <i class="fa fa-tasks"></i>
                     <span>Task</span>
-                    <i class="fa fa-angle-left pull-right"></i>
                 </a>
-                <ul class="treeview-menu">
-                    <?php echo menu_link('tasks', 'All Task'); ?>
-                    <?php //echo menu_link('tasks/add_task', 'Add new task'); ?>
-                </ul>
             </li>
 
             <li class="treeview <?php echo menu_li_active('user'); ?>">

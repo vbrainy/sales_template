@@ -28,38 +28,38 @@
                     <div class="box-body">
                         
                            <div class="form-group <?php // if(form_error('street_address')) echo 'has-error'; ?>">
-                            <label for="firstName" class="col-md-3">Photo
+                            <label for="firstName" class="col-md-2">Photo
                                 <span class="text-aqua"></span>
                             </label>
-                            <div class="col-md-9">
+                            <div class="col-md-6">
                                 <input type="file" name="userfile" class="form-control" size="20" />
                                 <?php // echo form_error('street_address') ?>
                             </div>
                         </div>
 
                         <div class="form-group <?php if(form_error('first_name')) echo 'has-error'; ?>">
-                            <label for="firstName" class="col-md-3">First Name
+                            <label for="firstName" class="col-md-2">First Name
                                 <span class="text-red">*</span>
                             </label>
-                            <div class="col-md-9">
+                            <div class="col-md-6">
                                 <input type="text" name="first_name" class="form-control" value="<?php echo set_value('first_name'); ?>" placeholder="Enter First Name">
                                 <?php echo form_error('first_name') ?>
                             </div>
                         </div>
 
                         <div class="form-group <?php if(form_error('last_name')) echo 'has-error'; ?>">
-                            <label for="firstName" class="col-md-3">Last Name</label>
-                            <div class="col-md-9">
+                            <label for="firstName" class="col-md-2">Last Name</label>
+                            <div class="col-md-6">
                                 <input type="text" name="last_name" class="form-control" value="<?php echo set_value('last_name'); ?>" placeholder="Enter Last Name">
                                 <?php echo form_error('last_name') ?>
                             </div>
                         </div>
 
                         <div class="form-group <?php if(form_error('email')) echo 'has-error'; ?>">
-                            <label for="exampleInputEmail1" class="col-md-3">Email address
+                            <label for="exampleInputEmail1" class="col-md-2">Email address
                                 <span class="text-red">*</span>
                             </label>
-                            <div class="col-md-9">
+                            <div class="col-md-6">
                                 <input type="email" name="email" class="form-control" value="<?php echo set_value('email'); ?>" placeholder="Enter email">
                                 <?php echo form_error('email') ?>
 
@@ -68,10 +68,10 @@
 
 
                         <div class="form-group <?php if(form_error('mobile_no_1')) echo 'has-error'; ?>">
-                            <label for="firstName" class="col-md-3">Mobile No 1:
+                            <label for="firstName" class="col-md-2">Mobile No 1:
                                 <span class="text-red">*</span>
                             </label>
-                            <div class="col-md-9">
+                            <div class="col-md-6">
                                 <input type="text" name="mobile_no_1" class="form-control" value="<?php echo set_value('mobile_no_1'); ?>" placeholder="Mobile No 1">
                                 <?php echo form_error('mobile_no_1') ?>
 
@@ -79,10 +79,10 @@
                         </div>
                         
                         <div class="form-group <?php if(form_error('mobile_no_2')) echo 'has-error'; ?>">
-                            <label for="firstName" class="col-md-3">Mobile No 2:
+                            <label for="firstName" class="col-md-2">Mobile No 2:
                                 <span class="text-red">*</span>
                             </label>
-                            <div class="col-md-9">
+                            <div class="col-md-6">
                                 <input type="text" name="mobile_no_2" class="form-control" value="<?php echo set_value('mobile_no_2'); ?>" placeholder="Mobile No 2">
                                 <?php echo form_error('mobile_no_2') ?>
 
@@ -90,10 +90,10 @@
                         </div>
 
                         <div class="form-group <?php if(form_error('password')) echo 'has-error'; ?>">
-                            <label for="exampleInputEmail1" class="col-md-3">Password
+                            <label for="exampleInputEmail1" class="col-md-2">Password
                                 <span class="text-red">*</span>
                             </label>
-                            <div class="col-md-9">
+                            <div class="col-md-6">
                                 <input type="password" name="password" class="form-control" placeholder="Enter Password">
                                 <?php echo form_error('password') ?>
 
@@ -101,10 +101,10 @@
                         </div>
 
                         <div class="form-group <?php if(form_error('passconf')) echo 'has-error'; ?>">
-                            <label for="exampleInputEmail1" class="col-md-3">Password Confirmation
+                            <label for="exampleInputEmail1" class="col-md-2">Password Confirmation
                                 <span class="text-red">*</span>
                             </label>
-                            <div class="col-md-9">
+                            <div class="col-md-6">
                                 <input type="password" name="passconf" class="form-control" placeholder="Enter Confirmation Password">
                                 <?php echo form_error('passconf') ?>
 
@@ -112,9 +112,9 @@
                         </div>
 
                         <div class="form-group <?php if(form_error('gender')) echo 'has-error'; ?>">
-                            <label for="firstName" class="col-md-3">Gender <span class="text-red">*</span>
+                            <label for="firstName" class="col-md-2">Gender <span class="text-red">*</span>
                             </label>
-                            <div class="col-md-9">
+                            <div class="col-md-6">
                                 <select name="gender" class="form-control">
                                     <option value=""> Select Gender </option>
                                     <option value="male" <?php echo set_select('gender', 'male') ?>>Male</option>
@@ -125,10 +125,10 @@
                         </div>
 
                         <div class="form-group <?php if(form_error('date_of_birth')) echo 'has-error'; ?>">
-                            <label for="firstName" class="col-md-3">Date of birth
+                            <label for="firstName" class="col-md-2">Date of birth
                                 <span class="text-red">*</span>
                             </label>
-                            <div class="col-md-9">
+                            <div class="col-md-6">
 
                                 <div class="input-group">
                                     <div class="input-group-addon">
@@ -142,10 +142,10 @@
                         
                         
                         <div class="form-group <?php if(form_error('national_insurance_no')) echo 'has-error'; ?>">
-                            <label for="firstName" class="col-md-3">National Insurance No
+                            <label for="firstName" class="col-md-2">National Insurance No
                                 <span class="text-red">*</span>
                             </label>
-                            <div class="col-md-9">
+                            <div class="col-md-6">
 
                                   
                                     <input class="form-control" name="national_insurance_no" type="text" placeholder="National Insurance No" value="<?php echo set_value('national_insurance_no'); ?>" />
@@ -156,10 +156,10 @@
                         
 
                         <div class="form-group <?php if(form_error('profession')) echo 'has-error'; ?>">
-                            <label for="firstName" class="col-md-3">Profession
+                            <label for="firstName" class="col-md-2">Profession
                                 <span class="text-red">*</span>
                             </label>
-                            <div class="col-md-9">
+                            <div class="col-md-6">
                                 <input type="text" name="profession" class="form-control" value="<?php echo set_value('profession'); ?>" placeholder="Profession">
                                 <?php echo form_error('profession') ?>
                             </div>
@@ -168,10 +168,10 @@
 
 
                         <div class="form-group <?php if(form_error('agent_address1')) echo 'has-error'; ?>">
-                            <label for="firstName" class="col-md-3">Address 1
+                            <label for="firstName" class="col-md-2">Address 1
                                 <span class="text-red">*</span>
                             </label>
-                            <div class="col-md-9">
+                            <div class="col-md-6">
                                 <input type="text" name="agent_address1" class="form-control" value="<?php echo set_value('agent_address1'); ?>" placeholder="Address 1">
                                
                                  <?php echo form_error('agent_address1') ?>
@@ -179,18 +179,18 @@
                         </div>
                         
                         <div class="form-group <?php if(form_error('agent_address2')) echo 'has-error'; ?>">
-                            <label for="firstName" class="col-md-3">Address 2
+                            <label for="firstName" class="col-md-2">Address 2
                                 <span class="text-red">*</span>
                             </label>
-                            <div class="col-md-9">
+                            <div class="col-md-6">
                                <input type="text" name="agent_address2" class="form-control" value="<?php echo set_value('agent_address2'); ?>" placeholder="Address 2">
                                 <?php echo form_error('agent_address2') ?>
                             </div>
                         </div>
                         
                                          <div class="form-group <?php if(form_error('city')) echo 'has-error'; ?>">
-                            <label for="firstName" class="col-md-3">City<span class="text-red">*</span></label>
-                            <div class="col-md-9">
+                            <label for="firstName" class="col-md-2">City<span class="text-red">*</span></label>
+                            <div class="col-md-6">
 
                                 <input type="text" name="city" class="form-control" value="<?php echo set_value('city'); ?>" placeholder="City">
                                 
@@ -199,8 +199,8 @@
                         </div>
                         
                             <div class="form-group <?php if(form_error('postal_code')) echo 'has-error'; ?>">
-                            <label for="firstName" class="col-md-3">Postal Code<span class="text-red">*</span></label>
-                            <div class="col-md-9">
+                            <label for="firstName" class="col-md-2">Postal Code<span class="text-red">*</span></label>
+                            <div class="col-md-6">
 
                                 <input type="text" name="postal_code" class="form-control" value="<?php echo set_value('postal_code'); ?>" placeholder="Postal Code">
                                 
@@ -209,8 +209,8 @@
                         </div>
 
                         <div class="form-group <?php if(form_error('country')) echo 'has-error'; ?>">
-                            <label for="firstName" class="col-md-3">Country<span class="text-red">*</span></label>
-                            <div class="col-md-9">
+                            <label for="firstName" class="col-md-2">Country<span class="text-red">*</span></label>
+                            <div class="col-md-6">
 <!--                                <select name="country" class="form-control">
                                     <option value=""> Select Country </option>
                                     <?php /*

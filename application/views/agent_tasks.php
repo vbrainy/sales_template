@@ -10,7 +10,7 @@
 <?php } ?>
 
 <?php include('header.php'); ?>
-
+    <input type="hidden" value="<?php echo $this->uri->segment(3); ?>" id="agent_id"/>
 <!-- Main content -->
 <section class="content">
     <div class="row">
@@ -19,35 +19,7 @@
             <div class="box">
 
                 <div class="box-header">
-                    <span class="box-title">
-                        <a class="btn btn-info editBtn" title="Add Task" data-toggle="tooltip" href="<?php echo base_url(); ?>tasks/add_task">
-
-<i class="fa fa-plus"></i> Add Task</a>
-                        <a class="btn btn-success" title="Active Task" data-toggle="tooltip" href="#">
-
-<i class="fa "></i> Active Task</a>
-
-                    </span>
-                    <div class="col-md-6" style="padding-top: 10px;">
-
-
-
-                        <div class="form-inline">
-
-
-                            <div class="form-group">
-                                <label class="sr-only" for="exampleInputAmount">Amount (in dollars)</label>
-                                <div class="input-group">
-                                    <div class="input-group-addon">
-                                        <i class="fa fa-calendar"></i>
-                                    </div>
-                                    <input type="text" class="form-control" id="reservation" name="searchByNameInput" placeholder="Search within date range">
-                                </div>
-                            </div>
-                            <button type="submit" id="searchByDateBtn" class="btn btn-primary">Search</button>
-
-                        </div>
-                    </div>
+                    
                 </div><!-- /.box-header -->
 
                 <div class="box-body">
@@ -58,7 +30,7 @@
                             <th width="15%">Task Title</th>
                             <th width="15%">Unique Identifier</th>
 
-                            <th width="15%">Agent Name</th>
+<!--                            <th width="15%">Agent Name</th>-->
                             <th width="15%">Agent Area</th>
                             <th width="10%">Add Job</th>
                             
@@ -74,7 +46,7 @@
                             <th>Task Title</th>
                             <th>Unique Identifier</th>
 
-<th>Agent Name</th>
+<!--<th>Agent Name</th>-->
                             <th>Agent Area</th>
                             <th>Add Job</th>
 
@@ -106,11 +78,12 @@
             $("#example").dataTable({
                 "processing": true,
                 "serverSide": true,
-                "destroy": true,
-                "ajax": "<?php echo base_url('tasks/tasksListJson'); ?>",
-                "language": {
-        "emptyTable":     "My Custom Message On Empty Table"
-    }
+                "ajax": {
+                    "url": "<?php echo base_url('agent/agentTasksListJson'); ?>",
+                    "data": function ( d ) {
+                        d.agent_id = $('#agent_id').val();
+                    }
+                }
             });
         });
 
