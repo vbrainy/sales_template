@@ -104,8 +104,10 @@
     <script type="text/javascript">
         $(function() {
             $("#example").dataTable({
-                "processing": true,
-                "serverSide": true,
+//                "processing": true,
+//                "serverSide": true,
+                "ordering": true,
+                "searching": true,
                 "destroy": true,
                 "ajax": "<?php echo base_url('tasks/tasksListJson'); ?>",
                 "language": {
