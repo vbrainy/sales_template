@@ -29,15 +29,31 @@ function page_css(){ ?>
                 <!-- form start -->
                 <?php echo form_open_multipart('', ['role' => 'form', 'class' => 'form-horizontal']); ?>
                     <div class="box-body">
-                           <div class="form-group <?php // if(form_error('street_address')) echo 'has-error'; ?>">
+                        
+                        
+                            <div class="form-group <?php if(form_error('image')) echo 'has-error'; ?>">
                             <label for="firstName" class="col-md-3">Photo
-                                <span class="text-aqua"></span>
+                                <span class="text-red"></span>
                             </label>
-                            <div class="col-md-9">
-                                <input type="file" name="userfile" class="form-control" size="20" />
-                                <?php // echo form_error('street_address') ?>
+                            <div class="col-md-3">
+                                <?php //echo form_upload('shop_nameplate'); ?>
+                                
+                                    <input type="file" id="inputFile" name="userfile" class="form-control" />
+                                
+                                <div id="image_preview_div" style="display: none;">
+                                    <img id="image_upload_preview" /><a style="position: absolute;" href="javascript: void(0)" onclick="removeImage();"><i class="fa fa-remove"></i></a>
+                                </div>
+                                <?php echo form_error('image') ?>
+                            </div>
+                                    <div class="col-md-6">
+                                <label for="firstName" class="col-md-3">Current Image
+                              
+                            </label>
+                                
+                                        <img alt="User Image" height="50px;" width="50px"class="img-circle" src="<?php  echo profile_photo_url($agent->photo,$agent->email); ?>">
                             </div>
                         </div>
+                        
 
                         <div class="form-group <?php if(form_error('first_name')) echo 'has-error'; ?>">
                             <label for="firstName" class="col-md-3">First Name
@@ -332,6 +348,35 @@ function page_css(){ ?>
                 showInputs: false
             });
         });
+        
+        
+        
+                   $(function() {
+            $("#inputFile").change(function () {
+                readURL(this);
+              //  $(this).val('');
+                $(this).hide();
+                $('#image_preview_div').show();
+            });
+        });
+        
+            function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#image_upload_preview').attr('src', e.target.result);
+            }
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+    
+    function removeImage(){
+        $('#image_upload_preview').attr('src', '');
+        $('#inputFile').show();
+        $('#image_preview_div').hide();
+    }
     </script>
 
 <?php } ?>

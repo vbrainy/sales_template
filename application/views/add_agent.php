@@ -27,16 +27,25 @@
                 <?php echo form_open_multipart('', ['role' => 'form', 'class' => 'form-horizontal']); ?>
                     <div class="box-body">
                         
-                           <div class="form-group <?php // if(form_error('street_address')) echo 'has-error'; ?>">
-                            <label for="firstName" class="col-md-2">Photo
-                                <span class="text-aqua"></span>
+                         
+                        
+                             <div class="form-group <?php if(form_error('image')) echo 'has-error'; ?>">
+                            <label for="shop_nameplate" class="col-md-2">Photo
+                                <span class="text-red"></span>
                             </label>
                             <div class="col-md-6">
-                                <input type="file" name="userfile" class="form-control" size="20" />
-                                <?php // echo form_error('street_address') ?>
+                                <?php //echo form_upload('shop_nameplate'); ?>
+                                
+                                <input type="file" id="inputFile" name="userfile" class="form-control" />
+                                
+                                <div id="image_preview_div" style="display: none;">
+                                    <img id="image_upload_preview" /><a style="position: absolute;" href="javascript: void(0)" onclick="removeImage();"><i class="fa fa-remove"></i></a>
+                                </div>
+                                <?php echo form_error('image') ?>
                             </div>
                         </div>
-
+                        
+                        
                         <div class="form-group <?php if(form_error('first_name')) echo 'has-error'; ?>">
                             <label for="firstName" class="col-md-2">First Name
                                 <span class="text-red">*</span>
@@ -330,6 +339,33 @@
                 showInputs: false
             });
         });
+        
+           $(function() {
+            $("#inputFile").change(function () {
+                readURL(this);
+              //  $(this).val('');
+                $(this).hide();
+                $('#image_preview_div').show();
+            });
+        });
+        
+            function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#image_upload_preview').attr('src', e.target.result);
+            }
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+    
+    function removeImage(){
+        $('#image_upload_preview').attr('src', '');
+        $('#inputFile').show();
+        $('#image_preview_div').hide();
+    }
     </script>
 
 <?php } ?>

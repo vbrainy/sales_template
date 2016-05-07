@@ -14,7 +14,7 @@
             <!-- general form elements -->
             <div class="box box-primary">
                 <div class="box-header">
-                    <h3 class="box-title">Edit Task</h3>
+                    <h3 class="box-title">Edit Task &nbsp; <?php echo $tasks->unique_name; ?> </h3> 
                 </div><!-- /.box-header -->
                 <!-- form start -->
                 <?php echo form_open_multipart('', ['role' => 'form', 'class' => 'form-horizontal']); ?>
