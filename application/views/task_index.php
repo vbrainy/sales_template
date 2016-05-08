@@ -20,10 +20,10 @@
 
                 <div class="box-header">
                     <span class="box-title">
-                        <a class="btn btn-info editBtn" title="Add Task" data-toggle="tooltip" href="<?php echo base_url(); ?>tasks/add_task">
+                        <a class="btn btn-info editBtn" style="color: #fff;" title="Add Task" data-toggle="tooltip" href="<?php echo base_url(); ?>tasks/add_task">
 
 <i class="fa fa-plus"></i> Add Task</a>
-                        <a class="btn btn-success" title="Active Task" data-toggle="tooltip" href="#">
+                        <a class="btn btn-success" style="color: #fff;" title="Active Task" data-toggle="tooltip" href="#">
 
 <i class="fa "></i> Active Task</a>
 

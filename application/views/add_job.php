@@ -45,9 +45,9 @@
             <!-- general form elements -->
             <div class="box box-primary">
                 <div class="box-header">
-                    <span class="box-title"><a class="btn btn-info editBtn" title="Back" data-toggle="tooltip" href="<?php echo base_url(); ?>tasks/index">
+                    <span class="box-title"><a class="btn btn-info editBtn" style="color: #fff;" title="Back" data-toggle="tooltip" href="<?php echo base_url(); ?>tasks/index">
 <i class="fa fa-backward"></i> Back</a></span>
-                    <span class="box-title"><a class="btn btn-info editBtn" title="View Jobs" data-toggle="tooltip" href="<?php echo base_url(); ?>jobs/index/<?php echo $this->uri->segment(3); ?>">
+                    <span class="box-title"><a class="btn btn-info editBtn" style="color: #fff;" title="View Jobs" data-toggle="tooltip" href="<?php echo base_url(); ?>jobs/index/<?php echo $this->uri->segment(3); ?>">
 <i class="fa fa-eye"></i> View Jobs</a></span>
 <div class="clearfix"></div>
                     <h3 class="box-title">
