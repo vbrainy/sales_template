@@ -13,7 +13,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 if(! function_exists('theme'))
 {
     function theme($view_file = '', $data = []){
-        $data['title'] = ucfirst($view_file); //capitalize theme first latter.
+        if(!isset($data['title']))
+        {
+            $data['title'] = ucfirst($view_file); //capitalize theme first latter.
+        }
+        
         $CI =& get_instance();
         //$CI->load->view('header', $data);
         $CI->load->view($view_file, $data);
@@ -109,7 +113,6 @@ if( ! function_exists('breadcrumb'))
         $CI =& get_instance();
         $segments = $CI->uri->segment_array();
         $total_segments = count($segments);
-
         $html ='';
         $html .= '<ol class="breadcrumb">';
         $html .= '<li><a href="'.base_url().'"><i class="fa fa-dashboard"></i> Home</a></li>';
