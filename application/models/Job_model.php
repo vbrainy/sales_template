@@ -79,8 +79,12 @@ public function add_job(){
         $geoLocation = $this->input->post('latitude').",".$this->input->post('longitude');
         
         //set all data for inserting into database
+
+        //check user is selected photo
+
+        
         $data = [
-            'shop_nameplate' => $_FILES['shop_nameplate']['name'],
+            'shop_nameplate' =>$_FILES['shop_nameplate']['name'],
             'task_id'        => $this->input->post('task_id'),
             'unique_name'    => $this->input->post('unique_name'),
             'geo_location'   => $geoLocation,

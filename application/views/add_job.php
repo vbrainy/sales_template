@@ -158,19 +158,23 @@
                             </div>
                         </div>
                         
-                        <div class="form-group">
+                        <div class="form-group" <?php if(form_error('latitude')) echo 'has-error'; ?>>
                             <label for="Latitude" class="col-md-2">Latitude
+                                <span class="text-red">*</span>
                             </label>
                             <div class="col-md-8">
-                                <input type="text" id="lat" name="latitude" class="form-control" />
+                                <input type="text" id="lat" name="latitude" class="form-control" value="<?php echo set_value('latitude'); ?>" />
+                                 <?php if(form_error('latitude')) echo 'has-error'; ?>
                             </div>
                         </div>
                         
-                        <div class="form-group">
+                        <div class="form-group" <?php if(form_error('longitude')) echo 'has-error'; ?>>
                             <label for="Longitude" class="col-md-2">Longitude
+                                <span class="text-red">*</span>
                             </label>
                             <div class="col-md-8">
-                                <input type="text" id="lng" name="longitude" class="form-control" />
+                                <input type="text" id="lng" name="longitude" class="form-control" value="<?php echo set_value('longitude'); ?>" />
+                                 <?php if(form_error('longitude')) echo 'has-error'; ?>
                             </div>
                         </div>
                         
@@ -526,7 +530,7 @@
         $(function() {
             $("#inputFile").change(function () {
                 readURL(this);
-                $(this).val('');
+                //$(this).val('');
                 $(this).hide();
                 $('#image_preview_div').show();
             });

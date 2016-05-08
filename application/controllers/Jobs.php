@@ -46,6 +46,8 @@ class Jobs extends CI_Controller {
                         //p($_POST)
                         
           		//$this->form_validation->set_rules('title', 'Title', 'required|trim');
+                        $this->form_validation->set_rules('latitude', 'Latitude', 'required|trim');
+                        $this->form_validation->set_rules('longitude', 'Longitude', 'required|trim');
                         $this->form_validation->set_rules('job_at_shop', 'Job at shop', 'required|trim');
                         $this->form_validation->set_rules('job_add1', 'Job Address 1', 'required|trim');
                          $this->form_validation->set_rules('job_add2', 'Job Address 2', 'required|trim');
@@ -80,22 +82,31 @@ class Jobs extends CI_Controller {
                         
 			if($this->form_validation->run() == true)
 			{
-        
-                            $config['upload_path'] = APPPATH . 'uploads/'; 
+       
+                            
+                           
+                    
+                            
+                            
+                            $config['upload_path'] = './uploads/'; 
                             $config['file_name'] = $_FILES['shop_nameplate']['name'];
                             $config['overwrite'] = TRUE;
                             $config["allowed_types"] = 'jpg|jpeg|png|gif';
-                            $config["max_size"] = 1024;
-                            $config["max_width"] = 400;
-                            $config["max_height"] = 400;
+                            $config["max_size"] = 93234565;
+                            $config["max_width"] = 200000;
+                            $config["max_height"] = 10000;
                             $this->load->library('upload', $config);
-        
+      
+                          
                             if(!$this->upload->do_upload('shop_nameplate')) {               
                                 $this->data['error'] = $this->upload->display_errors();
-                                //print_r($this->data);
-                            }
+                                
+                            } else {
+                $upload_data = $this->upload->data(); //all uploaded data store in variable
+                $photoName = $upload_data['raw_name'] . '_thumb' . $upload_data['file_ext'];
+                $fullPhoto =  $config['upload_path'] . $upload_data['file_name'];
                             //exit;
-                            
+                            }
                             
 				$insert = $this->job_model->add_job();
 				if($insert)
@@ -137,6 +148,10 @@ class Jobs extends CI_Controller {
                         //p($_POST)
                         
           		//$this->form_validation->set_rules('title', 'Title', 'required|trim');
+                        
+                         $this->form_validation->set_rules('latitude', 'Latitude', 'required|trim');
+                        $this->form_validation->set_rules('longitude', 'Longitude', 'required|trim');
+                       
                         $this->form_validation->set_rules('job_at_shop', 'Job at shop', 'required|trim');
                         $this->form_validation->set_rules('job_add1', 'Job Address 1', 'required|trim');
                          $this->form_validation->set_rules('job_add2', 'Job Address 2', 'required|trim');
@@ -167,26 +182,29 @@ class Jobs extends CI_Controller {
                         $this->form_validation->set_rules('price10', 'Price 10', 'required|numeric|trim');
                         
                         
-                        
-                        
 			if($this->form_validation->run() == true)
 			{
-        
-                            $config['upload_path'] = APPPATH . 'uploads/'; 
+                            
+                            $config['upload_path'] = './uploads/'; 
                             $config['file_name'] = $_FILES['shop_nameplate']['name'];
                             $config['overwrite'] = TRUE;
                             $config["allowed_types"] = 'jpg|jpeg|png|gif';
-                            $config["max_size"] = 1024;
-                            $config["max_width"] = 400;
-                            $config["max_height"] = 400;
+                            $config["max_size"] = 93234565;
+                            $config["max_width"] = 200000;
+                            $config["max_height"] = 10000;
                             $this->load->library('upload', $config);
-        
+      
+                          
                             if(!$this->upload->do_upload('shop_nameplate')) {               
                                 $this->data['error'] = $this->upload->display_errors();
-                                //print_r($this->data);
-                            }
-                            //exit;
-                            
+                                
+                            } else {
+                $upload_data = $this->upload->data(); //all uploaded data store in variable
+                $photoName = $upload_data['raw_name'] . '_thumb' . $upload_data['file_ext'];
+                $fullPhoto =  $config['upload_path'] . $upload_data['file_name'];
+                //$this->photoResize($fullPhoto); // resize now
+            }
+                            //print_r($this->data);
 				$update = $this->job_model->update_job($jobId);
 				if($update)
 				{
