@@ -27,7 +27,7 @@ function page_css(){ ?>
                             <label for="firstName" class="col-md-2">Title
                                 <span class="text-red">*</span>
                             </label>
-                            <div class="col-md-6">
+                            <div class="col-md-8">
                                 <input type="text" name="title" class="form-control" value="<?php echo $tasks->title; ?>" placeholder="Enter Title">
                                 <?php echo form_error('title') ?>
                             </div>
@@ -35,7 +35,7 @@ function page_css(){ ?>
                         
                         <div class="form-group <?php if(form_error('assign_to')) echo 'has-error'; ?>">
                             <label for="firstName" class="col-md-2">Assign Agent<span class="text-red">*</span></label>
-                            <div class="col-md-6">
+                            <div class="col-md-8">
                               <select name="assign_to" onChange="getcity(this.value);" class="form-control">
                                     <option value=""> Select Agent </option>
                                     <?php 
@@ -61,7 +61,7 @@ function page_css(){ ?>
                             <label for="agent_area" class="col-md-2">City
                                 <span class="text-red">*</span>
                             </label>
-                            <div class="col-md-6">
+                            <div class="col-md-8">
                                 <input type="text" name="city" id="city" readonly="readonly"  class="form-control" value="" placeholder="City">
                                 <?php echo form_error('city') ?>
                             </div>
@@ -71,7 +71,7 @@ function page_css(){ ?>
                             <label for="agent_area" class="col-md-2">Task Date
                                 <span class="text-red">*</span>
                             </label>
-                            <div class="col-md-6">
+                            <div class="col-md-8">
                                 <input type="text" name="created_at" id="city" readonly="readonly"  class="form-control" value="<?php echo date("Y-m-d"); ?>" placeholder="City">
                                 <?php echo form_error('created_at') ?>
                             </div>

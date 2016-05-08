@@ -67,12 +67,31 @@ public function add_task(){
         return false;
 
     }
-
+//    public function getTaskClearName($name){
+//        $tempName = explode('-', $name);
+//        return $tempName[0].'-'.$tempName[1].$tempName[2];
+//    }
 
 
     //Generate task unique name
     public function taskUniqueName(){
-        return ($this->tasksListCount()+1)."-".date('M')."-".date('y');
+        $query = $this->db->order_by('id', 'desc')->select('tasks.*')->get_where('tasks');
+        $lastTask = $query->result_array();
+        $taskIdArr=[];
+        if(isset($lastTask[0]['unique_name']))
+        {
+            $taskIdArr = explode('-', $lastTask[0]['unique_name']);
+        }
+        $lastMonth = date('M', strtotime(" -1 month"));
+        $currMonth = date('M');
+        if(isset($taskIdArr[1]) && $taskIdArr[1] == $currMonth)
+        {
+            return ($this->tasksListCount()+1)."-".date('M')."-".date('y');
+        }
+        else
+        {
+            return '1'."-".date('M')."-".date('y');
+        }
     }
     /**
      * @return Agent List
