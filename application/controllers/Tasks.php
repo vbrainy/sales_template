@@ -12,6 +12,7 @@ class Tasks extends CI_Controller {
 
 	public function index()
 	{
+            //echo $this->task_model->taskUniqueName();exit;
                 $data['title'] = "Task list";
 		//restricted this area, only for admin
 		permittedArea();
@@ -169,7 +170,7 @@ class Tasks extends CI_Controller {
 						<i class="fa fa-plus"></i>&nbsp;Add Job </a>';
 			$data['data'][] = array(
 				$r->title,
-				$r->unique_name,
+				getTaskClearName($r->unique_name),
 				$r->first_name.' '.$r->last_name,
 				$r->agent_area,
                             $addjobbutton,

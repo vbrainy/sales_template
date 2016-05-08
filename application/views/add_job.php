@@ -52,7 +52,7 @@
 <div class="clearfix"></div>
                     <h3 class="box-title">
                         <p>
-                        Task ID: <?php echo $tasks->unique_name; ?>
+                        Task ID: <?php echo getTaskClearName($tasks->unique_name); ?>
                         </p>
                         <p>
                         Task Title: <?php echo $tasks->title; ?>
@@ -63,7 +63,7 @@
                     </h3>
                     
                 </div><!-- /.box-header -->
-                <hr>
+                <hr style="margin-top:0">
                 <!-- form start -->
                 <?php echo form_open_multipart('jobs/add_job/'.$this->uri->segment(3), ['role' => 'form', 'class' => 'form-horizontal']); ?>
                     <div class="box-body">
@@ -73,7 +73,7 @@
                         <div class="form-group">
                             <label class="col-md-2">Agent
                             </label>
-                            <label class="col-md-6"><?php echo $agent->first_name . ' '.$agent->last_name;?>
+                            <label class="col-md-8"><?php echo $agent->first_name . ' '.$agent->last_name;?>
                             </label>
                         </div>
                         
@@ -81,7 +81,7 @@
                             <label for="shop_nameplate" class="col-md-2">Shop Nameplate
                                 <span class="text-red">*</span>
                             </label>
-                            <div class="col-md-6">
+                            <div class="col-md-8">
                                 <?php //echo form_upload('shop_nameplate'); ?>
                                 <input type="file" id="inputFile" name="shop_nameplate" /><br />
                                 <div id="image_preview_div" style="display: none;">
@@ -95,7 +95,7 @@
                             <label for="job_at_shop" class="col-md-2">Job at shop
                                 <span class="text-red">*</span>
                             </label>
-                            <div class="col-md-6">
+                            <div class="col-md-8">
                                 <input type="text" name="job_at_shop" class="form-control" value="<?php echo set_value('job_at_shop'); ?>" placeholder="Enter Job at shop">
                                 <?php echo form_error('job_at_shop') ?>
                             </div>
@@ -105,7 +105,7 @@
                             <label for="job_add1" class="col-md-2">Job Address 1
                                 <span class="text-red">*</span>
                             </label>
-                            <div class="col-md-6">
+                            <div class="col-md-8">
                                 <input type="text" name="job_add1" class="form-control" value="<?php echo set_value('job_add1'); ?>" placeholder="Enter Job Address 1">
                                 <?php echo form_error('job_add1') ?>
                             </div>
@@ -114,7 +114,7 @@
                             <label for="job_add2" class="col-md-2">Job Address 2
                                 <span class="text-red">*</span>
                             </label>
-                            <div class="col-md-6">
+                            <div class="col-md-8">
                                 <input type="text" name="job_add2" class="form-control" value="<?php echo set_value('job_add2'); ?>" placeholder="Enter Job Address 2">
                                 <?php echo form_error('job_add2') ?>
                             </div>
@@ -124,7 +124,7 @@
                             <label for="city" class="col-md-2">City
                                 <span class="text-red">*</span>
                             </label>
-                            <div class="col-md-6">
+                            <div class="col-md-8">
                                 <input type="text" name="city" class="form-control" value="<?php echo set_value('city'); ?>" placeholder="Enter City">
                                 <?php echo form_error('city') ?>
                             </div>
@@ -133,7 +133,7 @@
                             <label for="postcode" class="col-md-2">Postcode
                                 <span class="text-red">*</span>
                             </label>
-                            <div class="col-md-6">
+                            <div class="col-md-8">
                                 <input type="text" name="postcode" class="form-control" value="<?php echo set_value('postcode'); ?>" placeholder="Enter Postcode">
                                 <?php echo form_error('postcode') ?>
                             </div>
@@ -142,7 +142,7 @@
                             <label for="mobile" class="col-md-2">Mobile
                                 <span class="text-red">*</span>
                             </label>
-                            <div class="col-md-6">
+                            <div class="col-md-8">
                                 <input type="text" name="mobile" class="form-control" value="<?php echo set_value('mobile'); ?>" placeholder="Enter Mobile">
                                 <?php echo form_error('mobile') ?>
                             </div>
@@ -153,7 +153,7 @@
                             <label for="shop_map" class="col-md-2">Shop Map
                                 <span class="text-red">*</span>
                             </label>
-                            <div class="col-md-6">
+                            <div class="col-md-8">
                                 <div id="map-canvas" style="width:530px;height:380px;"></div>
                             </div>
                         </div>
@@ -161,7 +161,7 @@
                         <div class="form-group">
                             <label for="Latitude" class="col-md-2">Latitude
                             </label>
-                            <div class="col-md-6">
+                            <div class="col-md-8">
                                 <input type="text" id="lat" name="latitude" class="form-control" />
                             </div>
                         </div>
@@ -169,7 +169,7 @@
                         <div class="form-group">
                             <label for="Longitude" class="col-md-2">Longitude
                             </label>
-                            <div class="col-md-6">
+                            <div class="col-md-8">
                                 <input type="text" id="lng" name="longitude" class="form-control" />
                             </div>
                         </div>
@@ -190,7 +190,7 @@
                             <label for="total_price" class="col-md-2">Total Price
                                 <span class="text-red">*</span>
                             </label>
-                            <div class="col-md-6">
+                            <div class="col-md-8">
                                 <input type="text" name="total_price" id="total_price" class="form-control" value="<?php echo set_value('total_price'); ?>" readonly>
                                 <?php echo form_error('total_price') ?>
                             </div>
@@ -250,7 +250,7 @@
                             <label for="desc1" class="col-md-2">Job 1/01 Description
                                 <span class="text-red">*</span>
                             </label>
-                            <div class="col-md-6">
+                            <div class="col-md-8">
                                 <textarea name="desc1" class="form-control" value="<?php echo set_value('desc1'); ?>" placeholder="Enter Descrption"></textarea>
                                 <?php echo form_error('desc1') ?>
                             </div>
@@ -259,7 +259,7 @@
                             <label for="price1" class="col-md-2">Price 1/01
                                 <span class="text-red">*</span>
                             </label>
-                            <div class="col-md-6">
+                            <div class="col-md-8">
                                 <input type="text" name="price1" class="form-control" value="<?php echo set_value('price1'); ?>" placeholder="Enter Price 1">
                                 <?php echo form_error('price1') ?>
                             </div>
@@ -269,7 +269,7 @@
                             <label for="desc2" class="col-md-2">Job 1/02 Description
                                 <span class="text-red">*</span>
                             </label>
-                            <div class="col-md-6">
+                            <div class="col-md-8">
                                 <textarea name="desc2" class="form-control" value="<?php echo set_value('desc2'); ?>" placeholder="Enter Descrption"></textarea>
                                 <?php echo form_error('desc2') ?>
                             </div>
@@ -278,7 +278,7 @@
                             <label for="price2" class="col-md-2">Price 1/02
                                 <span class="text-red">*</span>
                             </label>
-                            <div class="col-md-6">
+                            <div class="col-md-8">
                                 <input type="text" name="price2" class="form-control" value="<?php echo set_value('price2'); ?>" placeholder="Enter Price 2">
                                 <?php echo form_error('price2') ?>
                             </div>
@@ -289,7 +289,7 @@
                             <label for="desc3" class="col-md-2">Job 1/03 Description
                                 <span class="text-red">*</span>
                             </label>
-                            <div class="col-md-6">
+                            <div class="col-md-8">
                                 <textarea name="desc3" class="form-control" value="<?php echo set_value('desc3'); ?>" placeholder="Enter Descrption"></textarea>
                                 <?php echo form_error('desc3') ?>
                             </div>
@@ -298,7 +298,7 @@
                             <label for="price3" class="col-md-2">Price 1/03
                                 <span class="text-red">*</span>
                             </label>
-                            <div class="col-md-6">
+                            <div class="col-md-8">
                                 <input type="text" name="price3" class="form-control" value="<?php echo set_value('price3'); ?>" placeholder="Enter Price 3">
                                 <?php echo form_error('price3') ?>
                             </div>
@@ -309,7 +309,7 @@
                             <label for="desc4" class="col-md-2">Job 1/04 Description
                                 <span class="text-red">*</span>
                             </label>
-                            <div class="col-md-6">
+                            <div class="col-md-8">
                                 <textarea name="desc4" class="form-control" value="<?php echo set_value('desc4'); ?>" placeholder="Enter Descrption"></textarea>
                                 <?php echo form_error('desc4') ?>
                             </div>
@@ -318,7 +318,7 @@
                             <label for="price4" class="col-md-2">Price 1/04
                                 <span class="text-red">*</span>
                             </label>
-                            <div class="col-md-6">
+                            <div class="col-md-8">
                                 <input type="text" name="price4" class="form-control" value="<?php echo set_value('price4'); ?>" placeholder="Enter Price 4">
                                 <?php echo form_error('price4') ?>
                             </div>
@@ -328,7 +328,7 @@
                             <label for="desc5" class="col-md-2">Job 1/05 Description
                                 <span class="text-red">*</span>
                             </label>
-                            <div class="col-md-6">
+                            <div class="col-md-8">
                                 <textarea name="desc5" class="form-control" value="<?php echo set_value('desc5'); ?>" placeholder="Enter Descrption"></textarea>
                                 <?php echo form_error('desc5') ?>
                             </div>
@@ -337,7 +337,7 @@
                             <label for="price5" class="col-md-2">Price 1/05
                                 <span class="text-red">*</span>
                             </label>
-                            <div class="col-md-6">
+                            <div class="col-md-8">
                                 <input type="text" name="price5" class="form-control" value="<?php echo set_value('price5'); ?>" placeholder="Enter Price 5">
                                 <?php echo form_error('price5') ?>
                             </div>
@@ -347,7 +347,7 @@
                             <label for="desc6" class="col-md-2">Job 1/06 Description
                                 <span class="text-red">*</span>
                             </label>
-                            <div class="col-md-6">
+                            <div class="col-md-8">
                                 <textarea name="desc6" class="form-control" value="<?php echo set_value('desc6'); ?>" placeholder="Enter Descrption"></textarea>
                                 <?php echo form_error('desc6') ?>
                             </div>
@@ -356,7 +356,7 @@
                             <label for="price6" class="col-md-2">Price 1/06
                                 <span class="text-red">*</span>
                             </label>
-                            <div class="col-md-6">
+                            <div class="col-md-8">
                                 <input type="text" name="price6" class="form-control" value="<?php echo set_value('price6'); ?>" placeholder="Enter Price 6">
                                 <?php echo form_error('price6') ?>
                             </div>
@@ -366,7 +366,7 @@
                             <label for="desc7" class="col-md-2">Job 1/07 Description
                                 <span class="text-red">*</span>
                             </label>
-                            <div class="col-md-6">
+                            <div class="col-md-8">
                                 <textarea name="desc7" class="form-control" value="<?php echo set_value('desc7'); ?>" placeholder="Enter Descrption"></textarea>
                                 <?php echo form_error('desc7') ?>
                             </div>
@@ -375,7 +375,7 @@
                             <label for="price7" class="col-md-2">Price 1/07
                                 <span class="text-red">*</span>
                             </label>
-                            <div class="col-md-6">
+                            <div class="col-md-8">
                                 <input type="text" name="price7" class="form-control" value="<?php echo set_value('price7'); ?>" placeholder="Enter Price 1">
                                 <?php echo form_error('price7') ?>
                             </div>
@@ -385,7 +385,7 @@
                             <label for="part_price1" class="col-md-2">Job 1/08 Description
                                 <span class="text-red">*</span>
                             </label>
-                            <div class="col-md-6">
+                            <div class="col-md-8">
                                 <textarea name="description" class="form-control" value="<?php echo set_value('description'); ?>" placeholder="Enter Descrption"></textarea>
                                 <?php echo form_error('part_price1') ?>
                             </div>
@@ -394,7 +394,7 @@
                             <label for="part_price1" class="col-md-2">Price 1/08
                                 <span class="text-red">*</span>
                             </label>
-                            <div class="col-md-6">
+                            <div class="col-md-8">
                                 <input type="text" name="part_price1" class="form-control" value="<?php echo set_value('part_price1'); ?>" placeholder="Enter Price 1">
                                 <?php echo form_error('part_price1') ?>
                             </div>
@@ -404,7 +404,7 @@
                             <label for="part_price1" class="col-md-2">Job 1/09 Description
                                 <span class="text-red">*</span>
                             </label>
-                            <div class="col-md-6">
+                            <div class="col-md-8">
                                 <textarea name="description" class="form-control" value="<?php echo set_value('description'); ?>" placeholder="Enter Descrption"></textarea>
                                 <?php echo form_error('part_price1') ?>
                             </div>
@@ -413,7 +413,7 @@
                             <label for="part_price1" class="col-md-2">Price 1/09
                                 <span class="text-red">*</span>
                             </label>
-                            <div class="col-md-6">
+                            <div class="col-md-8">
                                 <input type="text" name="part_price1" class="form-control" value="<?php echo set_value('part_price1'); ?>" placeholder="Enter Price 1">
                                 <?php echo form_error('part_price1') ?>
                             </div>
@@ -423,7 +423,7 @@
                             <label for="part_price1" class="col-md-2">Job 1/10 Description
                                 <span class="text-red">*</span>
                             </label>
-                            <div class="col-md-6">
+                            <div class="col-md-8">
                                 <textarea name="description" class="form-control" value="<?php echo set_value('description'); ?>" placeholder="Enter Descrption"></textarea>
                                 <?php echo form_error('part_price1') ?>
                             </div>
@@ -432,7 +432,7 @@
                             <label for="part_price1" class="col-md-2">Price 1/10
                                 <span class="text-red">*</span>
                             </label>
-                            <div class="col-md-6">
+                            <div class="col-md-8">
                                 <input type="text" name="part_price1" class="form-control" value="<?php echo set_value('part_price1'); ?>" placeholder="Enter Price 1">
                                 <?php echo form_error('part_price1') ?>
                             </div>

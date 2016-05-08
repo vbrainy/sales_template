@@ -24,7 +24,7 @@ function page_css(){ ?>
 <div class="clearfix"></div>
                     <span class="box-title">
                         <h3>
-                            <p>Task ID: <?php echo $task->unique_name ; ?></p>
+                            <p>Task ID: <?php echo getTaskClearName($task->unique_name); ?></p>
                             <p>Task Title: <?php echo $task->title; ?></p>
                         </h3>
                     </span>
