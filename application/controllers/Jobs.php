@@ -24,6 +24,7 @@ class Jobs extends CI_Controller {
 	 */
 
 	public function add_job($taskId){
+
 		//restricted this area, only for admin
 		permittedArea();
 
