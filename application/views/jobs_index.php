@@ -24,8 +24,8 @@ function page_css(){ ?>
 <div class="clearfix"></div>
                     <span class="box-title">
                         <h3>
-                            <p>Task Id: <?php echo $task->unique_name ; ?></p>
-                            <p>Task: <?php echo $task->title; ?></p>
+                            <p>Task ID: <?php echo $task->unique_name ; ?></p>
+                            <p>Task Title: <?php echo $task->title; ?></p>
                         </h3>
                     </span>
                 </div>
@@ -35,7 +35,7 @@ function page_css(){ ?>
 
                         <thead>
                         <tr>
-                            <th>Unique Identifier</th>
+                            <th>Job ID</th>
                             <th>City</th>
 <!--                            <th>Agent Area</th>
                             <th>Add Job</th>-->
@@ -49,7 +49,7 @@ function page_css(){ ?>
 
                         <tfoot>
                         <tr>
-                            <th>Unique Identifier</th>
+                            <th>Job ID</th>
                             <th>City</th>
 
 <!--                            <th>Created at</th>
@@ -87,7 +87,13 @@ function page_css(){ ?>
                     "data": function ( d ) {
                         d.task_id = $('#task_id').val();
                     }
+                },
+                "language": {
+                    "zeroRecords": "No Records Found",
+                    "info":           "Showing _START_ to _END_ of _TOTAL_ entries",
+                    "infoEmpty":      "Showing 0 to 0 of 0 entries",
                 }
+                
             });
         });
 

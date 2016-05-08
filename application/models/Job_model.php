@@ -134,7 +134,9 @@ public function add_job(){
 
     //Generate task unique name
     public function jobUniqueName($task_id){
-        return "job-".($this->jobsListCount($task_id)+1).date('M Y');
+        $tasks = singleDbTableRow($task_id, 'tasks');
+        //return 'Job'.'-'.($this->jobsListCount($task_id)+1)."-".date('M')."-".date('y');
+        return 'Job'.'-'.($this->jobsListCount($task_id)+1);
     }
     /**
      * @return Agent List
