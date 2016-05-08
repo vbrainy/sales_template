@@ -447,3 +447,16 @@ if( ! function_exists('get_option')) {
         return $option;
     }
 }
+
+
+/**
+ * @param string $key
+ * @param string $message
+ */
+
+if( ! function_exists('getTaskClearName')) {
+    function getTaskClearName($name){
+        $tempName = explode('-', $name);
+        return $tempName[0].'-'.$tempName[1].$tempName[2];
+    }
+}

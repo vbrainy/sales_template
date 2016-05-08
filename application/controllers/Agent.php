@@ -304,7 +304,7 @@ theme('edit_agent', $data);
 //						<i class="fa fa-archive"></i></a>';
 			$data['data'][] = array(
 				$r->title,
-				$r->unique_name,
+				getTaskClearName($r->unique_name),
 				//$r->first_name.' '.$r->last_name,
 				$r->agent_area,
                                 $statusBtn,
