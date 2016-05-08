@@ -83,7 +83,7 @@
                             </label>
                             <div class="col-md-3">
                                 <?php //echo form_upload('shop_nameplate'); ?>
-                                <input type="file" id="inputFile" name="shop_nameplate" /><br />
+                                <input type="file" id="inputFile" name='shop_nameplate' /><br />
                                 <div id="image_preview_div" style="display: none;">
                                     <img id="image_upload_preview" /><a style="position: absolute;" href="javascript: void(0)" onclick="removeImage();"><i class="fa fa-remove"></i></a>
                                 </div>
@@ -94,14 +94,19 @@
                                  <label for="shop_nameplate" class="col-md-2">Current Shop Nameplate
                                
                             </label>
-                                <?php if(!empty($job_details['shop_nameplate'])){
+                                <?php
+                              
+                                if(!empty($job_details['shop_nameplate'])){
                                     $image = $job_details['shop_nameplate'];
-                                    
+                                      
                                 }else {
                                   
                                     $image = "avtar.png";
+                                
+                                      //p(base_url() . 'uploads/'.$image);
+                                    
                                 } ?>
-                            <img alt="User Image" height="50px;" width="50px"class="img-circle" src="<?php echo  base_url() . '/uploads/'.$image ?>">
+                            <img alt="User Image" height="50px;" width="50px"class="img-circle" src="<?php echo  base_url() . 'uploads/'.$image ?>">
                   
                            
                              
@@ -174,19 +179,27 @@
                             </div>
                         </div>
                         
-                        <div class="form-group">
+                        <div class="form-group" <?php if(form_error('latitude')) echo 'has-error'; ?>>
                             <label for="Latitude" class="col-md-2">Latitude
+                                <span class="text-red">*</span>
                             </label>
                             <div class="col-md-6">
-                                <input type="text" id="lat" name="latitude" class="form-control" />
+                                <?php $geo_lodation =explode(",", $job_details['geo_location']);
+                           
+                                ?>
+                                <input type="text" id="lat" name="latitude" class="form-control" value="<?php echo $geo_lodation[0]   ?>" />
+                                
+                                <?php echo form_error('latitude') ?>
                             </div>
                         </div>
                         
-                        <div class="form-group">
+                        <div class="form-group" <?php if(form_error('longitude')) echo 'has-error'; ?>>
                             <label for="Longitude" class="col-md-2">Longitude
+                                <span class="text-red">*</span>
                             </label>
                             <div class="col-md-6">
-                                <input type="text" id="lng" name="longitude" class="form-control" />
+                                <input type="text" id="lng" name="longitude" class="form-control" value="<?php echo $geo_lodation[1]   ?>" />
+                            <?php echo form_error('longitude') ?>
                             </div>
                         </div>
                         
@@ -353,7 +366,7 @@
         $(function() {
             $("#inputFile").change(function () {
                 readURL(this);
-                $(this).val('');
+                //$(this).val('');
                 $(this).hide();
                 $('#image_preview_div').show();
             });
