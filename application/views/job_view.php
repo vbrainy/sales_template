@@ -7,7 +7,7 @@
             <!-- general form elements -->
             <div class="box box-primary">
                 <div class="box-header">
-                    <span class="box-title"><a class="btn btn-info editBtn" title="Back" data-toggle="tooltip" href="<?php echo base_url(); ?>jobs/index/<?php echo $job->task_id; ?>">
+                    <span class="box-title"><a class="btn btn-info editBtn" title="Back" style="color: #fff;" data-toggle="tooltip" href="<?php echo base_url(); ?>jobs/index/<?php echo $job->task_id; ?>">
 <i class="fa fa-backward"></i> Back</a></span>
 <div class="clearfix"></div>
                     <h3 class="box-title">

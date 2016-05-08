@@ -14,7 +14,7 @@
 
             <div class="box">
                 <div class="box-header">
-                    <span class="box-title"><a class="btn btn-info editBtn" title="Add Agent" data-toggle="tooltip" href="<?php echo base_url(); ?>agent/add_agent">
+                    <span class="box-title"><a class="btn btn-info editBtn" style="color: #fff;" title="Add Agent" data-toggle="tooltip" href="<?php echo base_url(); ?>agent/add_agent">
 
 <i class="fa fa-plus"></i> Add Agent</a></span>
                 </div>
@@ -70,7 +70,13 @@
 //                "serverSide": true,
                 "ordering": true,
                 "searching": true,
-                "ajax": "<?php echo base_url('agent/agentListJson'); ?>"
+                "ajax": "<?php echo base_url('agent/agentListJson'); ?>",
+                "language": {
+                    "zeroRecords": "No Records Found",
+                    "info":           "Showing _START_ to _END_ of _TOTAL_ entries",
+                    "infoEmpty":      "Showing 0 to 0 of 0 entries",
+                }
+                
             });
         });
 

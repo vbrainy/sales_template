@@ -7,7 +7,7 @@
             <!-- general form elements -->
             <div class="box box-primary">
                 <div class="box-header">
-                    <span class="box-title"><a class="btn btn-info editBtn" title="Back" data-toggle="tooltip" href="<?php echo base_url(); ?>agent/agent_tasks/<?php echo $agent_id; ?>">
+                    <span class="box-title"><a class="btn btn-info editBtn" style="color: #fff;" title="Back" data-toggle="tooltip" href="<?php echo base_url(); ?>agent/agent_tasks/<?php echo $agent_id; ?>">
 <i class="fa fa-backward"></i> Back</a></span>
 <div class="clearfix"></div>
                 </div><!-- /.box-header -->
