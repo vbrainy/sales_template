@@ -15,7 +15,7 @@ class Agent extends CI_Controller {
 	{
                 
 		//restricted this area, only for admin
-		permittedArea();
+		
                 $data['title'] = "Agent list";
 		theme('agent_index', $data);
                 //$this->load->view('agent_index', $data);
