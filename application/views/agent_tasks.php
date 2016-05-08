@@ -19,7 +19,7 @@
             <div class="box">
 
                 <div class="box-header">
-                           <span class="box-title"><a class="btn btn-info editBtn" title="Back" data-toggle="tooltip" href="<?php echo base_url(); ?>agent/index">
+                           <span class="box-title"><a class="btn btn-info editBtn" style="color: #fff;" title="Back" data-toggle="tooltip" href="<?php echo base_url(); ?>agent/index">
 <i class="fa fa-backward"></i> Back</a></span>
                 </div><!-- /.box-header -->
 
@@ -77,14 +77,22 @@
     <script type="text/javascript">
         $(function() {
             $("#example").dataTable({
-                "processing": true,
-                "serverSide": true,
+                //"processing": true,
+                //"serverSide": true,
+                "ordering": true,
+                "searching": true,
                 "ajax": {
                     "url": "<?php echo base_url('agent/agentTasksListJson'); ?>",
                     "data": function ( d ) {
                         d.agent_id = $('#agent_id').val();
                     }
+                },
+                "language": {
+                    "zeroRecords": "No Records Found",
+                    "info":           "Showing _START_ to _END_ of _TOTAL_ entries",
+                    "infoEmpty":      "Showing 0 to 0 of 0 entries",
                 }
+                
             });
         });
 
