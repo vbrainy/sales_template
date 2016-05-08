@@ -98,9 +98,10 @@
                                     $image = $job_details['shop_nameplate'];
                                     
                                 }else {
-                                    $image = "02.png";
+                                  
+                                    $image = "avtar.png";
                                 } ?>
-                            <img alt="User Image" height="50px;" width="50px"class="img-circle" src="<?php echo  APPPATH . 'uploads/'.$image ?>">
+                            <img alt="User Image" height="50px;" width="50px"class="img-circle" src="<?php echo  base_url() . '/uploads/'.$image ?>">
                   
                            
                              

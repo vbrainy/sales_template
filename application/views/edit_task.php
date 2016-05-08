@@ -14,7 +14,7 @@
             <!-- general form elements -->
             <div class="box box-primary">
                 <div class="box-header">
-                    <h3 class="box-title">Edit Task &nbsp; <b><?php echo $tasks->unique_name; ?></b> </h3> 
+                    <h3 class="box-title">Edit Task &nbsp; <b><?php echo getTaskClearName($tasks->unique_name); ?></b> </h3> 
                 </div><!-- /.box-header -->
                 <!-- form start -->
                 <?php echo form_open_multipart('', ['role' => 'form', 'class' => 'form-horizontal']); ?>
@@ -24,7 +24,7 @@
                             <label for="firstName" class="col-md-2">Title
                                 <span class="text-red">*</span>
                             </label>
-                            <div class="col-md-6">
+                            <div class="col-md-8">
                                 <input type="text" name="title" class="form-control" value="<?php echo $tasks->title; ?>" placeholder="Enter Title">
                                 <?php echo form_error('title') ?>
                             </div>
@@ -32,7 +32,7 @@
                         
                         <div class="form-group <?php if(form_error('assign_to')) echo 'has-error'; ?>">
                             <label for="firstName" class="col-md-2">Assign Agent<span class="text-red">*</span></label>
-                            <div class="col-md-6">
+                            <div class="col-md-8">
                               <select name="assign_to" class="form-control" onChange="getcity(this.value);">
                                     <option value=""> Select Agent </option>
                                     <?php 
@@ -56,7 +56,7 @@
                             <label for="agent_area" class="col-md-2">Agent Area
                                 <span class="text-red">*</span>
                             </label>
-                            <div class="col-md-6">
+                            <div class="col-md-8">
                                 <input type="text" name="city" id="city" value="<?php echo $tasks->agent_area; ?>" readonly="readonly"  class="form-control" value="" placeholder="City">
                                 <?php echo form_error('city') ?>
                             </div>

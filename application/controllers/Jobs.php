@@ -23,11 +23,11 @@ class Jobs extends CI_Controller {
 	 * Add agent script
 	 */
 
-	public function add_job($taskId=""){
-            
-            if(empty($taskId)){
-               theme('task_index');
-            }
+
+
+	public function add_job($taskId) {
+
+
 		//restricted this area, only for admin
 		permittedArea();
 
