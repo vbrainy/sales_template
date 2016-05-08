@@ -72,7 +72,7 @@ $currentUser = $currentAuthDta['role'];
             <li class="treeview <?php echo menu_li_active('user'); ?>">
                 <a href="#">
                     <i class="fa fa-user"></i>
-                    <span>User</span>
+                    <span>My Profile</span>
                     <i class="fa fa-angle-left pull-right"></i>
                 </a>
                 <ul class="treeview-menu">
@@ -142,7 +142,7 @@ $currentUser = $currentAuthDta['role'];
                 
                   <li>
                 <a href="<?php echo base_url('myjobs'); ?>">
-                    <i class="fa fa-briefcase"></i> <span>My Jobs</span>
+                    <i class="fa fa-briefcase"></i> <span>My Tasks</span>
                 </a>
             </li>
                 
@@ -178,7 +178,7 @@ $currentUser = $currentAuthDta['role'];
                 <li class="treeview <?php echo menu_li_active('user'); ?>">
                     <a href="#">
                         <i class="fa fa-user"></i>
-                        <span>User</span>
+                        <span>My Profile</span>
                         <i class="fa fa-angle-left pull-right"></i>
                     </a>
                     <ul class="treeview-menu">

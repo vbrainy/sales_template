@@ -52,13 +52,13 @@
 <div class="clearfix"></div>
                     <h3 class="box-title">
                         <p>
-                        Task Id: <?php echo $tasks->unique_name; ?>
+                        Task ID: <?php echo $tasks->unique_name; ?>
                         </p>
                         <p>
-                        Task: <?php echo $tasks->title; ?>
+                        Task Title: <?php echo $tasks->title; ?>
                         </p>
                         <p>
-                        Job: <?php echo $jobUniqueName; ?>
+                        Job ID: <?php echo $jobUniqueName; ?>
                         </p>
                     </h3>
                     
