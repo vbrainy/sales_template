@@ -19,6 +19,7 @@ class Myjobs extends CI_Controller {
 	}
         
         public function job_detail($job_id){
+             
             if(!empty($job_id)){
                $data['job_details'] = singleDbTableRow($job_id,'jobs');
                $data['tasks'] = singleDbTableRow($data['job_details']->task_id,'tasks'); 
@@ -35,7 +36,7 @@ class Myjobs extends CI_Controller {
 
 	public function update_status($jobid=""){
 		//restricted this area, only for admin
-            
+             
             if(!empty($jobid)){
                $this->job_model->updatestatus($jobid);
                  $jobs =  singleDbTableRow($jobid,'jobs');
