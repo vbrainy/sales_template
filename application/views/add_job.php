@@ -85,7 +85,7 @@
                                 <?php //echo form_upload('shop_nameplate'); ?>
                                 <input type="file" id="inputFile" name="shop_nameplate" /><br />
                                 <div id="image_preview_div" style="display: none;">
-                                    <img id="image_upload_preview" /><a style="position: absolute;" href="javascript: void(0)" onclick="removeImage();"><i class="fa fa-remove"></i></a>
+                                    <img width="200px;" height="200px;" id="image_upload_preview" /><a style="position: absolute;" href="javascript: void(0)" onclick="removeImage();"><i class="fa fa-remove"></i></a>
                                 </div>
                                 <?php echo form_error('shop_nameplate') ?>
                             </div>
