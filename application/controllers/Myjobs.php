@@ -13,7 +13,8 @@ class Myjobs extends CI_Controller {
 
 	public function index()
 	{
-           
+            $data['title'] = "My Tasks";
+            $this->uri->segments[1] = "My Tasks";
             $data['mytask'] =   $this->task_model->getmytaskByid();
             theme('myjobs',$data);
 	}

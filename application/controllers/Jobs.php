@@ -12,6 +12,7 @@ class Jobs extends CI_Controller {
 
 	public function index($task_id)
 	{
+                $this->uri->segments[1] = "tasks";
                 $data['task_id'] = $task_id;
                 $data['task'] = singleDbTableRow($task_id,'tasks');		//restricted this area, only for admin
 		permittedArea();
@@ -26,8 +27,8 @@ class Jobs extends CI_Controller {
 
 
 	public function add_job($taskId) {
-
-
+               
+                $this->uri->segments[1] = "tasks";
 		//restricted this area, only for admin
 		permittedArea();
 
