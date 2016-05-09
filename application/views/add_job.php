@@ -85,7 +85,7 @@
                                 <?php //echo form_upload('shop_nameplate'); ?>
                                 <input type="file" id="inputFile" name="shop_nameplate" /><br />
                                 <div id="image_preview_div" style="display: none;">
-                                    <img id="image_upload_preview" /><a style="position: absolute;" href="javascript: void(0)" onclick="removeImage();"><i class="fa fa-remove"></i></a>
+                                    <img id="image_upload_preview" style="width: 300px; height: 150px; margin-top: -10px;" /><a style="position: absolute; margin-top: -11px;" href="javascript: void(0)" onclick="removeImage();"><i class="fa fa-remove"></i></a>
                                 </div>
                                 <?php echo form_error('shop_nameplate') ?>
                             </div>
@@ -489,9 +489,7 @@
         var address = "SW1A 2AA";    
         changeMap(address);
   	$('#postcode').on("change", function(){
-            console.log("jjj");
             var address = $('#postcode').val();
-            console.log(address);
             changeMap(address);
             });
   });
@@ -512,9 +510,9 @@
 	}
 	var map = new google.maps.Map(document.getElementById("map-canvas"), myOptions);
 	addMarker(myLatlng, 'Default Marker', map);
-	map.addListener('click',function(event) {
-		addMarker(event.latLng, 'Click Generated Marker', map);
-	});
+//	map.addListener('click',function(event) {
+//		addMarker(event.latLng, 'Click Generated Marker', map);
+//	});
 	});
 	function addMarker(latlng,title,map) {
 	var marker = new google.maps.Marker({
