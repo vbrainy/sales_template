@@ -222,7 +222,7 @@ function page_css(){ ?>
                         </div>
 
                                <div class="form-group <?php if(form_error('postal_code')) echo 'has-error'; ?>">
-                            <label for="firstName" class="col-md-3">Post Code<span class="text-red">*</span></label>
+                            <label for="firstName" class="col-md-3">Postal Code<span class="text-red">*</span></label>
                             <div class="col-md-9">
 
                                 <input type="text" name="postal_code" class="form-control" value="<?php echo $agent->postal_code; ?>" placeholder="Postal Code">

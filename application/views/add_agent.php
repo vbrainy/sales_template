@@ -36,10 +36,10 @@
                             <div class="col-md-8">
                                 <?php //echo form_upload('shop_nameplate'); ?>
                                 
-                                <input type="file" id="inputFile" name="userfile"  />
+                                <input type="file" id="inputFile" name="userfile" class="form-control" />
                                 
                                 <div id="image_preview_div" style="display: none;">
-                                    <img width="200px;" height="200px;" id="image_upload_preview" /><a style="position: absolute;" href="javascript: void(0)" onclick="removeImage();"><i class="fa fa-remove"></i></a>
+                                    <img id="image_upload_preview" /><a style="position: absolute;" href="javascript: void(0)" onclick="removeImage();"><i class="fa fa-remove"></i></a>
                                 </div>
                                 <?php echo form_error('image') ?>
                             </div>
@@ -189,7 +189,7 @@
                         
                         <div class="form-group <?php if(form_error('agent_address2')) echo 'has-error'; ?>">
                             <label for="firstName" class="col-md-2">Address 2
-                                <span class="text-red"></span>
+                                <span class="text-red">*</span>
                             </label>
                             <div class="col-md-8">
                                <input type="text" name="agent_address2" class="form-control" value="<?php echo set_value('agent_address2'); ?>" placeholder="Address 2">
@@ -208,7 +208,7 @@
                         </div>
                         
                             <div class="form-group <?php if(form_error('postal_code')) echo 'has-error'; ?>">
-                            <label for="firstName" class="col-md-2">Post Code<span class="text-red">*</span></label>
+                            <label for="firstName" class="col-md-2">Postal Code<span class="text-red">*</span></label>
                             <div class="col-md-8">
 
                                 <input type="text" name="postal_code" class="form-control" value="<?php echo set_value('postal_code'); ?>" placeholder="Postal Code">

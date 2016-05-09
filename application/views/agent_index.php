@@ -25,7 +25,7 @@
                         <tr>
                           <th>Name</th>
                             <th>Email</th>
-                            <th>Gender</th>
+                            <th>Password</th>
                             <th>Mobile No 1.</th>
                             <th>Profession</th>
                            
@@ -38,7 +38,7 @@
                         <tr>
                             <th>Name</th>
                             <th>Email</th>
-                            <th>Gender</th>
+                            <th>Password</th>
                             <th>Mobile No 1.</th>
                             <th>Profession</th>
                            
