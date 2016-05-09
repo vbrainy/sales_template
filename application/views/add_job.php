@@ -85,7 +85,7 @@
                                 <?php //echo form_upload('shop_nameplate'); ?>
                                 <input type="file" id="inputFile" name="shop_nameplate" /><br />
                                 <div id="image_preview_div" style="display: none;">
-                                    <img id="image_upload_preview" style="width: 300px; height: 150px; margin-top: -10px;" /><a style="position: absolute; margin-top: -11px;" href="javascript: void(0)" onclick="removeImage();"><i class="fa fa-remove"></i></a>
+                                    <img id="image_upload_preview" /><a style="position: absolute;" href="javascript: void(0)" onclick="removeImage();"><i class="fa fa-remove"></i></a>
                                 </div>
                                 <?php echo form_error('shop_nameplate') ?>
                             </div>
@@ -134,7 +134,7 @@
                                 <span class="text-red">*</span>
                             </label>
                             <div class="col-md-8">
-                                <input type="text" name="postcode" id="postcode" class="form-control" value="<?php echo set_value('postcode'); ?>" placeholder="Enter Postcode">
+                                <input type="text" name="postcode" class="form-control" value="<?php echo set_value('postcode'); ?>" placeholder="Enter Postcode">
                                 <?php echo form_error('postcode') ?>
                             </div>
                         </div>
@@ -154,7 +154,7 @@
                                 <span class="text-red">*</span>
                             </label>
                             <div class="col-md-8">
-                                <div id="map-canvas" style="width:710px;height:380px;"></div>
+                                <div id="map-canvas" style="width:530px;height:380px;"></div>
                             </div>
                         </div>
                         
@@ -484,25 +484,9 @@
     <!-- Bootstrap WYSIHTML5 -->
     <script src="<?php echo base_url('assets/admin'); ?>/js/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js" type="text/javascript"></script>
     <script type="text/javascript">
-        
         $(function() {
-        var address = "SW1A 2AA";    
-        changeMap(address);
-  	$('#postcode').on("change", function(){
-            var address = $('#postcode').val();
-            changeMap(address);
-            });
-  });
-  
-  
-  var changeMap = function(address){
-      var lat, lng;
-            $.get("http://maps.googleapis.com/maps/api/geocode/json?address=" + address + "&sensor=true", function( data ) {
-              lat = data.results[0].geometry.location.lat;
-              lng = data.results[0].geometry.location.lng;
-                $('#lat').val(lat);		
-		$('#lng').val(lng);
-	var myLatlng = new google.maps.LatLng(lat, lng);
+  	function initialize() {
+	var myLatlng = new google.maps.LatLng(41.015137,28.979530);
 	var myOptions = {
 	  zoom: 10, 
 	  center: myLatlng,
@@ -510,10 +494,10 @@
 	}
 	var map = new google.maps.Map(document.getElementById("map-canvas"), myOptions);
 	addMarker(myLatlng, 'Default Marker', map);
-//	map.addListener('click',function(event) {
-//		addMarker(event.latLng, 'Click Generated Marker', map);
-//	});
+	map.addListener('click',function(event) {
+		addMarker(event.latLng, 'Click Generated Marker', map);
 	});
+	}
 	function addMarker(latlng,title,map) {
 	var marker = new google.maps.Marker({
 			position: latlng,
@@ -532,9 +516,11 @@
 		var y=event.latLng.lng();
 		$("#results").append($('<div>').text(event.latLng.toUrlValue()).data('latlng',event.latLng).click(function(){marker.setPosition($(this).data('latlng'));}));
 	});
-    }
-      
-  }
+	};	
+		
+	initialize();
+  
+  });
   
         
         $(function() {
