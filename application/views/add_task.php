@@ -8,6 +8,7 @@
     <link href="<?php echo base_url('assets/admin'); ?>/css/colorpicker/bootstrap-colorpicker.min.css" rel="stylesheet"/>
     <!-- Bootstrap time Picker -->
     <link href="<?php echo base_url('assets/admin'); ?>/css/timepicker/bootstrap-timepicker.min.css" rel="stylesheet"/>
+    <link href="<?php echo base_url('assets/admin'); ?>/css/datepicker/datepicker3.css" rel="stylesheet" type="text/css" />
 
 <?php } ?>
 
@@ -81,7 +82,7 @@
                                 <span class="text-red">*</span>
                             </label>
                             <div class="col-md-6">
-                                <input type="text" name="created_at" id="city" readonly="readonly"  class="form-control" value="<?php echo date("Y-m-d"); ?>" placeholder="City">
+                                <input type="text" name="created_at" class="form-control" id="date_element" value="<?php echo date("Y-m-d"); ?>">
                                 <?php echo form_error('created_at') ?>
                             </div>
                         </div>
@@ -116,10 +117,11 @@
     <script src="<?php echo base_url('assets/admin'); ?>/js/plugins/colorpicker/bootstrap-colorpicker.min.js" type="text/javascript"></script>
     <!-- bootstrap time picker -->
     <script src="<?php echo base_url('assets/admin'); ?>/js/plugins/timepicker/bootstrap-timepicker.min.js" type="text/javascript"></script>
+    <script src="<?php echo base_url('assets/admin'); ?>/js/plugins/datepicker/bootstrap-datepicker.js" type="text/javascript"></script>
     <!-- Page script -->
     <script type="text/javascript">
         $(function() {
-            
+            //$('#date_element').datepicker();
             //Datemask dd/mm/yyyy
             $("#datemask").inputmask("dd/mm/yyyy", {"placeholder": "dd/mm/yyyy"});
             //Datemask2 mm/dd/yyyy
