@@ -34,7 +34,7 @@
 
                         <div class="form-inline">
 
-
+<!--                            <fprm action="<?php echo base_url() ?>/tasks/index" method="post">-->
                             <div class="form-group">
                                 <label class="sr-only" for="exampleInputAmount">Amount (in dollars)</label>
                                 <div class="input-group">
@@ -45,7 +45,8 @@
                                 </div>
                             </div>
                             <button type="submit" id="searchByDateBtn" class="btn btn-primary">Search</button>
-
+                            <button type="button" id="refreshButton" class="btn btn-primary">Reset</button>
+<!--                            </form>-->
                         </div>
                     </div>
                 </div><!-- /.box-header -->
@@ -55,11 +56,12 @@
 
                         <thead>
                         <tr>
-                            <th width="15%">Task Title</th>
-                            <th width="15%">Task ID</th>
+                            <th width="10%">Task Title</th>
+                            <th width="10%">Task ID</th>
 
-                            <th width="15%">Agent Name</th>
-                            <th width="15%">Agent Area</th>
+                            <th width="10%">Agent Name</th>
+                            <th width="10%">Agent Area</th>
+                            <th width="10%">Created Date</th>
                             <th width="10%">Add Job</th>
                             
 
@@ -76,6 +78,7 @@
 
 <th>Agent Name</th>
                             <th>Agent Area</th>
+                            <th>Created Date</th>
                             <th>Add Job</th>
 
 <!--                            <th>Created at</th>
@@ -103,20 +106,36 @@
     <script src="<?php echo base_url('assets/admin'); ?>/js/plugins/datatables/dataTables.bootstrap.js" type="text/javascript"></script>
     <script type="text/javascript">
         $(function() {
+            var dateFilter = $('#reservation').val();
+            callDatatableFunction(dateFilter);
+            $('#refreshButton').click(function(){
+               window.location = window.location;
+            });
+            $('#searchByDateBtn').click(function(){
+                dateFilter = $('#reservation').val();
+                callDatatableFunction(dateFilter);
+            });
+        });
+        callDatatableFunction = function(dateFilter){
             $("#example").dataTable({
 //                "processing": true,
 //                "serverSide": true,
                 "ordering": true,
                 "searching": true,
                 "destroy": true,
-                "ajax": "<?php echo base_url('tasks/tasksListJson'); ?>",
+                "ajax": {
+                    "url" : "<?php echo base_url('tasks/tasksListJson'); ?>",
+                    "data": function ( d ) {
+                        d.dateFilter = dateFilter
+                    }
+                },
                 "language": {
                     "zeroRecords": "No Records Found",
                     "info":           "Showing _START_ to _END_ of _TOTAL_ entries",
                     "infoEmpty":      "Showing 0 to 0 of 0 entries",
                 }
             });
-        });
+        }
 
     </script>
 
@@ -138,8 +157,7 @@
             });
         }
     });
-
-
+    
     $('body').on('click', 'button.blockUnblock', function () {
         var agentId = $(this).attr('id');
         var buttonValue = $(this).val();
