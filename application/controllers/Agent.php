@@ -35,11 +35,19 @@ class Agent extends CI_Controller {
 		{
 			if($this->input->post('submit') != 'add_agent') die('Error! sorry');
 
-			$this->form_validation->set_rules('first_name', 'First Name', 'required|trim');
+
+
+   $this->form_validation->set_rules('agent_reg_no', 'Agent Reg No', 'required|trim');
+$this->form_validation->set_rules('county', 'County', 'required|trim');
+$this->form_validation->set_rules('nationality_origin', 'Nationality Origin', 'required|trim');
+$this->form_validation->set_rules('skill', 'Skill', 'required|trim');
+
+$this->form_validation->set_rules('paypal_email', 'Paypal Email', 'required|trim');
+
+                        $this->form_validation->set_rules('first_name', 'First Name', 'required|trim');
 			$this->form_validation->set_rules('mobile_no_1', 'Mobile No.', 'required|trim');
 			$this->form_validation->set_rules('mobile_no_2', 'Mobile No.', 'required|trim');
-			
-                        $this->form_validation->set_rules('email', 'Email', 'required|trim|is_unique[users.email]');
+			$this->form_validation->set_rules('email', 'Email', 'required|trim|is_unique[users.email]');
 			$this->form_validation->set_rules('password', 'Password', 'required|matches[passconf]');
 			$this->form_validation->set_rules('passconf', 'Password Confirmation', 'required');
 			$this->form_validation->set_rules('gender', 'Gender', 'required');
@@ -49,7 +57,7 @@ class Agent extends CI_Controller {
 			$this->form_validation->set_rules('country', 'Country', 'required');
                         $this->form_validation->set_rules('national_insurance_no', 'National Insurance No.', 'required|trim');
  		        $this->form_validation->set_rules('postal_code', 'Postal Code', 'required');
-           $this->form_validation->set_rules('city', 'City', 'required');
+                        $this->form_validation->set_rules('city', 'City', 'required');
            
 			if($this->form_validation->run() == true)
 			{
@@ -83,6 +91,17 @@ class Agent extends CI_Controller {
 		if($this->input->post())
 		{
 			if($this->input->post('submit') != 'add_agent') die('Error! sorry');
+                        
+                        $this->form_validation->set_rules('agent_reg_no', 'Agent Reg No', 'required|trim');
+$this->form_validation->set_rules('county', 'County', 'required|trim');
+$this->form_validation->set_rules('nationality_origin', 'Nationality Origin', 'required|trim');
+$this->form_validation->set_rules('skill', 'Skill', 'required|trim');
+
+$this->form_validation->set_rules('paypal_email', 'Paypal Email', 'required|trim');
+                        
+                        
+                        
+                        
 
 			$this->form_validation->set_rules('first_name', 'First Name', 'required|trim');
 			$this->form_validation->set_rules('mobile_no_1', 'Mobile No.', 'required|trim');
