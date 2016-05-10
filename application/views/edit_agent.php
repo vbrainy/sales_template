@@ -38,10 +38,10 @@ function page_css(){ ?>
                             <div class="col-md-3">
                                 <?php //echo form_upload('shop_nameplate'); ?>
                                 
-                                    <input type="file" id="inputFile" name="userfile" class="form-control" />
+                                    <input type="file" id="inputFile" name="userfile"  />
                                 
                                 <div id="image_preview_div" style="display: none;">
-                                    <img id="image_upload_preview" /><a style="position: absolute;" href="javascript: void(0)" onclick="removeImage();"><i class="fa fa-remove"></i></a>
+                                    <img id="image_upload_preview" height="200px;" width="200px;" /><a style="position: absolute;" href="javascript: void(0)" onclick="removeImage();"><i class="fa fa-remove"></i></a>
                                 </div>
                                 <?php echo form_error('image') ?>
                             </div>
@@ -55,7 +55,19 @@ function page_css(){ ?>
                         </div>
                         
 
-                        <div class="form-group <?php if(form_error('first_name')) echo 'has-error'; ?>">
+                        
+                        
+                        <div class="form-group <?php if(form_error('agent_reg_no')) echo 'has-error'; ?>">
+                            <label for="firstName" class="col-md-3">Agent Registration Number
+                                <span class="text-red">*</span>
+                            </label>
+                            <div class="col-md-9">
+                                <input type="text" name="agent_reg_no" class="form-control" value="<?php echo $agent->agent_reg_no; ?>" placeholder="Enter Agent Reg No">
+                                <?php echo form_error('agent_reg_no') ?>
+                            </div>
+                        </div> 
+                        
+                                <div class="form-group <?php if(form_error('first_name')) echo 'has-error'; ?>">
                             <label for="firstName" class="col-md-3">First Name
                                 <span class="text-red">*</span>
                             </label>
@@ -73,6 +85,132 @@ function page_css(){ ?>
                             </div>
                         </div>
 
+                        
+                        
+                            <div class="form-group <?php if(form_error('agent_address1')) echo 'has-error'; ?>">
+                            <label for="firstName" class="col-md-3">Address 1
+                                <span class="text-red">*</span>
+                            </label>
+                            <div class="col-md-9">
+                                <input type="text" name="agent_address1" class="form-control" value="<?php echo $agent->agent_address1; ?>" placeholder="Address 1">
+                               
+                                <?php echo form_error('agent_address1') ?>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group <?php if(form_error('agent_address2')) echo 'has-error'; ?>">
+                            <label for="firstName" class="col-md-3">Address 2
+                                <span class="text-red">*</span>
+                            </label>
+                            <div class="col-md-9">
+                                 <input type="text" name="agent_address2" class="form-control" value="<?php echo $agent->agent_address2; ?>" placeholder="Address 2">
+                              
+                                <?php echo form_error('agent_address2') ?>
+                            </div>
+                        </div>
+                        
+                        
+                        
+
+                        
+                        
+                                                <div class="form-group <?php if(form_error('city')) echo 'has-error'; ?>">
+                            <label for="firstName" class="col-md-3">City<span class="text-red">*</span></label>
+                            <div class="col-md-9">
+
+                                <input type="text" name="city" class="form-control" value="<?php echo $agent->city; ?>" placeholder="City">
+                                
+                                <?php echo form_error('city') ?>
+                            </div>
+                        </div>
+                        
+                        
+                            <div class="form-group <?php if(form_error('county')) echo 'has-error'; ?>">
+                            <label for="firstName" class="col-md-3">County<span class="text-red">*</span></label>
+                            <div class="col-md-9">
+
+                                <input type="text" name="county" class="form-control" value="<?php echo $agent->county; ?>" placeholder="County">
+                                
+                                <?php echo form_error('county') ?>
+                            </div>
+                        </div>
+                        
+                        
+                        
+
+                               <div class="form-group <?php if(form_error('postal_code')) echo 'has-error'; ?>">
+                            <label for="firstName" class="col-md-3">Postal Code<span class="text-red">*</span></label>
+                            <div class="col-md-9">
+
+                                <input type="text" name="postal_code" class="form-control" value="<?php echo $agent->postal_code; ?>" placeholder="Postal Code">
+                                
+                                <?php echo form_error('postal_code') ?>
+                            </div>
+                        </div>
+                        
+                        
+                             <div class="form-group <?php if(form_error('country')) echo 'has-error'; ?>">
+                            <label for="firstName" class="col-md-3">Country<span class="text-red">*</span></label>
+                            <div class="col-md-9">
+<!--                                <select name="country" class="form-control">
+                                    <option value=""> Select Country </option>
+                                    <?php /*
+                                    if($countries->num_rows() > 0)
+                                    {
+                                        foreach($countries->result() as $c){
+                                            $selected = ($c->id == 19)? 'selected' : '';
+                                            echo '<option value="'.$c->id.'" '.$selected.'> '.$c->country_name.'</option>';
+                                        }
+                                    } */
+                                    ?>
+
+                                </select>-->
+                                <input type="text" name="country" class="form-control" value="<?php echo $agent->country; ?>" placeholder="Country">
+                                
+                                <?php echo form_error('country') ?>
+                            </div>
+                        </div>
+                        
+                        
+                           <div class="form-group <?php if(form_error('gender')) echo 'has-error'; ?>">
+                            <label for="firstName" class="col-md-3">Gender <span class="text-red">*</span>
+                            </label>
+                            <div class="col-md-9">
+                                <select name="gender" class="form-control">
+                                    <option value=""> Select Gender </option>
+                                    <option <?php if($agent->gender=="male"){ ?>selected="selected"<?php } ?> value="male" <?php echo set_select('gender', 'male') ?>>Male</option>
+                                    <option <?php if($agent->gender=="female"){ ?>selected="selected"<?php } ?> value="female" <?php echo set_select('gender', 'female') ?>>Fe-Male</option>
+                                </select>
+                                <?php echo form_error('gender') ?>
+                            </div>
+                        </div>
+                        
+                            <div class="form-group <?php if(form_error('nationality_origin')) echo 'has-error'; ?>">
+                            <label for="firstName" class="col-md-3">Nationality Origin
+                                <span class="text-red">*</span>
+                            </label>
+                            <div class="col-md-9">
+
+                                  
+                                    <input class="form-control" name="nationality_origin" type="text" placeholder="Nationality Origin" value="<?php echo $agent->nationality_origin ?>" />
+                                
+                                <?php echo form_error('nationality_origin') ?>
+                            </div>
+                        </div>
+                        
+                        
+                           <div class="form-group <?php if(form_error('skill')) echo 'has-error'; ?>">
+                            <label for="exampleInputEmail1" class="col-md-3">Skill
+                                <span class="text-red">*</span>
+                            </label>
+                            <div class="col-md-9">
+                                <input type="text" name="skill" class="form-control" value="<?php echo $agent->skill; ?>" placeholder="Enter skill">
+                                <?php echo form_error('skill') ?>
+
+                            </div>
+                        </div>
+
+                
                         <div class="form-group <?php if(form_error('email')) echo 'has-error'; ?>">
                             <label for="exampleInputEmail1" class="col-md-3">Email address
                                 <span class="text-red">*</span>
@@ -129,18 +267,7 @@ function page_css(){ ?>
                             </div>
                         </div>
 
-                        <div class="form-group <?php if(form_error('gender')) echo 'has-error'; ?>">
-                            <label for="firstName" class="col-md-3">Gender <span class="text-red">*</span>
-                            </label>
-                            <div class="col-md-9">
-                                <select name="gender" class="form-control">
-                                    <option value=""> Select Gender </option>
-                                    <option <?php if($agent->gender=="male"){ ?>selected="selected"<?php } ?> value="male" <?php echo set_select('gender', 'male') ?>>Male</option>
-                                    <option <?php if($agent->gender=="female"){ ?>selected="selected"<?php } ?> value="female" <?php echo set_select('gender', 'female') ?>>Fe-Male</option>
-                                </select>
-                                <?php echo form_error('gender') ?>
-                            </div>
-                        </div>
+                     
 
                         <div class="form-group <?php if(form_error('date_of_birth')) echo 'has-error'; ?>">
                             <label for="firstName" class="col-md-3">Date of birth
@@ -157,7 +284,10 @@ function page_css(){ ?>
                                 <?php echo form_error('date_of_birth') ?>
                             </div>
                         </div>
+                       
                         
+                         
+                    
                         
                         <div class="form-group <?php if(form_error('national_insurance_no')) echo 'has-error'; ?>">
                             <label for="firstName" class="col-md-3">National Insurance No
@@ -182,76 +312,23 @@ function page_css(){ ?>
                                 <?php echo form_error('profession') ?>
                             </div>
                         </div>
-
-
-
-                        <div class="form-group <?php if(form_error('agent_address1')) echo 'has-error'; ?>">
-                            <label for="firstName" class="col-md-3">Address 1
+                        
+                          <div class="form-group <?php if(form_error('paypal_email')) echo 'has-error'; ?>">
+                            <label for="firstName" class="col-md-3">Profession
                                 <span class="text-red">*</span>
                             </label>
                             <div class="col-md-9">
-                                <input type="text" name="agent_address1" class="form-control" value="<?php echo $agent->agent_address1; ?>" placeholder="Address 1">
-                               
-                                <?php echo form_error('agent_address1') ?>
-                            </div>
-                        </div>
-                        
-                        <div class="form-group <?php if(form_error('agent_address2')) echo 'has-error'; ?>">
-                            <label for="firstName" class="col-md-3">Address 2
-                                <span class="text-red">*</span>
-                            </label>
-                            <div class="col-md-9">
-                                 <input type="text" name="agent_address2" class="form-control" value="<?php echo $agent->agent_address2; ?>" placeholder="Address 2">
-                              
-                                <?php echo form_error('agent_address2') ?>
-                            </div>
-                        </div>
-                        
-                        
-
-                        
-                        
-                                                <div class="form-group <?php if(form_error('city')) echo 'has-error'; ?>">
-                            <label for="firstName" class="col-md-3">City<span class="text-red">*</span></label>
-                            <div class="col-md-9">
-
-                                <input type="text" name="city" class="form-control" value="<?php echo $agent->city; ?>" placeholder="City">
-                                
-                                <?php echo form_error('city') ?>
+                                <input type="text" name="paypal_email" class="form-control" value="<?php echo $agent->paypal_email; ?>" placeholder="Paypal Email">
+                                <?php echo form_error('paypal_email') ?>
                             </div>
                         </div>
 
-                               <div class="form-group <?php if(form_error('postal_code')) echo 'has-error'; ?>">
-                            <label for="firstName" class="col-md-3">Postal Code<span class="text-red">*</span></label>
-                            <div class="col-md-9">
 
-                                <input type="text" name="postal_code" class="form-control" value="<?php echo $agent->postal_code; ?>" placeholder="Postal Code">
-                                
-                                <?php echo form_error('postal_code') ?>
-                            </div>
-                        </div>
+
+                    
                         
-                         <div class="form-group <?php if(form_error('country')) echo 'has-error'; ?>">
-                            <label for="firstName" class="col-md-3">Country<span class="text-red">*</span></label>
-                            <div class="col-md-9">
-<!--                                <select name="country" class="form-control">
-                                    <option value=""> Select Country </option>
-                                    <?php /*
-                                    if($countries->num_rows() > 0)
-                                    {
-                                        foreach($countries->result() as $c){
-                                            $selected = ($c->id == 19)? 'selected' : '';
-                                            echo '<option value="'.$c->id.'" '.$selected.'> '.$c->country_name.'</option>';
-                                        }
-                                    } */
-                                    ?>
-
-                                </select>-->
-                                <input type="text" name="country" class="form-control" value="<?php echo $agent->country; ?>" placeholder="Country">
-                                
-                                <?php echo form_error('country') ?>
-                            </div>
-                        </div>
+                        
+                    
                        
 
                      
