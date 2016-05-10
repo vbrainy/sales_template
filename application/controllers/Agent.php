@@ -42,7 +42,7 @@ $this->form_validation->set_rules('county', 'County', 'required|trim');
 $this->form_validation->set_rules('nationality_origin', 'Nationality Origin', 'required|trim');
 $this->form_validation->set_rules('skill', 'Skill', 'required|trim');
 
-$this->form_validation->set_rules('paypal_email', 'Paypal Email', 'required|trim');
+$this->form_validation->set_rules('paypal_email', 'Paypal Email', 'required|valid_email|trim');
 
                         $this->form_validation->set_rules('first_name', 'First Name', 'required|trim');
 			$this->form_validation->set_rules('mobile_no_1', 'Mobile No.', 'required|trim');
@@ -97,7 +97,7 @@ $this->form_validation->set_rules('county', 'County', 'required|trim');
 $this->form_validation->set_rules('nationality_origin', 'Nationality Origin', 'required|trim');
 $this->form_validation->set_rules('skill', 'Skill', 'required|trim');
 
-$this->form_validation->set_rules('paypal_email', 'Paypal Email', 'required|trim');
+$this->form_validation->set_rules('paypal_email', 'Paypal Email', 'required|valid_email|trim');
                         
                         
                         
@@ -216,7 +216,7 @@ theme('edit_agent', $data);
 		// add a activity
 		create_activity("Deleted {$fullName} from Agent");
 		//Now delete permanently
-		$this->db->where('id', $id)->delete('agents');
+		$this->db->where('id', $id)->delete('users');
 		return true;
 	}
 
@@ -236,7 +236,7 @@ theme('edit_agent', $data);
 		create_activity($status." {$fullName} from Agent");
 		//Now delete permanently
 
-		$this->db->where('id', $id)->update('agents', ['active' => $buttonValue]);
+		$this->db->where('id', $id)->update('users', ['active' => $buttonValue]);
 		return true;
 	}
 
