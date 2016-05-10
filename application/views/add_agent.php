@@ -259,10 +259,10 @@
                         </div>
                         
                                   <div class="form-group <?php if(form_error('date_of_birth')) echo 'has-error'; ?>">
-                            <label for="firstName" class="col-md-3">Date of birth
+                            <label for="firstName" class="col-md-2">Date of birth
                                 <span class="text-red">*</span>
                             </label>
-                            <div class="col-md-9">
+                            <div class="col-md-8">
 
                                 <div class="input-group">
                                     <div class="input-group-addon">
