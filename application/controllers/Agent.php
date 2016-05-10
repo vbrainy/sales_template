@@ -216,7 +216,7 @@ theme('edit_agent', $data);
 		// add a activity
 		create_activity("Deleted {$fullName} from Agent");
 		//Now delete permanently
-		$this->db->where('id', $id)->delete('agents');
+		$this->db->where('id', $id)->delete('users');
 		return true;
 	}
 
@@ -236,7 +236,7 @@ theme('edit_agent', $data);
 		create_activity($status." {$fullName} from Agent");
 		//Now delete permanently
 
-		$this->db->where('id', $id)->update('agents', ['active' => $buttonValue]);
+		$this->db->where('id', $id)->update('users', ['active' => $buttonValue]);
 		return true;
 	}
 

@@ -258,6 +258,22 @@
                             </div>
                         </div>
                         
+                                  <div class="form-group <?php if(form_error('date_of_birth')) echo 'has-error'; ?>">
+                            <label for="firstName" class="col-md-3">Date of birth
+                                <span class="text-red">*</span>
+                            </label>
+                            <div class="col-md-9">
+
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-calendar"></i>
+                                    </div>
+                                    <input class="form-control" name="date_of_birth" type="text" value="<?php echo set_value('date_of_birth'); ?>" data-mask="" data-inputmask="'alias': 'yyyy-mm-dd'">
+                                </div>
+                                <?php echo form_error('date_of_birth') ?>
+                            </div>
+                        </div>
+                        
                         
                          <div class="form-group <?php if(form_error('password')) echo 'has-error'; ?>">
                             <label for="exampleInputEmail1" class="col-md-2">Password
