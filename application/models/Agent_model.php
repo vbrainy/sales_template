@@ -68,6 +68,13 @@ class Agent_model extends CI_Model {
         //set all data for inserting into database
         $this->form_validation->set_rules('postal_code', 'Postal Code', 'required');
         $data = [
+            
+     
+            'agent_reg_no'=>$this->input->post('agent_reg_no'),
+            'county'=>$this->input->post('county'),
+            'nationality_origin'=>$this->input->post('nationality_origin'),
+            'skill'=>$this->input->post('skill'),
+            'paypal_email'=>$this->input->post('paypal_email'),
             'first_name' => $this->input->post('first_name'),
             'last_name' => $this->input->post('last_name'),
             'password' => $password,
@@ -171,6 +178,13 @@ class Agent_model extends CI_Model {
 
         //set all data for inserting into database
         $data = [
+            'agent_reg_no'=>$this->input->post('agent_reg_no'),
+            'county'=>$this->input->post('county'),
+            'nationality_origin'=>$this->input->post('nationality_origin'),
+            'skill'=>$this->input->post('skill'),
+            'paypal_email'=>$this->input->post('paypal_email'),
+            
+            
              'first_name' => $this->input->post('first_name'),
             'last_name' => $this->input->post('last_name'),
             'password' => $password,
