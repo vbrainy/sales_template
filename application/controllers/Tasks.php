@@ -127,9 +127,12 @@ class Tasks extends CI_Controller {
                 {
                     $dateFilter = explode(' ', $this->input->get('dateFilter'));
                 }
+                $status = $this->input->get('status');
+                
+                
                 //print_r($dateFilter);exit;
 		$queryCount = $this->task_model->tasksListCount();
-		$query = $this->task_model->tasksList($limit, $start, $dateFilter);
+		$query = $this->task_model->tasksList($limit, $start, $dateFilter, $status);
                 
 		$draw = $this->input->get('draw');
 
@@ -180,7 +183,8 @@ class Tasks extends CI_Controller {
 				$r->first_name.' '.$r->last_name,
 				$r->agent_area,
                                 date('m/d/Y', $r->created_at),
-                            $addjobbutton,
+                                ($r->status == 0) ? 'In Progress' : 'Complete',
+                                $addjobbutton,
 
 				//$r->created_at,
 				//$r->modified_at,
