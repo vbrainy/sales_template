@@ -23,7 +23,7 @@
                         <a class="btn btn-info editBtn" style="color: #fff;" title="Add Task" data-toggle="tooltip" href="<?php echo base_url(); ?>tasks/add_task">
 
 <i class="fa fa-plus"></i> Add Task</a>
-                        <a class="btn btn-success" style="color: #fff;" title="Active Task" data-toggle="tooltip" href="#">
+                        <a class="btn btn-success" id="activeTask" style="color: #fff;" title="Active Task" data-toggle="tooltip" href="javascript: void(0);">
 
 <i class="fa "></i> Active Task</a>
 
@@ -62,6 +62,7 @@
                             <th width="10%">Agent Name</th>
                             <th width="10%">Agent Area</th>
                             <th width="10%">Created Date</th>
+                            <th>Status</th>
                             <th width="10%">Add Job</th>
                             
 
@@ -79,6 +80,7 @@
 <th>Agent Name</th>
                             <th>Agent Area</th>
                             <th>Created Date</th>
+                            <th>Status</th>
                             <th>Add Job</th>
 
 <!--                            <th>Created at</th>
@@ -107,16 +109,22 @@
     <script type="text/javascript">
         $(function() {
             var dateFilter = $('#reservation').val();
-            callDatatableFunction(dateFilter);
+            callDatatableFunction(dateFilter, 1);
+            
             $('#refreshButton').click(function(){
-               window.location = window.location;
+                callDatatableFunction('', 1);
+               
+            });
+            $('#activeTask').click(function(){
+                callDatatableFunction(dateFilter, 0);
             });
             $('#searchByDateBtn').click(function(){
                 dateFilter = $('#reservation').val();
-                callDatatableFunction(dateFilter);
+                callDatatableFunction(dateFilter, 1);
             });
         });
-        callDatatableFunction = function(dateFilter){
+        callDatatableFunction = function(dateFilter, status){
+            console.log(status);
             $("#example").dataTable({
 //                "processing": true,
 //                "serverSide": true,
@@ -126,7 +134,8 @@
                 "ajax": {
                     "url" : "<?php echo base_url('tasks/tasksListJson'); ?>",
                     "data": function ( d ) {
-                        d.dateFilter = dateFilter
+                        d.dateFilter = dateFilter,
+                        d.status = status
                     }
                 },
                 "language": {
