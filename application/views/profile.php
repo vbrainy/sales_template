@@ -98,13 +98,14 @@
                                         </table>
 
                                     </div><!-- /.box-body -->
-
+<?php if($c_user->role!="agent"){ ?>
                                     <div class="box-footer">
                                         <a href="<?php echo base_url('user/profile_edit') ?>" class="btn btn-primary"><i class="fa fa-edit"></i> Edit</a>
                                         <a href="<?php echo base_url('user/log') ?>" class="label label-warning"><i class="fa fa-bar-chart"></i> Log</a>
                                         <a href="<?php echo base_url('activity') ?>" class="label label-info"><i class="fa fa-check-square-o"></i> Activity</a>
 
                                     </div>
+<?php } ?>
                             </div><!-- /.box -->
 
 
