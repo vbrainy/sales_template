@@ -20,7 +20,7 @@ public function add_task(){
             'agent_area' => $this->input->post('city'),
             'unique_name' =>    $this->taskUniqueName(),
             'created_at'        => time(),
-            //'modified_at'       => time()
+            'status'       =>0
         ];
 
        $query = $this->db->insert('tasks', $data);
