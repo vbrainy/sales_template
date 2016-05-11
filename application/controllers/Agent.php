@@ -42,7 +42,7 @@ $this->form_validation->set_rules('county', 'County', 'required|trim');
 $this->form_validation->set_rules('nationality_origin', 'Nationality Origin', 'required|trim');
 $this->form_validation->set_rules('skill', 'Skill', 'required|trim');
 
-$this->form_validation->set_rules('paypal_email', 'Paypal Email', 'required|trim');
+$this->form_validation->set_rules('paypal_email', 'Paypal Email', 'required|valid_email|trim');
 
                         $this->form_validation->set_rules('first_name', 'First Name', 'required|trim');
 			$this->form_validation->set_rules('mobile_no_1', 'Mobile No.', 'required|trim');
@@ -97,7 +97,7 @@ $this->form_validation->set_rules('county', 'County', 'required|trim');
 $this->form_validation->set_rules('nationality_origin', 'Nationality Origin', 'required|trim');
 $this->form_validation->set_rules('skill', 'Skill', 'required|trim');
 
-$this->form_validation->set_rules('paypal_email', 'Paypal Email', 'required|trim');
+$this->form_validation->set_rules('paypal_email', 'Paypal Email', 'required|valid_email|trim');
                         
                         
                         
