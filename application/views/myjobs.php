@@ -87,8 +87,8 @@ function page_css() { ?>
                                                                     <td>
                                                                         <a target="_blank" class="btn btn-primary editBtn" href="<?php echo base_url('myjobs/job_detail/'. $r->id) ?>" data-toggle="tooltip" title="View">
 						<i class="fa fa-eye"></i> </a>
-                                                                        <a style="display:<?php if ($r->job_status == 0) { echo ""; }else { echo "none";} ?>" href="<?php echo base_url('myjobs/update_status/'.$r->id) ?>" class="btn btn-primary"><i class="fa"></i>  <?php echo !empty($job_details->job_status) ? "" :"Complete"; ?></a>
-                                     
+<!--                                                                        <a style="display:<?php if ($r->job_status == 0) { echo ""; }else { echo "none";} ?>" href="<?php echo base_url('myjobs/update_status/'.$r->id) ?>" class="btn btn-primary"><i class="fa"></i>  <?php echo !empty($job_details->job_status) ? "" :"Complete"; ?></a>
+                                     -->
                                                                         
                                                                     </td>
                                                             </tr><?php } } else { 
