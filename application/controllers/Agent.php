@@ -158,6 +158,15 @@ theme('edit_agent', $data);
 
 		foreach($query->result() as $r){
 			$activeStatus = $r->active;
+                        $olStatus = $r->online_status;
+                        if($olStatus == 1)
+                        {
+                            $statusOlBtn = '<small class="label label-success"> Online </small>';
+                        }
+                        else
+                        {
+                            $statusOlBtn = '<small class="label label-default"> Offline </small>';
+                        }
 			//Status Button
 			switch($activeStatus){
 				case 0:
@@ -194,7 +203,7 @@ theme('edit_agent', $data);
 				$r->mobile_no_1,
 			$r->profession,
 					
-                            $statusBtn,
+                            $statusOlBtn,
 				$button
 			);
 		}
