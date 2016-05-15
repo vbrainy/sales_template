@@ -134,7 +134,7 @@
                                 <span class="text-red">*</span>
                             </label>
                             <div class="col-md-8">
-                                <input type="text" name="postcode" class="form-control" value="<?php echo set_value('postcode'); ?>" placeholder="Enter Postcode">
+                                <input type="text" name="postcode" id="postcode" class="form-control" value="<?php echo set_value('postcode'); ?>" placeholder="Enter Postcode">
                                 <?php echo form_error('postcode') ?>
                             </div>
                         </div>
@@ -485,8 +485,25 @@
     <script src="<?php echo base_url('assets/admin'); ?>/js/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js" type="text/javascript"></script>
     <script type="text/javascript">
         $(function() {
-  	function initialize() {
-	var myLatlng = new google.maps.LatLng(41.015137,28.979530);
+        var address = "SW1A 2AA";    
+        changeMap(address);
+  	$('#postcode').on("change", function(){
+            //console.log("jjj");
+            var address = $('#postcode').val();
+            //console.log(address);
+            changeMap(address);
+            });
+  });
+  
+  
+  var changeMap = function(address){
+      var lat, lng;
+            $.get("http://maps.googleapis.com/maps/api/geocode/json?address=" + address + "&sensor=true", function( data ) {
+              lat = data.results[0].geometry.location.lat;
+              lng = data.results[0].geometry.location.lng;
+                $('#lat').val(lat);		
+		$('#lng').val(lng);
+	var myLatlng = new google.maps.LatLng(lat, lng);
 	var myOptions = {
 	  zoom: 10, 
 	  center: myLatlng,
@@ -497,7 +514,7 @@
 	map.addListener('click',function(event) {
 		addMarker(event.latLng, 'Click Generated Marker', map);
 	});
-	}
+	});
 	function addMarker(latlng,title,map) {
 	var marker = new google.maps.Marker({
 			position: latlng,
@@ -516,12 +533,9 @@
 		var y=event.latLng.lng();
 		$("#results").append($('<div>').text(event.latLng.toUrlValue()).data('latlng',event.latLng).click(function(){marker.setPosition($(this).data('latlng'));}));
 	});
-	};	
-		
-	initialize();
-  
-  });
-  
+    }
+      
+  }
         
         $(function() {
             $(".textareaWysih").wysihtml5();
