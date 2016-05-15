@@ -21,6 +21,16 @@ class Tasks extends CI_Controller {
                 //$this->load->view('task_index', $data);
 	}
         
+        public function task_archived()
+	{
+
+            $data['title'] = "Archived Task list";
+            //restricted this area, only for admin
+            permittedArea();
+
+            theme('task_archived', $data);
+	}
+        
         /**
 	 * Add agent script
 	 */
@@ -167,13 +177,16 @@ class Tasks extends CI_Controller {
 						<i class="fa fa-eye"></i> </a>';
 			$button .= '&nbsp; <a class="btn btn-info editBtn"  href="'.base_url('tasks/edit/'. $r->id).'" data-toggle="tooltip" title="Edit">
 						<i class="fa fa-edit"></i> </a>';
-			$button .= "&nbsp;". $blockUnblockBtn;
+                        if(isset($blockUnblockBtn))
+                        {
+                            $button .= "&nbsp;". $blockUnblockBtn;
+                        }
 			$button .= '&nbsp;  <a class="btn btn-danger deleteBtn" id="'.$r->id.'" data-toggle="tooltip" title="Delete">
 						<i class="fa fa-trash"></i> </a>';
-                         $button .= '&nbsp; <a class="btn btn-info editBtn"  href="'.base_url('tasks/copytask/'. $r->id).'" data-toggle="tooltip" title="copy task">
+                        $button .= '&nbsp; <a class="btn btn-info editBtn"  href="'.base_url('tasks/copytask/'. $r->id).'" data-toggle="tooltip" title="copy task">
 						<i class="fa fa-copy"></i></a>';
-                          $button .= '&nbsp; <a class="btn btn-danger editBtn"  href="#" data-toggle="tooltip" title="Archive task">
-						<i class="fa fa-archive"></i></a>';
+                        $button .= '&nbsp; <button class="btn btn-warning blockUnblock" id="'.$r->id.'" data-toggle="tooltip" title="Archieve" value="2">
+						<i class="fa fa-archive"></i> </button>';
 		        
                         $addjobbutton = '<a class="btn btn-primary editBtn" href="'.base_url('jobs/add_job/'. $r->id).'" data-toggle="tooltip" title="Add Job">
 						<i class="fa fa-plus"></i>&nbsp;Add Job </a>';
@@ -192,6 +205,85 @@ class Tasks extends CI_Controller {
 //				$statusBtn,
 //				$r->referral_code,
 				$button
+			);
+		}
+
+		echo json_encode($data);
+
+	}
+        
+        
+        public function tasksArchivedListJson(){
+		$limit = $this->input->get('length');
+		$start = $this->input->get('start');
+
+                $dateFilter=[];
+                if($this->input->get('dateFilter'))
+                {
+                    $dateFilter = explode(' ', $this->input->get('dateFilter'));
+                }
+                $status = $this->input->get('status');
+                
+                
+                //print_r($dateFilter);exit;
+		$queryCount = $this->task_model->tasksArchivedListCount();
+		$query = $this->task_model->tasksArchivedList($limit, $start, $dateFilter, $status);
+                
+		$draw = $this->input->get('draw');
+
+		$data = [];
+		$data['draw'] = $draw;
+		$data['recordsTotal'] = $queryCount;
+		$data['recordsFiltered'] = $queryCount;
+                
+		foreach($query->result() as $r){
+                    if($r->status == 2)
+                    {
+                        $statusBtn = '<small class="label label-default"> Archived </small>';
+                    }
+                 //   print_R($r);exit;
+/*			$activeStatus = $r->status;
+			//Status Button
+			switch($activeStatus){
+				case 0:
+					$statusBtn = '<small class="label label-default"> In Active </small>';
+					$blockUnblockBtn = '<button class="btn btn-success blockUnblock" id="'.$r->id.'" data-toggle="tooltip" title="Unblock" value="1">
+						<i class="fa fa-unlock-alt"></i> </button>';
+					break;
+				case 1 :
+					$statusBtn = '<small class="label label-success"> Active </small>';
+					$blockUnblockBtn = '<button class="btn btn-warning blockUnblock" id="'.$r->id.'" data-toggle="tooltip" title="Block" value="0">
+						<i class="fa fa-lock"></i> </button>';
+					break;
+			}
+
+			//Action Button
+			$button = '';
+                        $addjobbutton = '';
+			$button .= '<a class="btn btn-primary editBtn" href="'.base_url('jobs/index/'. $r->id).'" data-toggle="tooltip" title="View">
+						<i class="fa fa-eye"></i> </a>';
+			$button .= '&nbsp; <a class="btn btn-info editBtn"  href="'.base_url('tasks/edit/'. $r->id).'" data-toggle="tooltip" title="Edit">
+						<i class="fa fa-edit"></i> </a>';
+                        if(isset($blockUnblockBtn))
+                        {
+                            $button .= "&nbsp;". $blockUnblockBtn;
+                        }
+			$button .= '&nbsp;  <a class="btn btn-danger deleteBtn" id="'.$r->id.'" data-toggle="tooltip" title="Delete">
+						<i class="fa fa-trash"></i> </a>';
+                        $button .= '&nbsp; <a class="btn btn-info editBtn"  href="'.base_url('tasks/copytask/'. $r->id).'" data-toggle="tooltip" title="copy task">
+						<i class="fa fa-copy"></i></a>';
+                        $button .= '&nbsp; <button class="btn btn-warning blockUnblock" id="'.$r->id.'" data-toggle="tooltip" title="Archieve" value="2">
+						<i class="fa fa-archive"></i> </button>';
+		        
+                        $addjobbutton = '<a class="btn btn-primary editBtn" href="'.base_url('jobs/add_job/'. $r->id).'" data-toggle="tooltip" title="Add Job">
+						<i class="fa fa-plus"></i>&nbsp;Add Job </a>';*/
+			$data['data'][] = array(
+				$r->title,
+				getTaskClearName($r->unique_name),
+				$r->first_name.' '.$r->last_name,
+				$r->agent_area,
+                                $statusBtn
+                                
 			);
 		}
 

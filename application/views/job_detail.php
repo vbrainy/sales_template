@@ -129,16 +129,32 @@
 
 
                     </table>
-
+                     <?php if (empty($job_details->job_status)) { ?>
+                     <?php echo form_open_multipart('myjobs/update_status/'. $job_details->id, ['role' => 'form', 'class' => 'form-horizontal']); ?>
+                            <div class="form-group <?php if(form_error('shop_signature_complete')) echo 'has-error'; ?>">
+                            <label for="shop_signature_complete" class="col-md-2">Upload Signature
+                                <span class="text-red"></span>
+                            </label>
+                            <div class="col-md-8">
+                                <?php //echo form_upload('shop_nameplate'); ?>
+                                
+                                <input type="file" id="inputFile" name="shop_signature_complete"  />
+                                
+                                <div id="image_preview_div" style="display: none;">
+                                    <img height="200px;" width="200px;" id="image_upload_preview" /><a style="position: absolute;" href="javascript: void(0)" onclick="removeImage();"><i class="fa fa-remove"></i></a>
+                                </div>
+                                <?php echo form_error('shop_signature_complete') ?>
+                            </div>
+                        </div>
 
                 </div><!-- /.box-body -->
-                <?php if (empty($job_details->job_status)) { ?>
-                    <div class="box-footer">
-
-                        <a href="<?php echo base_url('myjobs/update_status/' . $job_details->id) ?>" class="btn btn-primary"><i class="fa fa-edit"></i>  <?php echo!empty($job_details->job_status) ? "" : "Complete"; ?></a>
-
-
-                    </div>
+               
+                  
+                 <button type="submit" name="submit" value="job_compelete" class="btn btn-primary">
+                            <i class="fa fa-edit"></i> Complete Job
+                        </button>
+                
+                 </form>
 <?php }
 ?>
 
@@ -190,6 +206,10 @@ function page_js() { ?>
             initialize();
 
         });
+        
+        
+        
+  
 
 
 

@@ -20,7 +20,7 @@ public function add_task(){
             'agent_area' => $this->input->post('city'),
             'unique_name' =>    $this->taskUniqueName(),
             'created_at'        => time(),
-            //'modified_at'       => time()
+            'status'       =>0
         ];
 
        $query = $this->db->insert('tasks', $data);
@@ -102,14 +102,32 @@ public function add_task(){
         $query = $this->db->count_all_results('tasks');
         return $query;
     }
+    
+    public function tasksArchivedListCount(){
+        $query = $this->db->where('status!=2')->count_all_results('tasks');
+        return $query;
+    }
+    
+    
+
+    public function tasksArchivedList($limit = 0, $start = 0, $dateFilter, $status){
+        $where = "status=2";
+        $query   = $this->db->where($where)->order_by('tasks.id', 'desc')->limit($limit, $start)->select('tasks.*, users.first_name, users.last_name, users.city')->join('users', 'tasks.assign_to = users.id', 'left')->get_where('tasks');
+        return $query;
+    }
+    
 
     public function tasksList($limit = 0, $start = 0, $dateFilter, $status){
-        $where="";
+        $where = "status!=2";
+
         if(is_array($dateFilter) && isset($dateFilter[0]) && isset($dateFilter[2]))
         {
+            if(!empty($where))
+            {
+                $where .= " AND ";
+            }
             $where .= "FROM_UNIXTIME(tasks.created_at, '%Y-%m-%d') BETWEEN "."'".$dateFilter[0] ."'"." AND ". "'".$dateFilter[2]."'";
         }
-        
         if($status == 0)
         {
             if(!empty($where))
@@ -118,6 +136,7 @@ public function add_task(){
             }
             $where .= "status=".$status;
         }
+
         if(empty($where))
         {
             $query   = $this->db->order_by('tasks.id', 'desc')->limit($limit, $start)->select('tasks.*, users.first_name, users.last_name, users.city')->join('users', 'tasks.assign_to = users.id', 'left')->get_where('tasks');

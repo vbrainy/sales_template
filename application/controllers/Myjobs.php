@@ -39,17 +39,44 @@ class Myjobs extends CI_Controller {
 		//restricted this area, only for admin
              
             if(!empty($jobid)){
-               $this->job_model->updatestatus($jobid);
+                
+                
+                
+       
+                            $config['upload_path'] = './uploads/'; 
+                            $config['file_name'] = $_FILES['shop_shop_signature_completenameplate']['name'];
+                            $config['overwrite'] = TRUE;
+                            $config["allowed_types"] = 'jpg|jpeg|png|gif';
+                            $config["max_size"] = 93234565;
+                            $config["max_width"] = 200000;
+                            $config["max_height"] = 10000;
+                            $this->load->library('upload', $config);
+      
+                          
+                            if(!$this->upload->do_upload('shop_signature_complete')) {               
+                                $this->data['error'] = $this->upload->display_errors();
+                                
+                            } else {
+                $upload_data = $this->upload->data(); //all uploaded data store in variable
+                $photoName = $upload_data['raw_name'] . '_thumb' . $upload_data['file_ext'];
+                $fullPhoto =  $config['upload_path'] . $upload_data['file_name'];
+                
+                 $this->job_model->updatestatus($jobid);
                  $jobs =  singleDbTableRow($jobid,'jobs');
                 $jobCount = $this->job_model->checkTaskstatus($jobs->task_id);
                
                 
            	$this->session->set_flashdata('successMsg', 'Status updated successfully');
 		redirect($_SERVER['HTTP_REFERER']);
-            }
-	
-	}
+                            //exit;
+                            }
+                
+                
+                
+                
         
+	}
+        }
     
         /**
 	 * Agent list from db
