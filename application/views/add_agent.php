@@ -187,13 +187,13 @@
                         </div>
                        
                            <div class="form-group <?php if(form_error('skill')) echo 'has-error'; ?>">
-                            <label for="exampleInputEmail1" class="col-md-2">Skill
+                            <label for="exampleInputEmail1" class="col-md-2">Skills
                                 <span class="text-red">*</span>
                             </label>
                             <div class="col-md-8">
                                 <input type="text" name="skill" class="form-control" value="<?php echo set_value('skill'); ?>" placeholder="Enter skill">
+                                Multiple can be added Comma (,) separated
                                 <?php echo form_error('skill') ?>
-
                             </div>
                         </div>
 

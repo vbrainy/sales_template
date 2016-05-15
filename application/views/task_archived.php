@@ -20,39 +20,19 @@
 
                 <div class="box-header">
                     <span class="box-title">
-                        <a class="btn btn-info editBtn" style="color: #fff;" title="Add Task" data-toggle="tooltip" href="<?php echo base_url(); ?>tasks/add_task">
+<!--                        <a class="btn btn-info editBtn" style="color: #fff;" title="Add Task" data-toggle="tooltip" href="<?php echo base_url(); ?>tasks/add_task">
 
 <i class="fa fa-plus"></i> Add Task</a>
                         <a class="btn btn-success" id="activeTask" style="color: #fff;" title="Active Task" data-toggle="tooltip" href="javascript: void(0);">
 
 <i class="fa"></i> Active Task</a>
-<!--<a class="btn btn-success" id="archiveTask" style="color: #fff;" title="Archive Task" data-toggle="tooltip" href="javascript: void(0);">
+<a class="btn btn-success" id="archiveTask" style="color: #fff;" title="Archive Task" data-toggle="tooltip" href="javascript: void(0);">
 
-<i class="fa"></i> Archive Tasks</a>-->
-                        <button type="button" id="refreshButton" class="btn btn-primary">All Tasks</button>
+<i class="fa"></i> Archive Tasks</a>
+                        <button type="button" id="refreshButton" class="btn btn-primary">All Tasks</button>-->
 
                     </span>
-                    <div class="col-md-6" style="padding-top: 10px;">
-
-
-
-                        <div class="form-inline">
-
-<!--                            <fprm action="<?php echo base_url() ?>/tasks/index" method="post">-->
-                            <div class="form-group">
-                                <label class="sr-only" for="exampleInputAmount">Amount (in dollars)</label>
-                                <div class="input-group">
-                                    <div class="input-group-addon">
-                                        <i class="fa fa-calendar"></i>
-                                    </div>
-                                    <input type="text" class="form-control" id="reservation" name="searchByNameInput" placeholder="Search within date range">
-                                </div>
-                            </div>
-                            <button type="submit" id="searchByDateBtn" class="btn btn-primary">Search</button>
-                            
-<!--                            </form>-->
-                        </div>
-                    </div>
+                    
                 </div><!-- /.box-header -->
 
                 <div class="box-body">
@@ -60,19 +40,11 @@
 
                         <thead>
                         <tr>
-                            <th width="10%">Task Title</th>
-                            <th width="10%">Task ID</th>
-
-                            <th width="10%">Agent Name</th>
-                            <th width="10%">Agent Area</th>
-                            <th width="10%">Created Date</th>
-                            <th>Status</th>
-                            <th width="10%">Add Job</th>
-                            
-
-<!--                            <th>Created at</th>
-                            <th>Modified at</th>-->
-                            <th width="30%">Action</th>
+                            <th width="20%">Task Title</th>
+                            <th width="20%">Task ID</th>
+                            <th width="20%">Agent Name</th>
+                            <th width="20%">Agent Area</th>
+                            <th width="20%">Status</th>
                         </tr>
                         </thead>
 
@@ -80,17 +52,9 @@
                         <tr>
                             <th>Task Title</th>
                             <th>Task ID</th>
-
-<th>Agent Name</th>
+                            <th>Agent Name</th>
                             <th>Agent Area</th>
-                            <th>Created Date</th>
                             <th>Status</th>
-                            <th>Add Job</th>
-
-<!--                            <th>Created at</th>
-                            <th>Modified at</th>-->
-
-                            <th>Action</th>
                         </tr>
                         </tfoot>
 
@@ -140,11 +104,7 @@
                 "searching": true,
                 "destroy": true,
                 "ajax": {
-                    "url" : "<?php echo base_url('tasks/tasksListJson'); ?>",
-                    "data": function ( d ) {
-                        d.dateFilter = dateFilter,
-                        d.status = status
-                    }
+                    "url" : "<?php echo base_url('tasks/tasksArchivedListJson'); ?>",
                 },
                 "language": {
                     "zeroRecords": "No Records Found",
@@ -230,7 +190,6 @@
             $('#reservationtime').daterangepicker({timePicker: true, timePickerIncrement: 30, format: 'MM/DD/YYYY h:mm A'});
         });
     </script>
-
 
 <?php } ?>
 

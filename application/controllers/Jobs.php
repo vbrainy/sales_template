@@ -57,26 +57,26 @@ class Jobs extends CI_Controller {
                         $this->form_validation->set_rules('city', 'City', 'required|trim');
                         $this->form_validation->set_rules('postcode', 'Postcode', 'required|trim');
                         $this->form_validation->set_rules('mobile', 'Mobile', 'required|trim');
-                        $this->form_validation->set_rules('desc1', 'Description 1', 'required|trim');
-                        $this->form_validation->set_rules('price1', 'Price 1', 'required|numeric|trim');
-                        $this->form_validation->set_rules('desc2', 'Description 2', 'required|trim');
-                        $this->form_validation->set_rules('price2', 'Price 2', 'required|numeric|trim');
-                        $this->form_validation->set_rules('desc3', 'Description 3', 'required|trim');
-                        $this->form_validation->set_rules('price3', 'Price 3', 'required|numeric|trim');
-                        $this->form_validation->set_rules('desc4', 'Description 4', 'required|trim');
-                        $this->form_validation->set_rules('price4', 'Price 4', 'required|numeric|trim');
-                        $this->form_validation->set_rules('desc5', 'Description 5', 'required|trim');
-                        $this->form_validation->set_rules('price5', 'Price 5', 'required|numeric|trim');
-                        $this->form_validation->set_rules('desc6', 'Description 6', 'required|trim');
-                        $this->form_validation->set_rules('price6', 'Price 6', 'required|numeric|trim');
-                        $this->form_validation->set_rules('desc7', 'Description 7', 'required|trim');
-                        $this->form_validation->set_rules('price7', 'Price 7', 'required|numeric|trim');
-                        $this->form_validation->set_rules('desc8', 'Description 8', 'required|trim');
-                        $this->form_validation->set_rules('price8', 'Price 8', 'required|numeric|trim');
-                        $this->form_validation->set_rules('desc9', 'Description 9', 'required|trim');
-                        $this->form_validation->set_rules('price9', 'Price 9', 'required|numeric|trim');
-                        $this->form_validation->set_rules('desc10', 'Description 10', 'required|trim');
-                        $this->form_validation->set_rules('price10', 'Price 10', 'required|numeric|trim');
+//                        $this->form_validation->set_rules('desc1', 'Description 1', 'required|trim');
+//                        $this->form_validation->set_rules('price1', 'Price 1', 'required|numeric|trim');
+//                        $this->form_validation->set_rules('desc2', 'Description 2', 'required|trim');
+//                        $this->form_validation->set_rules('price2', 'Price 2', 'required|numeric|trim');
+//                        $this->form_validation->set_rules('desc3', 'Description 3', 'required|trim');
+//                        $this->form_validation->set_rules('price3', 'Price 3', 'required|numeric|trim');
+//                        $this->form_validation->set_rules('desc4', 'Description 4', 'required|trim');
+//                        $this->form_validation->set_rules('price4', 'Price 4', 'required|numeric|trim');
+//                        $this->form_validation->set_rules('desc5', 'Description 5', 'required|trim');
+//                        $this->form_validation->set_rules('price5', 'Price 5', 'required|numeric|trim');
+//                        $this->form_validation->set_rules('desc6', 'Description 6', 'required|trim');
+//                        $this->form_validation->set_rules('price6', 'Price 6', 'required|numeric|trim');
+//                        $this->form_validation->set_rules('desc7', 'Description 7', 'required|trim');
+//                        $this->form_validation->set_rules('price7', 'Price 7', 'required|numeric|trim');
+//                        $this->form_validation->set_rules('desc8', 'Description 8', 'required|trim');
+//                        $this->form_validation->set_rules('price8', 'Price 8', 'required|numeric|trim');
+//                        $this->form_validation->set_rules('desc9', 'Description 9', 'required|trim');
+//                        $this->form_validation->set_rules('price9', 'Price 9', 'required|numeric|trim');
+//                        $this->form_validation->set_rules('desc10', 'Description 10', 'required|trim');
+//                        $this->form_validation->set_rules('price10', 'Price 10', 'required|numeric|trim');
                         
                         
                         
@@ -161,7 +161,7 @@ class Jobs extends CI_Controller {
                         $this->form_validation->set_rules('city', 'City', 'required|trim');
                         $this->form_validation->set_rules('postcode', 'Postcode', 'required|trim');
                         $this->form_validation->set_rules('mobile', 'Mobile', 'required|trim');
-                        $this->form_validation->set_rules('desc1', 'Description 1', 'required|trim');
+                        /*$this->form_validation->set_rules('desc1', 'Description 1', 'required|trim');
                         $this->form_validation->set_rules('price1', 'Price 1', 'required|numeric|trim');
                         $this->form_validation->set_rules('desc2', 'Description 2', 'required|trim');
                         $this->form_validation->set_rules('price2', 'Price 2', 'required|numeric|trim');
@@ -181,7 +181,7 @@ class Jobs extends CI_Controller {
                         $this->form_validation->set_rules('price9', 'Price 9', 'required|numeric|trim');
                         $this->form_validation->set_rules('desc10', 'Description 10', 'required|trim');
                         $this->form_validation->set_rules('price10', 'Price 10', 'required|numeric|trim');
-                        
+                        */
                         
 			if($this->form_validation->run() == true)
 			{
@@ -210,7 +210,8 @@ class Jobs extends CI_Controller {
 				if($update)
 				{
 					$this->session->set_flashdata('successMsg', 'Job Updated Success');
-						redirect($_SERVER['HTTP_REFERER']);
+						//redirect($_SERVER['HTTP_REFERER']);
+                                        redirect(base_url('jobs/index/'.$taskId));
 				}
 
 			}
@@ -309,13 +310,12 @@ class Jobs extends CI_Controller {
 	 * View Job Details
 	 */
 
-	public function job_view($id){
+	public function job_view($taskId, $jobId){
 		//restricted this area, only for admin
 		permittedArea();
-
-
-		$data['job'] = singleDbTableRow($id, 'jobs');
                 
+		$data['job'] = singleDbTableRow($jobId, 'jobs');
+                //print_R($data['job']);exit
 		theme('job_view', $data);
 	}
         
