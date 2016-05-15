@@ -73,7 +73,7 @@
                         <div class="form-group">
                             <label class="col-md-2">Agent
                             </label>
-                            <label class="col-md-6"><?php echo $agent->first_name . ' '.$agent->last_name;?>
+                            <label class="col-md-8"><?php echo $agent->first_name . ' '.$agent->last_name;?>
                             </label>
                         </div>
                         
@@ -116,7 +116,7 @@
                             <label for="job_at_shop" class="col-md-2">Job at shop
                                 <span class="text-red">*</span>
                             </label>
-                            <div class="col-md-6">
+                            <div class="col-md-8">
                                 <input type="text" name="job_at_shop" class="form-control" value="<?php echo $job_details['job_at_shop']; ?>" placeholder="Enter Job at shop">
                                 <?php echo form_error('job_at_shop') ?>
                             </div>
@@ -126,7 +126,7 @@
                             <label for="job_add1" class="col-md-2">Job Address 1
                                 <span class="text-red">*</span>
                             </label>
-                            <div class="col-md-6">
+                            <div class="col-md-8">
                                 <input type="text" name="job_add1" class="form-control" value="<?php echo $job_details['job_add1']; ?>" placeholder="Enter Job Address 1">
                                 <?php echo form_error('job_add1') ?>
                             </div>
@@ -135,7 +135,7 @@
                             <label for="job_add2" class="col-md-2">Job Address 2
                                 <span class="text-red">*</span>
                             </label>
-                            <div class="col-md-6">
+                            <div class="col-md-8">
                                 <input type="text" name="job_add2" class="form-control" value="<?php echo $job_details['job_add2']; ?>" placeholder="Enter Job Address 2">
                                 <?php echo form_error('job_add2') ?>
                             </div>
@@ -145,7 +145,7 @@
                             <label for="city" class="col-md-2">City
                                 <span class="text-red">*</span>
                             </label>
-                            <div class="col-md-6">
+                            <div class="col-md-8">
                                 <input type="text" name="city" class="form-control" value="<?php echo $job_details['city']; ?>" placeholder="Enter City">
                                 <?php echo form_error('city') ?>
                             </div>
@@ -154,8 +154,8 @@
                             <label for="postcode" class="col-md-2">Postcode
                                 <span class="text-red">*</span>
                             </label>
-                            <div class="col-md-6">
-                                <input type="text" name="postcode" class="form-control" value="<?php echo $job_details['postcode']; ?>" placeholder="Enter Postcode">
+                            <div class="col-md-8">
+                                <input type="text" name="postcode" id="postcode" class="form-control" value="<?php echo $job_details['postcode']; ?>" placeholder="Enter Postcode">
                                 <?php echo form_error('postcode') ?>
                             </div>
                         </div>
@@ -163,7 +163,7 @@
                             <label for="mobile" class="col-md-2">Mobile
                                 <span class="text-red">*</span>
                             </label>
-                            <div class="col-md-6">
+                            <div class="col-md-8">
                                 <input type="text" name="mobile" class="form-control" value="<?php echo $job_details['phone']; ?>" placeholder="Enter Mobile">
                                 <?php echo form_error('mobile') ?>
                             </div>
@@ -174,7 +174,7 @@
                             <label for="shop_map" class="col-md-2">Shop Map
                                 <span class="text-red">*</span>
                             </label>
-                            <div class="col-md-6">
+                            <div class="col-md-8">
                                 <div id="map-canvas" style="width:530px;height:380px;"></div>
                             </div>
                         </div>
@@ -183,7 +183,7 @@
                             <label for="Latitude" class="col-md-2">Latitude
                                 <span class="text-red">*</span>
                             </label>
-                            <div class="col-md-6">
+                            <div class="col-md-8">
                                 <?php $geo_lodation =explode(",", $job_details['geo_location']);
                            
                                 ?>
@@ -197,7 +197,7 @@
                             <label for="Longitude" class="col-md-2">Longitude
                                 <span class="text-red">*</span>
                             </label>
-                            <div class="col-md-6">
+                            <div class="col-md-8">
                                 <input type="text" id="lng" name="longitude" class="form-control" value="<?php echo $geo_lodation[1]   ?>" />
                             <?php echo form_error('longitude') ?>
                             </div>
@@ -219,7 +219,7 @@
                             <label for="total_price" class="col-md-2">Total Price
                                 <span class="text-red">*</span>
                             </label>
-                            <div class="col-md-6">
+                            <div class="col-md-8">
                                 <input type="text" name="total_price" id="total_price" class="form-control" value="<?php echo $job_details['total_price']; ?>" readonly>
                                 <?php echo form_error('total_price') ?>
                             </div>
@@ -320,9 +320,28 @@
     <!-- Bootstrap WYSIHTML5 -->
     <script src="<?php echo base_url('assets/admin'); ?>/js/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js" type="text/javascript"></script>
     <script type="text/javascript">
-        $(function() {
-  	function initialize() {
-	var myLatlng = new google.maps.LatLng(41.015137,28.979530);
+        
+$(function() {
+        var address = $('#postcode').val();    
+        //console.log($('#postcode').val());
+        changeMap(address);
+  	$('#postcode').on("change", function(){
+            //console.log("jjj");
+            var address = $('#postcode').val();
+            //console.log(address);
+            changeMap(address);
+            });
+  });
+  
+  
+  var changeMap = function(address){
+      var lat, lng;
+            $.get("http://maps.googleapis.com/maps/api/geocode/json?address=" + address + "&sensor=true", function( data ) {
+              lat = data.results[0].geometry.location.lat;
+              lng = data.results[0].geometry.location.lng;
+                $('#lat').val(lat);		
+		$('#lng').val(lng);
+	var myLatlng = new google.maps.LatLng(lat, lng);
 	var myOptions = {
 	  zoom: 10, 
 	  center: myLatlng,
@@ -333,7 +352,7 @@
 	map.addListener('click',function(event) {
 		addMarker(event.latLng, 'Click Generated Marker', map);
 	});
-	}
+	});
 	function addMarker(latlng,title,map) {
 	var marker = new google.maps.Marker({
 			position: latlng,
@@ -352,12 +371,9 @@
 		var y=event.latLng.lng();
 		$("#results").append($('<div>').text(event.latLng.toUrlValue()).data('latlng',event.latLng).click(function(){marker.setPosition($(this).data('latlng'));}));
 	});
-	};	
-		
-	initialize();
-  
-  });
-  
+    }
+      
+  }
         
         $(function() {
             $(".textareaWysih").wysihtml5();
