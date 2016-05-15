@@ -62,12 +62,26 @@ $currentUser = $currentAuthDta['role'];
                 </a>
             </li>
             
-            <li>
+            <li class="treeview <?php echo menu_li_active('task'); ?>">
+                <a href="#">
+                    <i class="fa fa-tasks"></i>
+                    <span>Tasks</span>
+                    <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                    <?php //echo menu_link('user', 'All user'); ?>
+                    <?php echo menu_link('tasks/index', 'Tasks'); ?>
+                    <?php echo menu_link('tasks/task_archived', 'Archived Tasks'); ?>
+                </ul>
+            </li>
+            
+            
+<!--            <li>
                 <a href="<?php echo base_url("tasks"); ?>">
                     <i class="fa fa-tasks"></i>
                     <span>Task</span>
                 </a>
-            </li>
+            </li>-->
 
             <li class="treeview <?php echo menu_li_active('user'); ?>">
                 <a href="#">

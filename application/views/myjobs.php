@@ -22,8 +22,6 @@ function page_css() { ?>
                 <div class="box-body">
 
 
-
-
                     <div class="row">
                         <div class="col-md-2"></div>
                         <div class="col-md-8">
@@ -58,9 +56,14 @@ function page_css() { ?>
                                                 }
                                                 ?>
                                                 <div id="collapse<?php echo $i; ?>" class="panel-collapse collapse <?php echo $in; ?>">
-                                                   <?php $query = $this->job_model->jobsList("","", $value->id); ?>
+                                                   <?php $query = $this->job_model->jobsList("","", $value->id);
+                                                   ?>
                                                     <div class="box-body">
                                                         <table id="" class="table table-bordered table-striped table-hover">
+                                                            <?php
+                                                            
+                                                            if(!empty($query->result())){
+                                                                ?>
                                                             <thead>
                                                                 <tr>
                                                                     <th>Job Name</th>
@@ -70,15 +73,7 @@ function page_css() { ?>
                                                                 </tr>
                                                             </thead>
                                                             <?php
-                                                            
-                                                            if(!empty($query)){
                                                                 
-                                                            
-                                                                
-                                                                
-                                                            
-                                                            
-                                                            
                                                             foreach($query->result() as $r){ ?>
                                                                <tr>
                                                                     <td><?php echo $r->unique_name; ?></td>
