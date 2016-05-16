@@ -1,18 +1,43 @@
 <?php include('header.php');
+
 ?>
-<input type="" value="<?php echo $job_details->geo_location; ?>" id="geolocation">
+<input type="hidden" value="<?php echo $job_details->geo_location; ?>" id="geolocation">
 <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
 <!-- Main content -->
 <section class="content">
     <div class="row">
         <!-- left column -->
         <div class="col-md-12">
+            
+          
+            
             <!-- general form elements -->
             <div class="box box-primary">
                 <div class="box-header">
                     <h3 class="box-title">
-                        <?php echo $c_user->first_name . ' ' . $c_user->last_name; ?>
+                        Task Title: <?php echo $tasks->title; ?>
                     </h3>
+                   
+           
+           
+                </div><!-- /.box-header -->
+                <div class="box-header">
+                   
+                    <h3 class="box-title">
+                         Task ID: <?php echo $tasks->unique_name; ?>
+                        </h3>  
+                     
+           
+           
+                </div><!-- /.box-header -->
+                <div class="box-header">
+                   
+                    <h3 class="box-title">
+                         Job ID: <?php echo $job_details->unique_name; ?>
+                        </h3>  
+                     
+           
+           
                 </div><!-- /.box-header -->
                 <div class="box-body">
                     <div class="form-group">
@@ -32,7 +57,7 @@
                
                         <tr>
                             <th>Job unique name:</th>
-                            <th><?php echo $job_details->unique_name; ?></th>
+                            <th><?php echo ; ?></th>
                         </tr>
                         <tr>
                             <td>Job at shop:</td>

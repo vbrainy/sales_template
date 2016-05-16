@@ -38,9 +38,12 @@ function page_css() { ?>
                                                 <div class="box-header">
                                                     <h4 class="box-title">
                                                         <a data-toggle="collapse" data-parent="#accordion" href="#collapse<?php echo $i; ?>">
-                                                            <?php echo $value->unique_name; ?>
+                                                          Task :  <?php echo $value->unique_name; ?>
                                                         </a>
                                                          
+                                                    </h4>
+                                                    <h4 class="box-title">
+                                                          <strong>No of Jobs : </strong>5  
                                                     </h4>
                                                       <h4 class="box-title">
                                                           <strong>Task status : </strong><?php if ($value->status == 1) { echo "Complete"; }else { echo "In Progress";} ?>  
@@ -76,15 +79,17 @@ function page_css() { ?>
                                                                 
                                                             foreach($query->result() as $r){ ?>
                                                                <tr>
-                                                                    <td><?php echo $r->unique_name; ?></td>
+                                                                    <td>Task : <?php echo $r->unique_name; ?></td>
                                                                     <td><?php echo $r->city; ?></td>
                                                                     <td><?php  if($r->job_status == 1){ echo "Complete" ;}else { echo "Pending";} ?></td>
                                                                     <td>
                                                                         <a target="_blank" class="btn btn-primary editBtn" href="<?php echo base_url('myjobs/job_detail/'. $r->id) ?>" data-toggle="tooltip" title="View">
 						<i class="fa fa-eye"></i> </a>
-<!--                                                                        <a style="display:<?php if ($r->job_status == 0) { echo ""; }else { echo "none";} ?>" href="<?php echo base_url('myjobs/update_status/'.$r->id) ?>" class="btn btn-primary"><i class="fa"></i>  <?php echo !empty($job_details->job_status) ? "" :"Complete"; ?></a>
-                                     -->
-                                                                        
+                                                 <a target="_blank" class="btn btn-primary editBtn" href="<?php echo base_url('myjobs/job_detail/'. $r->id) ?>" data-toggle="tooltip" title="Hold">
+						Hold</a>
+                                                 <a target="_blank" class="btn btn-primary editBtn" href="<?php echo base_url('myjobs/job_detail/'. $r->id) ?>" data-toggle="tooltip" title="Done">
+						Done </a>
+                       
                                                                     </td>
                                                             </tr><?php } } else { 
                                                                 echo "No Jobs Found";
