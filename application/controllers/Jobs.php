@@ -23,7 +23,15 @@ class Jobs extends CI_Controller {
         /**
 	 * Add agent script
 	 */
-
+	public function pastjob($task_id)
+	{
+                $this->uri->segments[1] = "tasks";
+                $data['task_id'] = $task_id;
+                $data['task'] = singleDbTableRow($task_id,'tasks');		//restricted this area, only for admin
+		permittedArea();
+                
+		theme('jobs_index', $data);
+	}
 
 
 	public function add_job($taskId) {

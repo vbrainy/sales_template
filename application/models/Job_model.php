@@ -167,11 +167,18 @@ public function add_job(){
    public function updatestatus($jobid){
     
            $data = [
+             'shop_signature'=>  $_FILES['shop_shop_signature_completenameplate']['name'],  
             'job_status'         => 1,
             'modified_at'           => time()
         ];
 
+           
+           
+           
         $query = $this->db->where('id', $jobid)->update('jobs', $data);
+        
+        
+        
                 if($query)
         {
             create_activity('Updated '.$data['job_status'].' Jobs'); //create an activity
