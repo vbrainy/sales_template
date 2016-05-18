@@ -37,7 +37,7 @@ class Agent extends CI_Controller {
 
 
 
-   $this->form_validation->set_rules('agent_reg_no', 'Agent Reg No', 'required|trim');
+
 $this->form_validation->set_rules('county', 'County', 'required|trim');
 $this->form_validation->set_rules('nationality_origin', 'Nationality Origin', 'required|trim');
 $this->form_validation->set_rules('skill', 'Skill', 'required|trim');
@@ -52,7 +52,7 @@ $this->form_validation->set_rules('paypal_email', 'Paypal Email', 'required|vali
 			$this->form_validation->set_rules('passconf', 'Password Confirmation', 'required');
 			$this->form_validation->set_rules('gender', 'Gender', 'required');
 			$this->form_validation->set_rules('date_of_birth', 'Date of birth', 'required|trim');
-			$this->form_validation->set_rules('profession', 'Profession', 'required|trim');
+			
 			$this->form_validation->set_rules('agent_address1', 'Address 1', 'required|trim');
 			$this->form_validation->set_rules('country', 'Country', 'required');
                         $this->form_validation->set_rules('national_insurance_no', 'National Insurance No.', 'required|trim');
@@ -92,7 +92,7 @@ $this->form_validation->set_rules('paypal_email', 'Paypal Email', 'required|vali
 		{
 			if($this->input->post('submit') != 'add_agent') die('Error! sorry');
                         
-                        $this->form_validation->set_rules('agent_reg_no', 'Agent Reg No', 'required|trim');
+                       // $this->form_validation->set_rules('agent_reg_no', 'Agent Reg No', 'required|trim');
 $this->form_validation->set_rules('county', 'County', 'required|trim');
 $this->form_validation->set_rules('nationality_origin', 'Nationality Origin', 'required|trim');
 $this->form_validation->set_rules('skill', 'Skill', 'required|trim');
@@ -112,7 +112,7 @@ $this->form_validation->set_rules('paypal_email', 'Paypal Email', 'required|vali
 			$this->form_validation->set_rules('passconf', 'Password Confirmation');
 			$this->form_validation->set_rules('gender', 'Gender', 'required');
 			$this->form_validation->set_rules('date_of_birth', 'Date of birth', 'required|trim');
-			$this->form_validation->set_rules('profession', 'Profession', 'required|trim');
+			
 			$this->form_validation->set_rules('agent_address1', 'Address 1', 'required|trim');
 			$this->form_validation->set_rules('country', 'Country', 'required');
                         $this->form_validation->set_rules('national_insurance_no', 'National Insurance No.', 'required|trim');
