@@ -57,7 +57,7 @@ function page_css(){ ?>
 
                         
                         
-                        <div class="form-group <?php if(form_error('agent_reg_no')) echo 'has-error'; ?>">
+<!--                        <div class="form-group <?php if(form_error('agent_reg_no')) echo 'has-error'; ?>">
                             <label for="firstName" class="col-md-2">Agent Registration Number
                                 <span class="text-red">*</span>
                             </label>
@@ -65,7 +65,7 @@ function page_css(){ ?>
                                 <input type="text" name="agent_reg_no" class="form-control" value="<?php echo $agent->agent_reg_no; ?>" placeholder="Enter Agent Reg No">
                                 <?php echo form_error('agent_reg_no') ?>
                             </div>
-                        </div> 
+                        </div> -->
                         
                                 <div class="form-group <?php if(form_error('first_name')) echo 'has-error'; ?>">
                             <label for="firstName" class="col-md-2">First Name

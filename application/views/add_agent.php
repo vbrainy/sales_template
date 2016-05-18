@@ -47,7 +47,7 @@
                         
                         
                         
-                        
+<!--                        
                         <div class="form-group <?php if(form_error('agent_reg_no')) echo 'has-error'; ?>">
                             <label for="firstName" class="col-md-2">Agent Registration Number
                                 <span class="text-red">*</span>
@@ -56,7 +56,7 @@
                                 <input type="text" name="agent_reg_no" class="form-control" value="<?php echo set_value('agent_reg_no'); ?>" placeholder="Enter Agent Reg No">
                                 <?php echo form_error('agent_reg_no') ?>
                             </div>
-                        </div> 
+                        </div> -->
                         
                         
                      
@@ -122,10 +122,10 @@
                         </div>
                         
                           <div class="form-group <?php if(form_error('postal_code')) echo 'has-error'; ?>">
-                            <label for="firstName" class="col-md-2">Postal Code<span class="text-red">*</span></label>
+                            <label for="firstName" class="col-md-2">Post Code<span class="text-red">*</span></label>
                             <div class="col-md-8">
 
-                                <input type="text" name="postal_code" class="form-control" value="<?php echo set_value('postal_code'); ?>" placeholder="Postal Code">
+                                <input type="text" name="postal_code" class="form-control" value="<?php echo set_value('postal_code'); ?>" placeholder="Post Code">
                                 
                                 <?php echo form_error('postal_code') ?>
                             </div>
@@ -168,7 +168,7 @@
                                 <select name="gender" class="form-control">
                                     <option value=""> Select Gender </option>
                                     <option value="male" <?php echo set_select('gender', 'male') ?>>Male</option>
-                                    <option value="female" <?php echo set_select('gender', 'female') ?>>Fe-Male</option>
+                                    <option value="female" <?php echo set_select('gender', 'female') ?>>Female</option>
                                 </select>
                                 <?php echo form_error('gender') ?>
                             </div>
@@ -248,7 +248,7 @@
                         </div>
                         
 
-                        <div class="form-group <?php if(form_error('profession')) echo 'has-error'; ?>">
+<!--                        <div class="form-group <?php if(form_error('profession')) echo 'has-error'; ?>">
                             <label for="firstName" class="col-md-2">Profession
                                 <span class="text-red">*</span>
                             </label>
@@ -256,7 +256,7 @@
                                 <input type="text" name="profession" class="form-control" value="<?php echo set_value('profession'); ?>" placeholder="Profession">
                                 <?php echo form_error('profession') ?>
                             </div>
-                        </div>
+                        </div>-->
                         
                                   <div class="form-group <?php if(form_error('date_of_birth')) echo 'has-error'; ?>">
                             <label for="firstName" class="col-md-2">Date of birth
@@ -330,8 +330,9 @@
 
                     <div class="box-footer">
                         <button type="submit" name="submit" value="add_agent" class="btn btn-primary">
-                            <i class="fa fa-edit"></i> Add Agent
+                            <i class="fa fa-edit"></i> Save
                         </button>
+                        <a href="<?php echo base_url().'/agent' ?>">Back</a>
                     </div>
                 </form>
             </div><!-- /.box -->

@@ -70,7 +70,7 @@ class Agent_model extends CI_Model {
         $data = [
             
      
-            'agent_reg_no'=>$this->input->post('agent_reg_no'),
+            
             'county'=>$this->input->post('county'),
             'nationality_origin'=>$this->input->post('nationality_origin'),
             'skill'=>$this->input->post('skill'),
@@ -84,7 +84,7 @@ class Agent_model extends CI_Model {
             'mobile_no_2' => $this->input->post('mobile_no_2'),
             'gender' => $this->input->post('gender'),
             'date_of_birth' => $this->input->post('date_of_birth'),
-            'profession' => $this->input->post('profession'),
+            
             'agent_address1' => $this->input->post('agent_address1'),
             'agent_address2' => $this->input->post('agent_address2'),
             'mobile_no_1' => $this->input->post('mobile_no_1'),
@@ -103,8 +103,18 @@ class Agent_model extends CI_Model {
         ];
 
         $query = $this->db->insert('users', $data);
-
+        
+       // p($this->db->insert_id());
+        
         if ($query) {
+            
+            $data1 =[
+            "agent_reg_no"=>  "agent00".$this->db->insert_id(),
+            
+        ];
+         $queryupdate= $this->db->where('id', $this->db->insert_id())->update('users', $data1);
+
+            
             create_activity('Added ' . $data['first_name'] . ' ' . $data['last_name'] . ' as agent'); //create an activity
 
             $email_data = [
@@ -178,7 +188,7 @@ class Agent_model extends CI_Model {
 
         //set all data for inserting into database
         $data = [
-            'agent_reg_no'=>$this->input->post('agent_reg_no'),
+            
             'county'=>$this->input->post('county'),
             'nationality_origin'=>$this->input->post('nationality_origin'),
             'skill'=>$this->input->post('skill'),
@@ -194,7 +204,7 @@ class Agent_model extends CI_Model {
             'mobile_no_2' => $this->input->post('mobile_no_2'),
             'gender' => $this->input->post('gender'),
             'date_of_birth' => $this->input->post('date_of_birth'),
-            'profession' => $this->input->post('profession'),
+           
             'agent_address1' => $this->input->post('agent_address1'),
             'agent_address2' => $this->input->post('agent_address2'),
             'mobile_no_1' => $this->input->post('mobile_no_1'),
