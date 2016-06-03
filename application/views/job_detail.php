@@ -39,7 +39,8 @@
            
            
                 </div><!-- /.box-header -->
-                <div class="box-body">
+                <div
+                    class="box-body">
                     <div class="form-group">
                         <label for="shop_map" class="col-md-2">Shop Map
                             <span class="text-red">*</span>
