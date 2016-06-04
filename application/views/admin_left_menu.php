@@ -83,6 +83,11 @@ $currentUser = $currentAuthDta['role'];
                 </a>
             </li>-->
 
+            <li>
+                <a href="<?php echo base_url('agent/payments'); ?>">
+                    <i class="fa fa-group"></i> <span>Agent Payments</span>
+                </a>
+            </li>
             <li class="treeview <?php echo menu_li_active('user'); ?>">
                 <a href="#">
                     <i class="fa fa-user"></i>
