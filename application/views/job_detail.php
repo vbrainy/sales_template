@@ -58,7 +58,7 @@
                
                         <tr>
                             <th>Job unique name:</th>
-                            <th><?php echo ; ?></th>
+                            <th><?php //echo ; ?></th>
                         </tr>
                         <tr>
                             <td>Job at shop:</td>

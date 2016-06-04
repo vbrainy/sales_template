@@ -350,6 +350,21 @@ theme('edit_agent', $data);
 		echo json_encode($data);
 
 	}
-        
+
+	//Agent payments
+    public function payments(){
+        $data['title'] = "Agent Payments";    	
+        $data['task_list'] = $this->task_model->getTaskListByStatus(1);
+    	theme('agent_payments', $data);
+    }    
+
+    //Get details based on the task
+    public function getTaskDetails()
+    {
+    	$taskId = $this->input->post('task_id');
+    	$query = $this->db->select('tasks.id as task_id, jobs.id as job_id, jobs.unique_name as job_unique_name, users.id as agent_id, users.*, tasks.*, jobs.*')->where('tasks.id', $taskId)->join('users', 'users.id = tasks.assign_to', 'left')->join('jobs', "jobs.task_id = $taskId ",'left')->get('tasks');
+    	//print_r($query->result_array());exit;
+    	echo json_encode($query->result_array());exit;
+    }
         
 }

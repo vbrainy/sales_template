@@ -165,6 +165,10 @@ public function add_task(){
     }
     
     
+    public function getTaskListByStatus($status){
+        $query = $this->db->where('status', $status)->select('tasks.*')->get_where('tasks');
+        return $query->result_array();
+    }
     
     
     public function getmytaskByid(){
