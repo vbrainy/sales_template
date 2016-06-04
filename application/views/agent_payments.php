@@ -23,7 +23,7 @@
                 <div class="box-header">
                     <h3 class="box-title">Agent Payments</h3>
                     <div class="clearfix"></div>
-                    Please enter the information below.
+                    <div style="margin:10px;">Please enter the information below.</div>
                     <hr>
                 </div><!-- /.box-header -->
                 <!-- form start -->
@@ -53,8 +53,6 @@
                                 <?php echo form_error('task_title') ?>
                             </div>
                         </div>
-                        
-                        
                         
                         <div class="form-group <?php if(form_error('agent_address1')) echo 'has-error'; ?>">
                             <label for="firstName" class="col-md-2">Agent
@@ -107,7 +105,7 @@
                         </div>-->
                         <div class="clearfix"></div>
                     </div><!-- /.box-body -->
-                    <table class="table table-bordered table-striped table-hover dataTable">
+                    <table id="payment_info" class="table table-bordered table-striped table-hover dataTable" style="display:none;">
                     	<thead>
                     	<th>Job Id</th>
                     	<th>Shop Name</th>
@@ -118,7 +116,7 @@
                     	<th>Hold</th>
                     	<th>Pay</th>
 						</thead>
-						<tbody id="table_body">
+						<tbody>
 							<?php /* foreach ($task_list as $key => $value) { ?>
 								<tr>
 									<td><?= isset($value['job_id']) ? $value['job_id'] : '' ?></td>
@@ -156,7 +154,7 @@
     <script type="text/javascript">
         $(function() {
         	$('#task_id').change(function(){
-        		$('#table_body').html('');
+        		$('#payment_info > tbody').html('');
 				$.ajax({
 	                type: "POST",
 	                url: "<?php echo base_url('agent/getTaskDetails') ?>",
@@ -170,10 +168,16 @@
 	            	var Html='';
 	            	$(data).each(function(key, value)
 	            	{
-	            		//console.log(value);
-	            		Html += "<tr><td>"+value.job_unique_name+"</td><td>"+value.job_at_shop+"</td><td>"+value.description+"</td><td></td><td></td><td></td><td></td><td></td></tr>";
+	            		if(value.job_id != null)
+	            		{
+	            			Html += "<tr><td>"+value.job_unique_name+"</td><td>"+value.job_at_shop+"</td><td>"+value.description+"</td><td></td><td></td><td></td><td></td><td></td></tr>";
+	            		}
 	            	})
-	            	$('#table_body').append(Html);
+	            	if(Html != '')
+	            	{
+	            		$('#payment_info').show();
+	            		$('#payment_info > tbody').append(Html);
+	            	}
 	            });
         	});
 

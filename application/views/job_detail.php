@@ -39,22 +39,79 @@
            
            
                 </div><!-- /.box-header -->
-                <div
-                    class="box-body">
+                <hr>
+                <?php //print_r($job_details);exit; ?>
+                <div class="box-body">
+                    
+                        <div class="form-group">
+                        <div class="col-md-12">
+                            <?php echo $job_details->shop_nameplate ?>
+                        </div>
+                    </div>
+
+                       <div class="form-group">
+                        <div class="col-md-12">
+                            <?php echo $job_details->job_at_shop ?>
+                        </div>
+                    </div>
+                       <div class="form-group">
+                        <div class="col-md-12">
+                            <?php echo $job_details->job_add1 ?>
+                        </div>
+                    </div>
+                       <div class="form-group">
+                        <div class="col-md-12">
+                            <?php echo $job_details->job_add2 ?>
+                        </div>
+                    </div>
+                       <div class="form-group">
+                        <div class="col-md-12">
+                            <?php echo $job_details->postcode; ?>
+                        </div>
+                    </div>
+                       <div class="form-group">
+                        <div class="col-md-12">
+                            <?php echo $job_details->phone ?>
+                        </div>
+                    </div>
                     <div class="form-group">
-                        <label for="shop_map" class="col-md-2">Shop Map
+                        <div class="col-md-6">
+                            <div id="map-canvas" style="width:330px;height:330px;"></div>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <hr>
+                    <!-- <div class="form-group">
+                        <label for="shop_map" class="col-md-2">Job Description
                             <span class="text-red">*</span>
                         </label>
                         <div class="col-md-6">
-                            <div id="map-canvas" style="width:530px;height:380px;"></div>
+                            <?php echo $job_details->description; ?>
                         </div>
-                    </div>
+                    </div> -->
                     
-                    
-                    
-                    
-                    <table class="table table-striped">
+
+                    <?php for($i=1; $i<=10; $i++) { ?>
+                            <div class="form-group">
+
+                                <div class="col-md-6">
+                                Job Part 1/<?= $i; ?><br/>
+                            <?php
+                            echo $temp = "desc".$i;
+                            echo $job_details->$temp; ?>
+                                </div>
+                            </div>
+                            <button>Completed</button>
+                            <button>Can't Finish</button>
+                            <hr/>
+                            <div class="clearfix"></div>
+
+                    <?php } ?>
+                </div>
+
                         
+                    <?php /*
+                    <table class="table table-striped">
                
                         <tr>
                             <th>Job unique name:</th>
@@ -155,6 +212,7 @@
 
 
                     </table>
+                    */?>
                      <?php if (empty($job_details->job_status)) { ?>
                      <?php echo form_open_multipart('myjobs/update_status/'. $job_details->id, ['role' => 'form', 'class' => 'form-horizontal']); ?>
                             <div class="form-group <?php if(form_error('shop_signature_complete')) echo 'has-error'; ?>">
@@ -176,9 +234,9 @@
                 </div><!-- /.box-body -->
                
                   
-                 <button type="submit" name="submit" value="job_compelete" class="btn btn-primary">
+                 <!-- <button type="submit" name="submit" value="job_compelete" class="btn btn-primary">
                             <i class="fa fa-edit"></i> Complete Job
-                        </button>
+                        </button> -->
                 
                  </form>
 <?php }
